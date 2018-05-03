@@ -13,53 +13,29 @@ class Template extends React.Component {
       rootPath = __PATH_PREFIX__ + `/`
     }
 
+    const headerStyles = {
+      marginTop: 0,
+      marginBottom: 0,
+      fontSize: 24,
+      fontFamily: 'lato, sans-selif',
+      fontWeight: 900,
+    }
+
+    const link = <Link
+      style={{
+        boxShadow: 'none',
+        textDecoration: 'none',
+        color: 'inherit'
+      }}
+      to={'/'}
+    >
+      mottox2 blog
+    </Link>
+
     if (false && location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            marginTop: 0,
-            marginBottom: 0,
-            fontSize: 24,
-            fontFamily: 'lato, sans-selif',
-            fontWeight: 900,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: 'none',
-              textDecoration: 'none',
-              color: 'inherit'
-            }}
-            to={'/'}
-          >
-            mottox2 blog
-          </Link>
-        </h1>
-      )
+      header = (<h1 styles={headerStyles}> {link} </h1>)
     } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: 'Montserrat, sans-serif',
-            marginTop: 0,
-            marginBottom: 0,
-            fontSize: 24,
-            fontFamily: 'lato, sans-selif',
-            fontWeight: 900
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: 'none',
-              textDecoration: 'none',
-              color: 'inherit'
-            }}
-            to={'/'}
-          >
-            mottox2 blog
-          </Link>
-        </h3>
-      )
+      header = (<h3 style={headerStyles}> {link} </h3>)
     }
     return (
       <div>
