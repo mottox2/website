@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Esa Starter',
+    title: 'mottox2 blog',
     author: 'mottox2',
-    description: 'A starter blog pulling data from esa',
+    description: 'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとか',
     siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/'
   },
   pathPrefix: '/gatsby-starter-blog',
