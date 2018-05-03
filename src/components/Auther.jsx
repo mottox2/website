@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import dayjs from 'dayjs'
 
 const UpdatedBy = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const UpdatedAt = styled.div`
   opacity: 0.5;
   font-size: 10px;
   line-height: 1;
-  margin-top: 4px;
+  margin-top: 6px;
 `
 
 const Auther = props => {
@@ -36,7 +37,7 @@ const Auther = props => {
       <Avatar src={node.updated_by.icon} width="30" height="30" />
       <div>
         <UpdatedUser>{node.updated_by.screen_name}</UpdatedUser>
-        <UpdatedAt>{node.updated_at}</UpdatedAt>
+        <UpdatedAt>{dayjs(node.updated_at).format('YYYY/MM/DD HH:mm')}</UpdatedAt>
       </div>
     </UpdatedBy>
   )

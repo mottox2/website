@@ -2426,6 +2426,10 @@ dateformat@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.2.0.tgz#4065e2013cf9fb916ddfd82efb506ad4c6769062"
 
+dayjs@^1.5.18:
+  version "1.5.18"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.5.18.tgz#e2aa2d8c14112d5da8b5fb9d1e342c3f607ca730"
+
 death@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/death/-/death-1.1.0.tgz#01aa9c401edd92750514470b8266390c66c67318"
