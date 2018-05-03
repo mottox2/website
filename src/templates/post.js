@@ -6,8 +6,6 @@ import styled from 'styled-components'
 
 import Auther from '../components/Auther'
 
-import { rhythm, scale } from '../utils/typography'
-
 const Wrapper = styled.div`
   padding: 12px;
   margin-top: 12px;
@@ -16,6 +14,7 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: 24px;
   line-height: 1.4;
+  font-weight: 600;
   font-family: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue', 'Hiragino Sans',
     '游ゴシック Medium', 'YuGothic', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo,sans-serif';
 
@@ -26,6 +25,8 @@ const Title = styled.h1`
 
 const Content = styled.div`
   margin-top: 24px;
+  line-height: 1.8;
+  font-size: 15px;
   .hidden {
     display: none;
   }
@@ -610,7 +611,7 @@ h1, h2, h3, h4, h5, h6 {
 
 const Category = styled.div`
   font-family: lato, sans-serif;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   opacity: 0.5;
   font-size: 14px;
 `
@@ -628,11 +629,6 @@ class PostTemplate extends React.Component {
         <Title style={{ margin: 0 }}>{post.name}</Title>
         <Auther post={post} />
         <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1)
-          }}
-        />
       </Wrapper>
     )
   }

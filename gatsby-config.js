@@ -12,7 +12,7 @@ module.exports = {
       options: {
         accessToken: process.env.ACCESS_TOKEN,
         teamName: process.env.TEAM_NAME,
-        q: `in:public`
+        q: `in:blog`
       }
     },
     `gatsby-plugin-styled-components`,
@@ -26,11 +26,5 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: 'src/utils/typography'
-      }
-    }
   ]
 }

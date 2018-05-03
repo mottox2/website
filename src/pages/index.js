@@ -6,13 +6,14 @@ import styled from 'styled-components'
 
 import Auther from '../components/Auther'
 
-import { rhythm } from '../utils/typography'
-
 const Cell = styled.div`
   padding: 24px;
   border: 1px solid #eee;
   margin-bottom: 24px;
   background-color: white;
+  a {
+    text-decoration: none;
+  }
 `
 
 const Category = styled.div`
@@ -38,13 +39,14 @@ class BlogIndex extends React.Component {
                 <h3
                   style={{
                     marginTop: 0,
-                    marginBottom: rhythm(1 / 4)
+                    marginBottom: 4,
+                    fontSize: 20
                   }}
                 >
                   {node.name}
                 </h3>
                 <p
-                  style={{ margin: 0, opacity: 0.6, fontSize: 14 }}
+                  style={{ margin: 0, opacity: 0.6, fontSize: 14, lineHeight: 1.6 }}
                   dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 60) }}
                 />
               </Link>
