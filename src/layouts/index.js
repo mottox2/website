@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import 'ress'
 import styled from 'styled-components'
 
 import { rhythm, scale } from '../utils/typography'
@@ -35,7 +36,7 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Esa
+            mottox2 blog
           </Link>
         </h1>
       )
@@ -60,7 +61,7 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Esa
+            mottox2 blog
           </Link>
         </h3>
       )
