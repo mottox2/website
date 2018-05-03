@@ -3,7 +3,7 @@ module.exports = {
     title: 'mottox2 blog',
     author: 'mottox2',
     description: 'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとか',
-    siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/'
+    siteUrl: 'https://mottox2.com'
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
