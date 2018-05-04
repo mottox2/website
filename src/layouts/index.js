@@ -32,8 +32,8 @@ class Template extends React.Component {
       mottox2 blog
     </Link>
 
-    if (false && location.pathname === rootPath) {
-      header = (<h1 styles={headerStyles}> {link} </h1>)
+    if (location.pathname === rootPath) {
+      header = (<h1 style={headerStyles}> {link} </h1>)
     } else {
       header = (<h3 style={headerStyles}> {link} </h3>)
     }

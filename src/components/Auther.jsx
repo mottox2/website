@@ -26,7 +26,7 @@ const UpdatedAt = styled.div`
   opacity: 0.5;
   font-size: 10px;
   line-height: 1;
-  margin-top: 6px;
+  margin-top: 4px;
 `
 
 const Auther = props => {
