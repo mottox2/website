@@ -7,12 +7,16 @@ import styled from 'styled-components'
 import Auther from '../components/Auther'
 
 const Cell = styled.div`
-  padding: 24px;
+  padding: 20px 12px;
   border: 1px solid #eee;
   margin-bottom: 24px;
   background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   a {
     text-decoration: none;
+  }
+  @media (min-width: 600px) {
+    padding: 24px;
   }
 `
 
@@ -40,14 +44,15 @@ class BlogIndex extends React.Component {
                   style={{
                     marginTop: 0,
                     marginBottom: 4,
-                    fontSize: 20
+                    fontSize: 20,
+                    fontWeight: 600,
                   }}
                 >
                   {node.name}
                 </h3>
                 <p
                   style={{ margin: 0, opacity: 0.6, fontSize: 14, lineHeight: 1.6 }}
-                  dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 60) }}
+                  dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 120) }}
                 />
               </Link>
               <Auther post={node} />

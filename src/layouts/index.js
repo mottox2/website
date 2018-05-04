@@ -51,6 +51,7 @@ class Template extends React.Component {
 const Container = styled.div`
   max-width: 42rem;
   margin: auto;
+  font-family: -apple-system-body, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans Japanese", "游ゴシック  Medium", "Yu Gothic Medium", "メイリオ", meiryo, sans-serif;
   @media screen and (-webkit-min-device-pixel-ratio: 2),screen and (min-resolution:2dppx) {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
