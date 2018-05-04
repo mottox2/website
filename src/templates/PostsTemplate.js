@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Auther from '../components/Auther'
+import { Category } from './PostTemplate'
 
 const Cell = styled.div`
   padding: 20px 12px;
@@ -13,15 +14,8 @@ const Cell = styled.div`
     text-decoration: none;
   }
   @media (min-width: 600px) {
-    padding: 24px;
+    padding: 20px 24px 24px;
   }
-`
-
-const Category = styled.div`
-  font-family: lato, sans-serif;
-  margin-bottom: 4px;
-  opacity: 0.5;
-  font-size: 14px;
 `
 
 const NavLink = props => {

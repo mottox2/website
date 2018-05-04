@@ -8,7 +8,7 @@ import Auther from '../components/Auther'
 
 const Wrapper = styled.div`
   padding: 12px;
-  margin-top: 12px;
+  margin-top: 24px;
 `
 
 const Title = styled.h1`
@@ -43,16 +43,16 @@ const Content = styled.div`
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 4px
-}
+    }
 
-pre code {
-    padding: 0;
-    font-size: inherit;
-    color: inherit;
-    white-space: pre-wrap;
-    background-color: transparent;
-    border-radius: 0
-}
+    pre code {
+        padding: 0;
+        font-size: inherit;
+        color: inherit;
+        white-space: pre-wrap;
+        background-color: transparent;
+        border-radius: 0
+    }
 
 
   h1 {
@@ -326,298 +326,291 @@ pre code {
       }
   }
 
-.highlight code table td {
-    padding: 5px
-}
-
-.highlight code table pre {
-    margin: 0
-}
-
-.highlight code .cm {
-    color: #999988;
-    font-style: italic
-}
-
-.highlight code .cp {
-    color: #999999;
-    font-weight: bold
-}
-
-.highlight code .c1 {
-    color: #999988;
-    font-style: italic
-}
-
-.highlight code .cs {
-    color: #999999;
-    font-weight: bold;
-    font-style: italic
-}
-
-.highlight code .c,.highlight code .cd {
-    color: #999988;
-    font-style: italic
-}
-
-.highlight code .err {
-    color: #a61717;
-    background-color: #e3d2d2
-}
-
-.highlight code .gd {
-    color: #000000;
-    background-color: #ffdddd
-}
-
-.highlight code .ge {
-    color: #000000;
-    font-style: italic
-}
-
-.highlight code .gr {
-    color: #aa0000
-}
-
-.highlight code .gh {
-    color: #999999
-}
-
-.highlight code .gi {
-    color: #000000;
-    background-color: #ddffdd
-}
-
-.highlight code .go {
-    color: #888888
-}
-
-.highlight code .gp {
-    color: #555555
-}
-
-.highlight code .gs {
-    font-weight: bold
-}
-
-.highlight code .gu {
-    color: #aaaaaa
-}
-
-.highlight code .gt {
-    color: #aa0000
-}
-
-.highlight code .kc {
-    color: #000000;
-    font-weight: bold
-}
-
-.highlight code .kd {
-    color: #000000;
-    font-weight: bold
-}
-
-.highlight code .kn {
-    color: #000000;
-    font-weight: bold
-}
-
-.highlight code .kp {
-    color: #000000;
-    font-weight: bold
-}
-
-.highlight code .kr {
-    color: #000000;
-    font-weight: bold
-}
-
-.highlight code .kt {
-    color: #445588;
-    font-weight: bold
-}
-
-.highlight code .k,.highlight code .kv {
-    color: #000000;
-    font-weight: bold
-}
-
-.highlight code .mf {
-    color: #009999
-}
-
-.highlight code .mh {
-    color: #009999
-}
-
-.highlight code .il {
-    color: #009999
-}
-
-.highlight code .mi {
-    color: #009999
-}
-
-.highlight code .mo {
-    color: #009999
-}
-
-.highlight code .m,.highlight code .mb,.highlight code .mx {
-    color: #009999
-}
-
-.highlight code .sb {
-    color: #d14
-}
-
-.highlight code .sc {
-    color: #d14
-}
-
-.highlight code .sd {
-    color: #d14
-}
-
-.highlight code .s2 {
-    color: #d14
-}
-
-.highlight code .se {
-    color: #d14
-}
-
-.highlight code .sh {
-    color: #d14
-}
-
-.highlight code .si {
-    color: #d14
-}
-
-.highlight code .sx {
-    color: #d14
-}
-
-.highlight code .sr {
-    color: #009926
-}
-
-.highlight code .s1 {
-    color: #d14
-}
-
-.highlight code .ss {
-    color: #990073
-}
-
-.highlight code .s {
-    color: #d14
-}
-
-.highlight code .na {
-    color: #008080
-}
-
-.highlight code .bp {
-    color: #999999
-}
-
-.highlight code .nb {
-    color: #0086B3
-}
-
-.highlight code .nc {
-    color: #445588;
-    font-weight: bold
-}
-
-.highlight code .no {
-    color: #008080
-}
-
-.highlight code .nd {
-    color: #3c5d5d;
-    font-weight: bold
-}
-
-.highlight code .ni {
-    color: #800080
-}
-
-.highlight code .ne {
-    color: #990000;
-    font-weight: bold
-}
-
-.highlight code .nf {
-    color: #990000;
-    font-weight: bold
-}
-
-.highlight code .nl {
-    color: #990000;
-    font-weight: bold
-}
-
-.highlight code .nn {
-    color: #555555
-}
-
-.highlight code .nt {
-    color: #000080
-}
-
-.highlight code .vc {
-    color: #008080
-}
-
-.highlight code .vg {
-    color: #008080
-}
-
-.highlight code .vi {
-    color: #008080
-}
-
-.highlight code .nv {
-    color: #008080
-}
-
-.highlight code .ow {
-    color: #000000;
-    font-weight: bold
-}
-
-.highlight code .o {
-    color: #000000;
-    font-weight: bold
-}
-
-.highlight code .w {
-    color: #bbbbbb
-}
-
-.highlight code {
-    background-color: #f8f8f8
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-}
-`
-
-const Category = styled.div`
-  font-family: lato, sans-serif;
-  margin-bottom: 6px;
-  opacity: 0.5;
-  font-size: 14px;
+    .highlight code table td {
+        padding: 5px
+    }
+
+    .highlight code table pre {
+        margin: 0
+    }
+
+    .highlight code .cm {
+        color: #999988;
+        font-style: italic
+    }
+
+    .highlight code .cp {
+        color: #999999;
+        font-weight: bold
+    }
+
+    .highlight code .c1 {
+        color: #999988;
+        font-style: italic
+    }
+
+    .highlight code .cs {
+        color: #999999;
+        font-weight: bold;
+        font-style: italic
+    }
+
+    .highlight code .c,.highlight code .cd {
+        color: #999988;
+        font-style: italic
+    }
+
+    .highlight code .err {
+        color: #a61717;
+        background-color: #e3d2d2
+    }
+
+    .highlight code .gd {
+        color: #000000;
+        background-color: #ffdddd
+    }
+
+    .highlight code .ge {
+        color: #000000;
+        font-style: italic
+    }
+
+    .highlight code .gr {
+        color: #aa0000
+    }
+
+    .highlight code .gh {
+        color: #999999
+    }
+
+    .highlight code .gi {
+        color: #000000;
+        background-color: #ddffdd
+    }
+
+    .highlight code .go {
+        color: #888888
+    }
+
+    .highlight code .gp {
+        color: #555555
+    }
+
+    .highlight code .gs {
+        font-weight: bold
+    }
+
+    .highlight code .gu {
+        color: #aaaaaa
+    }
+
+    .highlight code .gt {
+        color: #aa0000
+    }
+
+    .highlight code .kc {
+        color: #000000;
+        font-weight: bold
+    }
+
+    .highlight code .kd {
+        color: #000000;
+        font-weight: bold
+    }
+
+    .highlight code .kn {
+        color: #000000;
+        font-weight: bold
+    }
+
+    .highlight code .kp {
+        color: #000000;
+        font-weight: bold
+    }
+
+    .highlight code .kr {
+        color: #000000;
+        font-weight: bold
+    }
+
+    .highlight code .kt {
+        color: #445588;
+        font-weight: bold
+    }
+
+    .highlight code .k,.highlight code .kv {
+        color: #000000;
+        font-weight: bold
+    }
+
+    .highlight code .mf {
+        color: #009999
+    }
+
+    .highlight code .mh {
+        color: #009999
+    }
+
+    .highlight code .il {
+        color: #009999
+    }
+
+    .highlight code .mi {
+        color: #009999
+    }
+
+    .highlight code .mo {
+        color: #009999
+    }
+
+    .highlight code .m,.highlight code .mb,.highlight code .mx {
+        color: #009999
+    }
+
+    .highlight code .sb {
+        color: #d14
+    }
+
+    .highlight code .sc {
+        color: #d14
+    }
+
+    .highlight code .sd {
+        color: #d14
+    }
+
+    .highlight code .s2 {
+        color: #d14
+    }
+
+    .highlight code .se {
+        color: #d14
+    }
+
+    .highlight code .sh {
+        color: #d14
+    }
+
+    .highlight code .si {
+        color: #d14
+    }
+
+    .highlight code .sx {
+        color: #d14
+    }
+
+    .highlight code .sr {
+        color: #009926
+    }
+
+    .highlight code .s1 {
+        color: #d14
+    }
+
+    .highlight code .ss {
+        color: #990073
+    }
+
+    .highlight code .s {
+        color: #d14
+    }
+
+    .highlight code .na {
+        color: #008080
+    }
+
+    .highlight code .bp {
+        color: #999999
+    }
+
+    .highlight code .nb {
+        color: #0086B3
+    }
+
+    .highlight code .nc {
+        color: #445588;
+        font-weight: bold
+    }
+
+    .highlight code .no {
+        color: #008080
+    }
+
+    .highlight code .nd {
+        color: #3c5d5d;
+        font-weight: bold
+    }
+
+    .highlight code .ni {
+        color: #800080
+    }
+
+    .highlight code .ne {
+        color: #990000;
+        font-weight: bold
+    }
+
+    .highlight code .nf {
+        color: #990000;
+        font-weight: bold
+    }
+
+    .highlight code .nl {
+        color: #990000;
+        font-weight: bold
+    }
+
+    .highlight code .nn {
+        color: #555555
+    }
+
+    .highlight code .nt {
+        color: #000080
+    }
+
+    .highlight code .vc {
+        color: #008080
+    }
+
+    .highlight code .vg {
+        color: #008080
+    }
+
+    .highlight code .vi {
+        color: #008080
+    }
+
+    .highlight code .nv {
+        color: #008080
+    }
+
+    .highlight code .ow {
+        color: #000000;
+        font-weight: bold
+    }
+
+    .highlight code .o {
+        color: #000000;
+        font-weight: bold
+    }
+
+    .highlight code .w {
+        color: #bbbbbb
+    }
+
+    .highlight code {
+        background-color: #f8f8f8
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    }
 `
 
 const Tag = styled.div`
   background-color: white;
   font-weight: 600;
-  opacity: .58;
+  color: rgba(0, 0, 0, 0.58);
   display: inline-block;
   padding: 6px 16px;
   border: 1px solid #ddd;
@@ -625,6 +618,14 @@ const Tag = styled.div`
   font-size: 12px;
   margin: 4px 8px 4px 0;
   border-radius: 20px;
+`
+
+export const Category = Tag.extend`
+  background-image: linear-gradient(45deg,#4d9abf 0,#00c7b7 100%);
+  color: white;
+  border: 1px solid transparent;
+  border-color: #00c7b7;
+  margin-top: 0;
 `
 
 class PostTemplate extends React.Component {
@@ -635,7 +636,9 @@ class PostTemplate extends React.Component {
     return (
       <Wrapper>
         <Helmet title={`${post.name}`} />
-        <Category>{post.category}</Category>
+        <Link to={`/categories/${post.category}`}>
+          <Category>{post.category}</Category>
+        </Link>
         <Title style={{ margin: 0 }}>{post.name}</Title>
         {
           post.tags.map(tag => (
