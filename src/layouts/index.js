@@ -16,7 +16,7 @@ class Template extends React.Component {
     const headerStyles = {
       marginTop: 0,
       marginBottom: 0,
-      fontSize: 24,
+      fontSize: 20,
       fontFamily: 'lato, sans-selif',
       fontWeight: 900,
     }
@@ -64,7 +64,7 @@ const Header = styled.header`
   background-image: linear-gradient(45deg,#4d9abf 0,#00c7b7 100%);
   color: white;
   font-weight: 500;
-  padding: 48px 0;
+  padding: 24px 0;
 `
 
 export default Template

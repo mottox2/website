@@ -623,9 +623,7 @@ const Tag = styled.div`
   border: 1px solid #ddd;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
   font-size: 12px;
-  margin-top: 8px
-  margin-right: 8px;
-  margin-bottom: 4px;
+  margin: 4px 8px 4px 0;
   border-radius: 20px;
 `
 
