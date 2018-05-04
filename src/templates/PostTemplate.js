@@ -605,8 +605,6 @@ pre code {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
-
-
 `
 
 const Category = styled.div`
@@ -616,10 +614,24 @@ const Category = styled.div`
   font-size: 14px;
 `
 
+const Tag = styled.div`
+  background-color: white;
+  font-weight: 600;
+  opacity: .58;
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+  font-size: 12px;
+  margin-top: 8px
+  margin-right: 8px;
+  margin-bottom: 4px;
+  border-radius: 20px;
+`
+
 class PostTemplate extends React.Component {
   render() {
     const post = this.props.data.esaPost
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const { previous, next } = this.props.pathContext
 
     return (
@@ -627,6 +639,13 @@ class PostTemplate extends React.Component {
         <Helmet title={`${post.name}`} />
         <Category>{post.category}</Category>
         <Title style={{ margin: 0 }}>{post.name}</Title>
+        {
+          post.tags.map(tag => (
+          <Tag>
+            {tag}
+          </Tag>
+          ))
+        }
         <Auther post={post} />
         <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
       </Wrapper>
@@ -638,18 +657,13 @@ export default PostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($number: Int!) {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
     esaPost(number: { eq: $number }) {
       number
       category
       name
       wip
       body_html
+      tags
       updated_at
       updated_by {
         name
