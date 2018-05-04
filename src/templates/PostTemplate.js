@@ -639,9 +639,11 @@ class PostTemplate extends React.Component {
         <Title style={{ margin: 0 }}>{post.name}</Title>
         {
           post.tags.map(tag => (
-          <Tag>
+          <Link to={`/tags/${tag}`}>
+            <Tag>
             {tag}
-          </Tag>
+            </Tag>
+          </Link>
           ))
         }
         <Auther post={post} />

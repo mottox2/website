@@ -40,7 +40,6 @@ const IndexPage = ({ data, pathContext }) => {
   return (
     <div style={{marginTop: 24}}>
       {group.map(({ node }) => {
-        console.log(node)
         return (
           <Cell key={node.number}>
             <Category>{node.category}</Category>
