@@ -51,13 +51,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         const categoryMap = new Map()
         const tagMap = new Map()
         const postEntities = {}
+        const categoryEntities = {}
+        const tagEntities = {}
 
         _.each(posts, (post, index) => {
           const postNode = post.node
 
           postNode.tags.forEach(tag => {
-            tagMap.set(tag, tagMap.get(tag) ? tagMap.get(tag).concat(postNode.number) : [postNode.number]
-            )
+            tagMap.set(tag, tagMap.get(tag) ? tagMap.get(tag).concat(postNode.number) : [postNode.number])
           })
           categoryMap.set(
             postNode.category,
@@ -83,7 +84,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             pageTemplate: blogList,
             pageLength: 10,
             pathPrefix: `categories/${category}`,
-            buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`
+            buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`,
+            context: { category }
           });
         })
 
@@ -95,7 +97,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             pageTemplate: blogList,
             pageLength: 10,
             pathPrefix: `tags/${tag}`,
-            buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`
+            buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`,
+            context: { tag }
           });
         })
 

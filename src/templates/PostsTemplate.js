@@ -26,13 +26,28 @@ const NavLink = props => {
   }
 }
 
+const Title = styled.h1`
+  margin: 24px 0;
+  font-size: 22px;
+  text-align: center;
+  small {
+    font-size: 13px;
+    font-weight: 400;
+    margin-left: 4px;
+    opacity: 0.6;
+  }
+`
+
 const IndexPage = ({ data, pathContext }) => {
-  const { group, index, first, last, pageCount } = pathContext
+  const { group, index, first, last, pageCount, additionalContext } = pathContext
   const previousUrl = index - 1 == 1 ? '/' : '/page/' + (index - 1).toString()
   const nextUrl = '/posts/page/' + (index + 1).toString()
+  const { tag, category } = additionalContext
 
   return (
     <div style={{marginTop: 24}}>
+      { tag && <Title>{tag}<small>に関する記事</small></Title> }
+      { category && <Title>{category}<small>に関する記事</small></Title> }
       {group.map(({ node }) => {
         return (
           <Cell key={node.number}>
