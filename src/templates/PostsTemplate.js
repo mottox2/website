@@ -38,6 +38,18 @@ const Title = styled.h1`
   }
 `
 
+const PostTitle = styled.h3`
+  margin-bottom: 4px;
+  font-size: 20px;
+  font-weight: 600;
+`
+
+const PostDescription = styled.p`
+  opacity: 0.6;
+  font-size: 14px;
+  line-height: 1.6;
+`
+
 const IndexPage = ({ data, pathContext }) => {
   const { group, index, first, last, pageCount, additionalContext } = pathContext
   const previousUrl = index - 1 == 1 ? '/' : '/page/' + (index - 1).toString()
@@ -53,20 +65,8 @@ const IndexPage = ({ data, pathContext }) => {
           <Cell key={node.number}>
             <Category>{node.category}</Category>
             <Link style={{ boxShadow: 'none', color: 'inherit' }} to={`/posts/${node.number}`}>
-              <h3
-                style={{
-                  marginTop: 0,
-                  marginBottom: 4,
-                  fontSize: 20,
-                  fontWeight: 600,
-                }}
-              >
-                {node.name}
-              </h3>
-              <p
-                style={{ margin: 0, opacity: 0.6, fontSize: 14, lineHeight: 1.6 }}
-                dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 120) }}
-              />
+              <PostTitle>{node.name}</PostTitle>
+              <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 120)}} />
             </Link>
             <Auther post={node} />
           </Cell>
