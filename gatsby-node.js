@@ -101,9 +101,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             context: { tag }
           });
         })
-
-        console.log(categoryMap)
-        console.log(tagMap)
       })
     )
   })
