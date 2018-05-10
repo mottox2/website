@@ -2,7 +2,6 @@
 /* eslint import/extensions:"off" */
 /* eslint global-require:"off" */
 import React from 'react'
-// import favicon from './favicon.png'
 
 let inlinedStyles = ''
 if (process.env.NODE_ENV === 'production') {
@@ -29,7 +28,7 @@ export default class HTML extends React.Component {
           <meta content="width=device-width, initial-scale=1.0" name="viewport" />
           <meta name="google-site-verification" content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4" />
           {this.props.headComponents}
-          {/* <link rel="shortcut icon" href={favicon} /> */}
+          <link rel="shortcut icon" href='./favicon.ico' />
           {css}
         </head>
         <body>
