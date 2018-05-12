@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Auther from '../components/Auther'
@@ -58,6 +59,7 @@ const IndexPage = ({ data, pathContext }) => {
 
   return (
     <div style={{marginTop: 24}}>
+      <Helmet title={`mottox2 blog`} />
       { tag && <Title>{tag}<small>に関する記事</small></Title> }
       { category && <Title>{category}<small>に関する記事</small></Title> }
       {group.map(({ node }) => {

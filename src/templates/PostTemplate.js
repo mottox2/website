@@ -52,7 +52,7 @@ class PostTemplate extends React.Component {
 
     return (
       <Wrapper>
-        <Helmet title={`${post.name}`} />
+        <Helmet title={`${post.name} - mottox2 blog`} />
         <Link to={`/categories/${post.category}`}>
           <Category>{post.category}</Category>
         </Link>
