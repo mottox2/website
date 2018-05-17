@@ -69,7 +69,7 @@ const IndexPage = ({ data, pathContext }) => {
             <Category>{node.category}</Category>
             <Link style={{ boxShadow: 'none', color: 'inherit' }} to={`/posts/${node.number}`}>
               <PostTitle>{node.name}</PostTitle>
-              <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 120)}} />
+              <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 140)}} />
             </Link>
             <Auther post={node} />
           </Cell>
