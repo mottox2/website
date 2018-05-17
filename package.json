@@ -18,7 +18,7 @@
     "gatsby-plugin-sharp": "^1.6.42",
     "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-plugin-typography": "^1.7.18",
-    "gatsby-plugin-workbox": "^0.1.4",
+    "gatsby-plugin-workbox": "^0.1.5",
     "gatsby-source-esa": "^1.0.0",
     "gatsby-transformer-sharp": "^1.6.22",
     "lodash": "^4.17.5",

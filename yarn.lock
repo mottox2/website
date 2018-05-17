@@ -3868,9 +3868,9 @@ gatsby-plugin-typography@^1.7.18:
     react-typography "^0.16.1"
     typography "^0.16.0"
 
-gatsby-plugin-workbox@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-workbox/-/gatsby-plugin-workbox-0.1.4.tgz#3adbd75079e47fa437819d76ddc9081bdfcd2476"
+gatsby-plugin-workbox@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-workbox/-/gatsby-plugin-workbox-0.1.5.tgz#32acd939a5974c77c02247784286ba5d5646fa85"
   dependencies:
     lodash "^4.17.10"
     react "^16.3.2"
