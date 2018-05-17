@@ -49,6 +49,7 @@ const PostDescription = styled.p`
   opacity: 0.6;
   font-size: 14px;
   line-height: 1.6;
+  word-break: break-all;
 `
 
 const IndexPage = ({ data, pathContext }) => {
