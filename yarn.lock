@@ -3868,6 +3868,15 @@ gatsby-plugin-typography@^1.7.18:
     react-typography "^0.16.1"
     typography "^0.16.0"
 
+gatsby-plugin-workbox@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-workbox/-/gatsby-plugin-workbox-0.1.1.tgz#0d6ca8fede7c251a9fa4cc949dab7fadccb295cd"
+  dependencies:
+    lodash "^4.17.10"
+    react "^16.3.2"
+    slash "^2.0.0"
+    workbox-build "^3.2.0"
+
 gatsby-react-router-scroll@^1.0.14:
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/gatsby-react-router-scroll/-/gatsby-react-router-scroll-1.0.14.tgz#7e3b59c2266772030c6bfeaa8914c71dd3c12c59"
@@ -5201,6 +5210,14 @@ joi@9.0.0-0:
     moment "2.x.x"
     topo "2.x.x"
 
+joi@^11.1.1:
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-11.4.0.tgz#f674897537b625e9ac3d0b7e1604c828ad913ccb"
+  dependencies:
+    hoek "4.x.x"
+    isemail "3.x.x"
+    topo "2.x.x"
+
 jpeg-js@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.2.0.tgz#53e448ec9d263e683266467e9442d2c5a2ef5482"
@@ -5699,6 +5716,10 @@ lodash@4, lodash@^4.0.0, lodash@^4.1.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^
 lodash@4.11.1:
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.11.1.tgz#a32106eb8e2ec8e82c241611414773c9df15f8bc"
+
+lodash@^4.17.10:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -7697,6 +7718,15 @@ react@^15.6.0:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
+react@^16.3.2:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
 read-all-stream@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/read-all-stream/-/read-all-stream-3.1.0.tgz#35c3e177f2078ef789ee4bfafa4373074eaef4fa"
@@ -8511,6 +8541,10 @@ simple-swizzle@^0.2.2:
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
+
+slash@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/slash/-/slash-2.0.0.tgz#de552851a1759df3a8f206535442f5ec4ddeab44"
 
 slice-ansi@1.0.0:
   version "1.0.0"
@@ -9897,6 +9931,101 @@ wordwrap@~0.0.2:
 wordwrap@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
+
+workbox-background-sync@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-background-sync/-/workbox-background-sync-3.2.0.tgz#08d4f79fb82fb61f72fbd0359c4b616cc75612d4"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-broadcast-cache-update@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-broadcast-cache-update/-/workbox-broadcast-cache-update-3.2.0.tgz#65b4d9b3d4594751ab7ce1fee905c08214118fdc"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-build@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-build/-/workbox-build-3.2.0.tgz#01f4a4f6fb5a94dadd3f86d04480c84578fa1125"
+  dependencies:
+    babel-runtime "^6.26.0"
+    common-tags "^1.4.0"
+    fs-extra "^4.0.2"
+    glob "^7.1.2"
+    joi "^11.1.1"
+    lodash.template "^4.4.0"
+    pretty-bytes "^4.0.2"
+    workbox-background-sync "^3.2.0"
+    workbox-broadcast-cache-update "^3.2.0"
+    workbox-cache-expiration "^3.2.0"
+    workbox-cacheable-response "^3.2.0"
+    workbox-core "^3.2.0"
+    workbox-google-analytics "^3.2.0"
+    workbox-precaching "^3.2.0"
+    workbox-range-requests "^3.2.0"
+    workbox-routing "^3.2.0"
+    workbox-strategies "^3.2.0"
+    workbox-streams "^3.2.0"
+    workbox-sw "^3.2.0"
+
+workbox-cache-expiration@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-cache-expiration/-/workbox-cache-expiration-3.2.0.tgz#a585761fd5438e439668afc6f862ac5a0ebca1a8"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-cacheable-response@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-cacheable-response/-/workbox-cacheable-response-3.2.0.tgz#1d8e3d437d60fb80d971d79545bb27acf1fe7653"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-core@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-3.2.0.tgz#d1bd4209447f5350d8dd6b964c86f054c96ffa0a"
+
+workbox-google-analytics@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-google-analytics/-/workbox-google-analytics-3.2.0.tgz#1005bc71ae03a8948b687896235dafecb1696c46"
+  dependencies:
+    workbox-background-sync "^3.2.0"
+    workbox-core "^3.2.0"
+    workbox-routing "^3.2.0"
+    workbox-strategies "^3.2.0"
+
+workbox-precaching@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-precaching/-/workbox-precaching-3.2.0.tgz#36568687a5615d8bd4191b38cf0f489a992d7bbc"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-range-requests@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-range-requests/-/workbox-range-requests-3.2.0.tgz#5d6cc3621cef0951fc9c0549053f8e117736d321"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-routing@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-routing/-/workbox-routing-3.2.0.tgz#6aef7622ede2412dd116231f4f9408a6485a4832"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-strategies@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-strategies/-/workbox-strategies-3.2.0.tgz#6cd5f00739764872b77b4c3766a606e43eb7d246"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-streams@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-streams/-/workbox-streams-3.2.0.tgz#cac0e4f5693b5e13029cbd7e5fec4eb7fcb30d97"
+  dependencies:
+    workbox-core "^3.2.0"
+
+workbox-sw@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-3.2.0.tgz#ccda9adff557ba2233bf1837229144b4a86276cb"
 
 wrap-ansi@^2.0.0:
   version "2.1.0"

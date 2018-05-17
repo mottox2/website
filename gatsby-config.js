@@ -5,7 +5,7 @@ module.exports = {
     description: 'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとか',
     siteUrl: 'https://mottox2.com'
   },
-  pathPrefix: '/gatsby-starter-blog',
+  pathPrefix: '/',
   plugins: [
     {
       resolve: `gatsby-source-esa`,
@@ -24,7 +24,7 @@ module.exports = {
         trackingId: 'UA-34428182-9'
       }
     },
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-workbox`,
     `gatsby-plugin-react-helmet`,
   ]
 }
