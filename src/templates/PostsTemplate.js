@@ -64,7 +64,9 @@ const IndexPage = ({ data, pathContext }) => {
 
   return (
     <div style={{marginTop: 24}}>
-      <Helmet title={`mottox2 blog`} />
+      <Helmet title={`mottox2 blog`}>
+        <meta property="description" content={'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。'} />
+      </Helmet>
       { tag && <Title>{tag}<small>に関する記事</small></Title> }
       { category && <Title>{category}<small>に関する記事</small></Title> }
       {group.map(({ node }) => {

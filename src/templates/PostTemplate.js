@@ -65,6 +65,8 @@ class PostTemplate extends React.Component {
     return (
       <Wrapper>
         <Helmet title={`${post.name} - mottox2 blog`}>
+          <meta property="description" content={description} />
+
           <meta property="og:url" content={url} />
           <meta property="og:type" content="article" />
           <meta property="og:title" content={title} />
