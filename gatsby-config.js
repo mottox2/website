@@ -22,9 +22,9 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: 'UA-34428182-9'
-      }
+   }
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-workbox`
+    `gatsby-plugin-offline`
   ]
 }
