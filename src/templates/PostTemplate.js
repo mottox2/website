@@ -57,10 +57,27 @@ class PostTemplate extends React.Component {
   render() {
     const post = this.props.data.esaPost
     const { previous, next } = this.props.pathContext
+    const title = post.name
+    const description = post.body_md.slice(0, 120)
+    const url = `https://mottox2.com/posts/${post.number}`
 
     return (
       <Wrapper>
-        <Helmet title={`${post.name} - mottox2 blog`} />
+        <Helmet title={`${post.name} - mottox2 blog`}>
+          <meta property="og:url" content={url} />
+          <meta property="og:type" content="article" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          {/* <meta property="og:image" content={image} /> */}
+          {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
+
+          {/* Twitter Card tags */}
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:creator" content={'@mottox2'} />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          {/* <meta name="twitter:image" content={image} /> */}
+        </Helmet>
         <Link to={`/categories/${post.category}`}>
           <Category>{post.category}</Category>
         </Link>
@@ -89,6 +106,7 @@ export const pageQuery = graphql`
       category
       name
       wip
+      body_md
       body_html
       tags
       updated_at
