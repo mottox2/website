@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import Auther from '../components/Auther'
 import Content from '../components/Content'
+import SocialLinks from '../components/SocialLinks'
 
 const Wrapper = styled.div`
   padding: 12px;
@@ -45,6 +46,13 @@ export const Category = Tag.extend`
   margin-top: 0;
 `
 
+const SocialLinkWrapper = styled.div`
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+`
+
 class PostTemplate extends React.Component {
   render() {
     const post = this.props.data.esaPost
@@ -64,6 +72,9 @@ class PostTemplate extends React.Component {
          )) }
         <Auther post={post} />
         <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
+        <SocialLinkWrapper>
+        <SocialLinks title={post.name} description={'description'} path={`/posts/${post.number}`}/>
+        </SocialLinkWrapper>
       </Wrapper>
     )
   }
