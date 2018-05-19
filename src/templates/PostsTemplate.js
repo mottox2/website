@@ -11,8 +11,12 @@ const Cell = styled.div`
   margin-bottom: 24px;
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  a {
-    text-decoration: none;
+  border-radius: 3px;
+  transform: translateY(0);
+  transition: transform .15s ease-in, box-shadow .15s ease-in;
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+    transform: translateY(-4px);
   }
   @media (min-width: 600px) {
     padding: 20px 24px 24px;
@@ -65,14 +69,14 @@ const IndexPage = ({ data, pathContext }) => {
       { category && <Title>{category}<small>に関する記事</small></Title> }
       {group.map(({ node }) => {
         return (
+        <Link style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }} to={`/posts/${node.number}`}>
           <Cell key={node.number}>
             <Category>{node.category}</Category>
-            <Link style={{ boxShadow: 'none', color: 'inherit' }} to={`/posts/${node.number}`}>
               <PostTitle>{node.name}</PostTitle>
               <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 120)}} />
-            </Link>
             <Auther post={node} />
           </Cell>
+        </Link>
         )
       })}
       <div style={{display: 'flex'}}>
