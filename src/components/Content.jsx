@@ -97,6 +97,10 @@ const Content = styled.div`
     margin: 20px 0;
   }
 
+  ul, ol {
+    padding-left: 40px;
+  }
+
   li {
     margin: 10px 0;
   }
