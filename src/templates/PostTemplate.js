@@ -59,6 +59,7 @@ class PostTemplate extends React.Component {
     const { previous, next } = this.props.pathContext
     const title = post.name
     const description = post.body_md.slice(0, 120)
+    const image = 'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
     const url = `https://mottox2.com/posts/${post.number}`
 
     return (
@@ -68,7 +69,7 @@ class PostTemplate extends React.Component {
           <meta property="og:type" content="article" />
           <meta property="og:title" content={title} />
           <meta property="og:description" content={description} />
-          {/* <meta property="og:image" content={image} /> */}
+          <meta property="og:image" content={image} />
           {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
 
           {/* Twitter Card tags */}
@@ -76,7 +77,7 @@ class PostTemplate extends React.Component {
           <meta name="twitter:creator" content={'@mottox2'} />
           <meta name="twitter:title" content={title} />
           <meta name="twitter:description" content={description} />
-          {/* <meta name="twitter:image" content={image} /> */}
+          <meta name="twitter:image" content={image} />
         </Helmet>
         <Link to={`/categories/${post.category}`}>
           <Category>{post.category}</Category>
