@@ -95,7 +95,7 @@ class PostTemplate extends React.Component {
         <Auther post={post} />
         <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
         <SocialLinkWrapper>
-        <SocialLinks title={post.name} description={'description'} path={`/posts/${post.number}`}/>
+        <SocialLinks title={post.name} description={'description'} url={url} />
         </SocialLinkWrapper>
       </Wrapper>
     )

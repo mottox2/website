@@ -10,8 +10,7 @@ import styled from 'styled-components'
 
 class SocialLinks extends Component {
   render() {
-    const { title, description, path } = this.props
-    const url = 'https://mottox2.com' + path
+    const { title, description, url } = this.props
 
     const iconSize = 42
     const filter = count => (count > 0 ? count : '')
