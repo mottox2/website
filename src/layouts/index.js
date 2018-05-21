@@ -18,7 +18,7 @@ class Template extends React.Component {
       marginBottom: 0,
       fontSize: 20,
       fontFamily: 'lato, sans-selif',
-      fontWeight: 900,
+      fontWeight: 700,
     }
 
     const link = <Link
@@ -62,7 +62,12 @@ const Header = styled.header`
   background-image: linear-gradient(45deg,#4d9abf 0,#00c7b7 100%);
   color: white;
   font-weight: 500;
-  padding: 24px 0;
+  padding: 18px 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+  @media screen and (min-width: 600px) {
+    padding: 22px 0;
+  }
 `
 
 export default Template

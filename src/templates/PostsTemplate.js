@@ -70,7 +70,7 @@ const IndexPage = ({ data, pathContext }) => {
   const { tag, category } = additionalContext
 
   return (
-    <div style={{marginTop: 24}}>
+    <Container>
       <Helmet title={`mottox2 blog`}>
         <meta property="description" content={'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。'} />
       </Helmet>
@@ -98,9 +98,16 @@ const IndexPage = ({ data, pathContext }) => {
           <NavLink test={last} url={nextUrl} text="Next >" />
         </div>
       </div> */}
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  margin-top: 12px;
+  @media screen and (min-width: 600px) {
+    margin-top: 24px;
+  }
+`
 
 const Grid = styled.div`
   margin: 0 auto;
@@ -122,12 +129,13 @@ const Grid = styled.div`
     display: inline-block;
     margin: 0 12px;
     vertical-align: top;
-    margin-bottom: 20px;
     width: 100%;
+    margin-bottom: 12px;
 
     /* max-widthのあれ */
     @media (min-width: ${(320 + 24) * 2}px) {
       width: 320px;
+      margin-bottom: 20px;
     }
 
     @media (min-width: ${(320 + 24) * 3}px) {
