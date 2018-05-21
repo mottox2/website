@@ -18,7 +18,7 @@ class Template extends React.Component {
       marginBottom: 0,
       fontSize: 20,
       fontFamily: 'lato, sans-selif',
-      fontWeight: 700,
+      fontWeight: 900,
     }
 
     const link = <Link
