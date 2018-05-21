@@ -62,7 +62,7 @@ class PostTemplate extends React.Component {
     const title = post.name
     const description = post.body_md.slice(0, 120)
     const image = 'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
-    const url = `https://mottox2.com/posts/${post.number}`
+    const url = `https://mottox2.com/posts/${post.number}/`
 
     return (
       <Wrapper>
