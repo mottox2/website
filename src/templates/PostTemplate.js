@@ -10,7 +10,8 @@ import SocialLinks from '../components/SocialLinks'
 
 const Wrapper = styled.div`
   padding: 12px;
-  margin-top: 24px;
+  max-width: 42rem;
+  margin: 24px auto 48px;
 `
 
 const Title = styled.h1`
@@ -44,6 +45,7 @@ export const Category = Tag.extend`
   border: 1px solid transparent;
   border-color: #00c7b7;
   margin-top: 0;
+  margin-bottom: 8px;
 `
 
 const SocialLinkWrapper = styled.div`

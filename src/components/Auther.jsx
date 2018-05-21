@@ -20,10 +20,11 @@ const Avatar = styled.img`
 const UpdatedUser = styled.div`
   font-size: 12px;
   line-height: 1;
+  font-weight: 500;
 `
 
 const UpdatedAt = styled.div`
-  opacity: 0.5;
+  opacity: 0.58;
   font-size: 10px;
   line-height: 1;
   margin-top: 4px;
@@ -33,7 +34,7 @@ const Auther = props => {
   const node = props.post
 
   return (
-    <UpdatedBy>
+    <UpdatedBy style={props.style}>
       <Avatar alt={node.updated_by.screen_name} src={node.updated_by.icon} width="30" height="30" />
       <div>
         <UpdatedUser>{node.updated_by.screen_name}</UpdatedUser>

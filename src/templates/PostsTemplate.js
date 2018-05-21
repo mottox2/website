@@ -6,20 +6,23 @@ import Auther from '../components/Auther'
 import { Category } from './PostTemplate'
 
 const Cell = styled.div`
+  height: 100%;
   padding: 20px 12px;
   border: 1px solid #eee;
-  margin-bottom: 24px;
   background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border-radius: 3px;
   transform: translateY(0);
   transition: transform .15s ease-in, box-shadow .15s ease-in;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   &:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
     transform: translateY(-4px);
   }
   @media (min-width: 600px) {
-    padding: 20px 24px 24px;
+    padding: 20px;
   }
 `
 
@@ -45,15 +48,19 @@ const Title = styled.h1`
 
 const PostTitle = styled.h3`
   margin-bottom: 4px;
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 1.48;
   font-weight: 600;
 `
 
 const PostDescription = styled.p`
-  opacity: 0.6;
+  opacity: 0.58;
   font-size: 14px;
   line-height: 1.6;
   word-break: break-all;
+  margin-bottom: 12px;
+  overflow-y: hidden;
+  max-height: ${14 * 1.6 * 3}px;
 `
 
 const IndexPage = ({ data, pathContext }) => {
@@ -69,28 +76,64 @@ const IndexPage = ({ data, pathContext }) => {
       </Helmet>
       { tag && <Title>{tag}<small>に関する記事</small></Title> }
       { category && <Title>{category}<small>に関する記事</small></Title> }
+      <Grid>
       {group.map(({ node }) => {
         return (
-        <Link style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }} to={`/posts/${node.number}`}>
+        <Link style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }} to={`/posts/${node.number}`} key={node.number}>
           <Cell key={node.number}>
             <Category>{node.category}</Category>
-              <PostTitle>{node.name}</PostTitle>
-              <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 120)}} />
-            <Auther post={node} />
+            <PostTitle>{node.name}</PostTitle>
+            <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 100)}} />
+            <Auther style={{ marginTop: 'auto' }} post={node} />
           </Cell>
         </Link>
         )
       })}
-      <div style={{display: 'flex'}}>
+      </Grid>
+      {/* <div style={{display: 'flex'}}>
         <div>
           <NavLink test={first} url={previousUrl} text="< Previous" />
         </div>
         <div style={{marginLeft: 'auto'}}>
           <NavLink test={last} url={nextUrl} text="Next >" />
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
+
+const Grid = styled.div`
+  margin: 0 auto;
+  max-width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  column-count: 3;
+  column-gap: 0;
+  @media (min-width: ${(320 + 24) * 2}px) {
+    max-width: ${(320 + 24) * 2}px;
+  }
+
+  @media (min-width: ${(320 + 24) * 3}px) {
+    max-width: ${(320 + 24) * 3}px;
+  }
+
+  > * {
+    display: inline-block;
+    margin: 0 12px;
+    vertical-align: top;
+    margin-bottom: 20px;
+    width: 100%;
+
+    /* max-widthのあれ */
+    @media (min-width: ${(320 + 24) * 2}px) {
+      width: 320px;
+    }
+
+    @media (min-width: ${(320 + 24) * 3}px) {
+      width: 320px;
+    }
+  }
+`
 
 export default IndexPage
