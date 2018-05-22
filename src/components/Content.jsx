@@ -97,7 +97,8 @@ const Content = styled.div`
     margin: 20px 0;
   }
 
-  ul, ol {
+  ul,
+  ol {
     padding-left: 40px;
   }
 
@@ -219,7 +220,7 @@ const Content = styled.div`
   }
 
   strong {
-    font-weight: 900;
+    font-weight: 700;
   }
 
   img {
