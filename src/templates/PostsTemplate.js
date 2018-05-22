@@ -63,6 +63,23 @@ const PostDescription = styled.p`
   max-height: ${14 * 1.6 * 3}px;
 `
 
+const BetterLink = (props) => {
+  const { node }  = props
+  return node.url ?
+    <a
+      href={node.url}
+      style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
+      target='_blank'
+      rel="noopener noreferrer"
+    >{props.children}</a> :
+    <Link
+      style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
+      to={`/posts/${node.number}`}
+    >
+      {props.children}
+    </Link>
+}
+
 const IndexPage = ({ data, pathContext }) => {
   const { group, index, first, last, pageCount, additionalContext } = pathContext
   const previousUrl = index - 1 == 1 ? '/' : '/page/' + (index - 1).toString()
@@ -77,16 +94,16 @@ const IndexPage = ({ data, pathContext }) => {
       { tag && <Title>{tag}<small>に関する記事</small></Title> }
       { category && <Title>{category}<small>に関する記事</small></Title> }
       <Grid>
-      {group.map(({ node }) => {
+      {group.map(({ node }, index) => {
         return (
-        <Link style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }} to={`/posts/${node.number}`} key={node.number}>
+        <BetterLink node={node} key={index}>
           <Cell key={node.number}>
-            <Category>{node.category}</Category>
+            <Category type={node.type}>{node.category}</Category>
             <PostTitle>{node.name}</PostTitle>
             <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 100)}} />
             <Auther style={{ marginTop: 'auto' }} post={node} />
           </Cell>
-        </Link>
+        </BetterLink>
         )
       })}
       </Grid>

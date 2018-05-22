@@ -40,7 +40,11 @@ const Tag = styled.div`
 `
 
 export const Category = Tag.extend`
-  background-image: linear-gradient(45deg,#4d9abf 0,#00c7b7 100%);
+  background-image: ${
+    props => props.type === 'note' ?
+    'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)' :
+    'linear-gradient(45deg,#4d9abf 0,#00c7b7 100%)'
+  };
   color: white;
   border: 1px solid transparent;
   border-color: #00c7b7;

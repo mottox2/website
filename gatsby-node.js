@@ -3,6 +3,28 @@ const Promise = require('bluebird')
 const path = require('path')
 const createPaginatedPages = require("gatsby-paginate");
 
+const Parser = require('rss-parser')
+const parser = new Parser()
+const crypto = require('crypto');
+const createContentDigest = obj => crypto.createHash('md5').update(obj).digest('hex');
+
+exports.sourceNodes = async ({ boundActionCreators }) => {
+  await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
+    feed.items.forEach(item => {
+      const digest = createContentDigest(item.link)
+      boundActionCreators.createNode(Object.assign({}, item, {
+        id: digest,
+        parent: `__SOURCE__`,
+        children: [],
+        internal: {
+          contentDigest: digest,
+          type: 'Note',
+        }
+      }))
+    })
+  })
+}
+
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
@@ -30,6 +52,19 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 }
               }
             }
+
+            allNote {
+              edges {
+                node {
+                  id
+                  title
+                  link
+                  contentSnippet
+                  isoDate
+                }
+              }
+            }
+
           }
         `
       ).then(result => {
@@ -38,12 +73,29 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors)
         }
         const posts = result.data.allEsaPost.edges;
+        const notes = result.data.allNote.edges.map((noteEdge, index) => {
+          const note = noteEdge.node
+          return { node: {
+            name: note.title,
+            body_md: note.contentSnippet,
+            url: note.link,
+            type: 'note',
+            category: 'note',
+            key: note.id,
+            number: note.id,
+            updated_at: note.isoDate,
+            updated_by: {
+              screen_name: 'mottox2',
+              icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
+            }
+          }}
+        })
 
         createPaginatedPages({
-          edges: posts,
+          edges: posts.concat(notes),
           createPage,
           pageTemplate: blogList,
-          pageLength: 10,
+          pageLength: 12,
           pathPrefix: '',
           buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`
         });
