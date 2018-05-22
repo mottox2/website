@@ -82,7 +82,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             type: 'note',
             category: 'note',
             key: note.id,
-            number: note.id,
+            number: index,
             updated_at: note.isoDate,
             updated_by: {
               screen_name: 'mottox2',
@@ -97,7 +97,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           pageTemplate: blogList,
           pageLength: 12,
           pathPrefix: '',
-          buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`
+          buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`
         });
 
         const categoryMap = new Map()
