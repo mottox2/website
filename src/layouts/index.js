@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import 'ress'
 import styled from 'styled-components'
+import Transition from './Transition'
 
 class Template extends React.Component {
   render() {
@@ -42,7 +43,9 @@ class Template extends React.Component {
         <Header>
           {header}
         </Header>
+        <Transition location={location}>
         {children()}
+        </Transition>
       </Container>
     )
   }
