@@ -8,8 +8,8 @@ const ContactPage = () => (
     <h1 style={{fontWeight: 600}}>お問い合わせ</h1>
     <Content>
       <p>
-        ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。
-        Webサービス・アプリ開発とUIデザイン制作を中心にお役に立つことが出来ます。
+        ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。<br/>
+        Webサービス・アプリ開発とUIデザイン制作を中心にお役に立つことが出来ます。<br/>
         常駐などの拘束されるお仕事は基本お断りしています。
       </p>
       {/* <h3>得意なこと</h3>
@@ -36,17 +36,17 @@ const ContactPage = () => (
         <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
         <input type="hidden" name="form-name" value="contact" />
       </Hidden>
+      <FormItem>
+        <label>名前: <Input type="text" name="name" placeholder='名前' /></label>   
+      </FormItem>
+      <FormItem>
+        <label>メールアドレス: <Input type="email" name="email" placeholder='メールアドレス' /></label>
+      </FormItem>
+      <FormItem>
+        <label>メッセージ: <Textarea name="message" placeholder='メッセージ' rows={3}/></label>
+      </FormItem>
       <p>
-        <label>Your Name: <input type="text" name="name" /></label>   
-      </p>
-      <p>
-        <label>Your Email: <input type="email" name="email" /></label>
-      </p>
-      <p>
-        <label>Message: <textarea name="message"></textarea></label>
-      </p>
-      <p>
-        <button type="submit">Send</button>
+        <Submit type="submit">送信</Submit>
       </p>
     </form>
   </Wrapper>
@@ -54,6 +54,43 @@ const ContactPage = () => (
 
 const Hidden = styled.div`
   display: none;
+`
+
+const FormItem = styled.div`
+  margin: 12px 0;
+
+  label {
+    font-size: 14px;
+  }
+`
+
+const Input = styled.input`
+  border: 2px solid #ddd;
+  width: 100%;
+  padding: 8px; 
+  font-size: 16px;
+  margin-top: 4px;
+  border-radius: 3px;
+`
+
+const Textarea = Input.withComponent('textarea') 
+
+const Submit = styled.button`
+  background-color: #4D9ABF;
+  color: white;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  background-image: linear-gradient(45deg,#4d9abf 0,#00c7b7 100%);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(0);
+  transition: transform .15s ease-in, box-shadow .15s ease-in;
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+    transform: translateY(-1px);
+  }
 `
 
 export default ContactPage
