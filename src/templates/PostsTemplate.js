@@ -107,17 +107,27 @@ const IndexPage = ({ data, pathContext }) => {
         )
       })}
       </Grid>
-      <div style={{display: 'flex'}}>
+      <Pagination>
         <div>
           <NavLink test={first} url={previousUrl} text="< Previous" />
         </div>
         <div style={{marginLeft: 'auto'}}>
           <NavLink test={last} url={nextUrl} text="Next >" />
         </div>
-      </div>
+      </Pagination>
     </Container>
   )
 }
+
+const ScreenWidth = styled.div`
+  @media (min-width: ${(320 + 24) * 2}px) {
+    max-width: ${(320 + 24) * 2}px;
+  }
+
+  @media (min-width: ${(320 + 24) * 3}px) {
+    max-width: ${(320 + 24) * 3}px;
+  }
+`
 
 const Container = styled.div`
   margin-top: 12px;
@@ -126,7 +136,13 @@ const Container = styled.div`
   }
 `
 
-const Grid = styled.div`
+const Pagination = ScreenWidth.extend`
+  display: flex;
+  margin: 16px auto 32px;
+  padding: 0 12px;
+`
+
+const Grid = ScreenWidth.extend`
   margin: 0 auto;
   max-width: 100%;
 
@@ -134,13 +150,6 @@ const Grid = styled.div`
   flex-wrap: wrap;
   column-count: 3;
   column-gap: 0;
-  @media (min-width: ${(320 + 24) * 2}px) {
-    max-width: ${(320 + 24) * 2}px;
-  }
-
-  @media (min-width: ${(320 + 24) * 3}px) {
-    max-width: ${(320 + 24) * 3}px;
-  }
 
   > * {
     display: inline-block;
