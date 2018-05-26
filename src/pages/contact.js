@@ -1,6 +1,7 @@
 import React from 'react'
 import Content from '../components/Content';
 import { Wrapper } from '../templates/PostTemplate';
+import styled from 'styled-components'
 
 const ContactPage = () => (
   <Wrapper>
@@ -24,7 +25,10 @@ const ContactPage = () => (
       </p>  */}
     </Content>
     <div style={{marginTop: 32}}/>
-    <form name="contact" method="POST" data-netlify="true" data-netlify-honeybot="bot-field">
+    <form name="contact" method="POST" data-netlify="true" data-netlify-honeybot="bot-field" action='/'>
+      <Hidden>
+        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+      </Hidden>
       <p>
         <label>Your Name: <input type="text" name="name" /></label>   
       </p>
@@ -40,5 +44,9 @@ const ContactPage = () => (
     </form>
   </Wrapper>
 )
+
+const Hidden = styled.div`
+  display: none;
+`
 
 export default ContactPage
