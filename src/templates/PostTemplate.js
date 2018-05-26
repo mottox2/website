@@ -4,10 +4,10 @@ import Link from 'gatsby-link'
 import get from 'lodash/get'
 import styled from 'styled-components'
 
-import Auther from '../components/Auther'
+import Author from '../components/Author'
 import Content from '../components/Content'
 import SocialLinks from '../components/SocialLinks'
-import AutherProfile from '../components/AutherProfile'
+import AuthorProfile from '../components/AuthorProfile'
 
 export const Wrapper = styled.div`
   padding: 12px;
@@ -97,9 +97,9 @@ class PostTemplate extends React.Component {
             <Tag>{tag}</Tag>
           </Link>
          )) }
-        <Auther post={post} />
+        <Author post={post} />
         <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
-        <AutherProfile/>
+        <AuthorProfile/>
         <SocialLinkWrapper>
         <SocialLinks title={post.name} description={'description'} url={url} />
         </SocialLinkWrapper>

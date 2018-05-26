@@ -30,7 +30,7 @@ const UpdatedAt = styled.div`
   margin-top: 4px;
 `
 
-const Auther = props => {
+const Author = props => {
   const node = props.post
 
   return (
@@ -44,4 +44,4 @@ const Auther = props => {
   )
 }
 
-export default Auther
+export default Author

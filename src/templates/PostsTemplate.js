@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import Auther from '../components/Auther'
+import Author from '../components/Author'
 import { Category } from './PostTemplate'
 
 const Cell = styled.div`
@@ -101,7 +101,7 @@ const IndexPage = ({ data, pathContext }) => {
             <Category type={node.type}>{node.category}</Category>
             <PostTitle>{node.name}</PostTitle>
             <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 100)}} />
-            <Auther style={{ marginTop: 'auto' }} post={node} />
+            <Author style={{ marginTop: 'auto' }} post={node} />
           </Cell>
         </BetterLink>
         )

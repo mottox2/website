@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 
-const AutherProfile = props => {
+const AuthorProfile = props => {
   return (
     <Wrapper>
       <ImgWrapper>
@@ -62,4 +62,4 @@ const Contact = styled.p`
   line-height: 20px;
 `
 
-export default AutherProfile
+export default AuthorProfile
