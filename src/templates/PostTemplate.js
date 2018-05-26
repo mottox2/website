@@ -8,7 +8,7 @@ import Auther from '../components/Auther'
 import Content from '../components/Content'
 import SocialLinks from '../components/SocialLinks'
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   padding: 12px;
   max-width: 42rem;
   margin: 24px auto 48px;
