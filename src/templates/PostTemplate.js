@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import Auther from '../components/Auther'
 import Content from '../components/Content'
 import SocialLinks from '../components/SocialLinks'
+import AutherProfile from '../components/AutherProfile'
 
 export const Wrapper = styled.div`
   padding: 12px;
@@ -98,6 +99,7 @@ class PostTemplate extends React.Component {
          )) }
         <Auther post={post} />
         <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
+        <AutherProfile/>
         <SocialLinkWrapper>
         <SocialLinks title={post.name} description={'description'} url={url} />
         </SocialLinkWrapper>
