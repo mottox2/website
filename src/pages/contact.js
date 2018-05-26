@@ -25,7 +25,12 @@ const ContactPage = () => (
       </p>  */}
     </Content>
     <div style={{marginTop: 32}}/>
-    <form name="contact" method="POST" data-netlify="true" data-netlify-honeybot="bot-field" action='/'>
+    <form
+      name="contact"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeybot="bot-field"
+    >
       <Hidden>
         <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
       </Hidden>
