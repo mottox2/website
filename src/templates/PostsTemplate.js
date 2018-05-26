@@ -107,14 +107,14 @@ const IndexPage = ({ data, pathContext }) => {
         )
       })}
       </Grid>
-      {/* <div style={{display: 'flex'}}>
+      <div style={{display: 'flex'}}>
         <div>
           <NavLink test={first} url={previousUrl} text="< Previous" />
         </div>
         <div style={{marginLeft: 'auto'}}>
           <NavLink test={last} url={nextUrl} text="Next >" />
         </div>
-      </div> */}
+      </div>
     </Container>
   )
 }
