@@ -33,6 +33,7 @@ const ContactPage = () => (
     >
       <Hidden>
         <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+        <input type="hidden" name="form-name" value="contact" />
       </Hidden>
       <p>
         <label>Your Name: <input type="text" name="name" /></label>   
