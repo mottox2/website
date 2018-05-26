@@ -1,7 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
 import Content from '../components/Content';
-import { Wrapper } from '../templates/PostTemplate';
+import styled from 'styled-components'
+
+// FIXME: templatesのWrapperを読もうとするとビルドが失敗する
+const Wrapper = styled.div`
+  padding: 12px;
+  max-width: 42rem;
+  margin: 24px auto 48px;
+`
 
 const ContactThanksPage = () => (
   <Wrapper>
