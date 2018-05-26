@@ -83,7 +83,7 @@ const BetterLink = (props) => {
 const IndexPage = ({ data, pathContext }) => {
   const { group, index, first, last, pageCount, additionalContext } = pathContext
   const previousUrl = index - 1 == 1 ? '/' : '/page/' + (index - 1).toString()
-  const nextUrl = '/posts/page/' + (index + 1).toString()
+  const nextUrl = '/page/' + (index + 1).toString()
   const { tag, category } = additionalContext
 
   return (
