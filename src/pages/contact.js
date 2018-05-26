@@ -30,6 +30,7 @@ const ContactPage = () => (
       method="post"
       data-netlify="true"
       data-netlify-honeybot="bot-field"
+      action='/contact'
     >
       <Hidden>
         <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
