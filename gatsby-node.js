@@ -2,6 +2,7 @@ const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
 const createPaginatedPages = require("gatsby-paginate");
+const dayjs = require('dayjs')
 
 const Parser = require('rss-parser')
 const parser = new Parser()
@@ -12,8 +13,11 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
   await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
     feed.items.forEach(item => {
       const digest = createContentDigest(item.link)
+      const day = dayjs(item.pubDate)
       boundActionCreators.createNode(Object.assign({}, item, {
         id: digest,
+        published_on: day.toISOString(),
+        published_on_unix: day.unix(),
         parent: `__SOURCE__`,
         children: [],
         internal: {
@@ -23,6 +27,27 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
       }))
     })
   })
+}
+
+exports.onCreateNode = ({ node, boundActionCreators }) => {
+  const { createNode } = boundActionCreators
+
+  if (node.internal.type === 'EsaPost') {
+    const matched = node.name.match(/ ?\[(.*?)\] ?/)
+    const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
+    const digest = createContentDigest('blog' + node.number)
+    createNode({
+      ...node,
+      id: digest,
+      name: matched ? node.name.replace(matched[0], '') : node.name,
+      published_on: day.toISOString(),
+      published_on_unix: day.unix(),
+      internal: {
+        contentDigest: digest,
+        type: 'EsaExtendedPost'
+      }
+    })
+  }
 }
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
@@ -35,7 +60,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       graphql(
         `
           {
-            allEsaPost {
+            allEsaExtendedPost {
               edges {
                 node {
                   number
@@ -43,6 +68,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   name
                   body_md
                   tags
+                  published_on
+                  published_on_unix
                   updated_by {
                     name
                     screen_name
@@ -59,6 +86,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   id
                   title
                   link
+                  published_on
+                  published_on_unix
                   contentSnippet
                   isoDate
                 }
@@ -72,7 +101,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           console.log(result.errors)
           reject(result.errors)
         }
-        const posts = result.data.allEsaPost.edges;
+        const posts = result.data.allEsaExtendedPost.edges;
         const notes = result.data.allNote.edges.map((noteEdge, index) => {
           const note = noteEdge.node
           return { node: {
@@ -83,6 +112,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             category: 'note',
             key: note.id,
             number: index,
+            published_on: note.published_on,
+            published_on_unix: note.published_on_unix,
             updated_at: note.isoDate,
             updated_by: {
               screen_name: 'mottox2',
@@ -92,7 +123,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         })
 
         createPaginatedPages({
-          edges: posts.concat(notes),
+          edges: posts.concat(notes).sort((a, b) => {
+            return b.node.published_on_unix - a.node.published_on_unix
+          }),
           createPage,
           pageTemplate: blogList,
           pageLength: 12,

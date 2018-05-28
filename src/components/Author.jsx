@@ -38,7 +38,7 @@ const Author = props => {
       <Avatar alt={node.updated_by.screen_name} src={node.updated_by.icon} width="30" height="30" />
       <div>
         <UpdatedUser>{node.updated_by.screen_name}</UpdatedUser>
-        <UpdatedAt>{dayjs(node.updated_at).format('YYYY/MM/DD HH:mm')}</UpdatedAt>
+        <UpdatedAt>{dayjs(node.published_on).format('YYYY/MM/DD')}</UpdatedAt>
       </div>
     </UpdatedBy>
   )
