@@ -74,7 +74,7 @@ const BetterLink = (props) => {
     >{props.children}</a> :
     <Link
       style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
-      to={`/posts/${node.number}`}
+      to={`/posts/${node.number}/`}
     >
       {props.children}
     </Link>
