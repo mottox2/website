@@ -12,7 +12,7 @@ module.exports = {
       options: {
         accessToken: process.env.ACCESS_TOKEN,
         teamName: process.env.TEAM_NAME,
-        q: `in:blog`
+        q: `in:blog wip:false`
       }
     },
     `gatsby-plugin-styled-components`,
