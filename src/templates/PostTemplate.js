@@ -88,9 +88,9 @@ class PostTemplate extends React.Component {
           <meta name="twitter:description" content={description} />
           <meta name="twitter:image" content={image} />
         </Helmet>
-        <Link to={`/categories/${post.category}`}>
+        {/* <Link to={`/categories/${post.category}`}> */}
           <Category>{post.category}</Category>
-        </Link>
+        {/* </Link> */}
         <Title>{post.name}</Title>
         { post.tags.map(tag => (
           <Link to={`/tags/${tag}`} key={tag}>
