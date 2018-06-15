@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import Helmet from 'react-helmet'
 import 'ress'
 import styled from 'styled-components'
 import Transition from './Transition'
@@ -40,6 +41,9 @@ class Template extends React.Component {
     }
     return (
       <Container>
+        <Helmet>
+          <meta name="google-site-verification" content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4" />
+        </Helmet>
         <Header>
           {header}
         </Header>
