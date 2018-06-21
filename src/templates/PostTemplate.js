@@ -91,7 +91,7 @@ class PostTemplate extends React.Component {
         {/* <Link to={`/categories/${post.category}`}> */}
           <Category>{post.category}</Category>
         {/* </Link> */}
-        <Title>{post.name}</Title>
+        <Title dangerouslySetInnerHTML={{ __html: post.name}} />
         { post.tags.map(tag => (
           <Link to={`/tags/${tag}`} key={tag}>
             <Tag>{tag}</Tag>

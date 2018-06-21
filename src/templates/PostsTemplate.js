@@ -99,7 +99,7 @@ const IndexPage = ({ data, pathContext }) => {
         <BetterLink node={node} key={index}>
           <Cell key={node.number}>
             <Category type={node.type}>{node.category}</Category>
-            <PostTitle>{node.name}</PostTitle>
+            <PostTitle dangerouslySetInnerHTML={{ __html: node.name }}/>
             <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 100)}} />
             <Author style={{ marginTop: 'auto' }} post={node} />
           </Cell>
