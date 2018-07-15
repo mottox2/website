@@ -35,6 +35,7 @@ export default class HTML extends React.Component {
         <body>
           <div id="___gatsby" dangerouslySetInnerHTML={{ __html: this.props.body }} />
           {this.props.postBodyComponents}
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </body>
       </html>
     )
