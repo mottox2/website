@@ -100,7 +100,7 @@ const IndexPage = ({ data, pathContext }) => {
           <Cell key={node.number}>
             <Category type={node.type}>{node.category}</Category>
             <PostTitle dangerouslySetInnerHTML={{ __html: node.name }}/>
-            <PostDescription dangerouslySetInnerHTML={{ __html: node.body_md.slice(0, 100)}} />
+            <PostDescription>{node.body_md.slice(0, 100)}</PostDescription>
             <Author style={{ marginTop: 'auto' }} post={node} />
           </Cell>
         </BetterLink>
