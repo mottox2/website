@@ -9,12 +9,12 @@ const parser = new Parser()
 const crypto = require('crypto');
 const createContentDigest = obj => crypto.createHash('md5').update(obj).digest('hex');
 
-exports.sourceNodes = async ({ boundActionCreators }) => {
+exports.sourceNodes = async ({ actions }) => {
   await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
     feed.items.forEach(item => {
       const digest = createContentDigest(item.link)
       const day = dayjs(item.pubDate)
-      boundActionCreators.createNode(Object.assign({}, item, {
+      actions.createNode(Object.assign({}, item, {
         id: digest,
         published_on: day.toISOString(),
         published_on_unix: day.unix(),
@@ -29,13 +29,14 @@ exports.sourceNodes = async ({ boundActionCreators }) => {
   })
 }
 
-exports.onCreateNode = ({ node, boundActionCreators }) => {
-  const { createNode } = boundActionCreators
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNode } = actions
 
   if (node.internal.type === 'EsaPost') {
     const matched = node.name.match(/ ?\[(.*?)\] ?/)
     const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
     const digest = createContentDigest('blog' + node.number)
+    console.log('create nodes')
     createNode({
       ...node,
       id: digest,
@@ -50,8 +51,8 @@ exports.onCreateNode = ({ node, boundActionCreators }) => {
   }
 }
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     const blogList = path.resolve('./src/templates/PostsTemplate.js')
