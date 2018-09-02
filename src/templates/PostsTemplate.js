@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Author from '../components/Author'
+import Layout from '../layouts'
 import { Category } from './PostTemplate'
 
 const Cell = styled.div`
@@ -80,42 +81,44 @@ const BetterLink = (props) => {
     </Link>
 }
 
-const IndexPage = ({ data, pathContext }) => {
+const IndexPage = ({ data, pathContext, location }) => {
   const { group, index, first, last, pageCount, additionalContext } = pathContext
   const previousUrl = index - 1 == 1 ? '/' : '/page/' + (index - 1).toString()
   const nextUrl = '/page/' + (index + 1).toString()
   const { tag, category } = additionalContext
 
   return (
-    <Container>
-      <Helmet title={`mottox2 blog`}>
-        <meta property="description" content={'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。'} />
-      </Helmet>
-      { tag && <Title>{tag}<small>に関する記事</small></Title> }
-      { category && <Title>{category}<small>に関する記事</small></Title> }
-      <Grid>
-      {group.map(({ node }, index) => {
-        return (
-        <BetterLink node={node} key={index}>
-          <Cell key={node.number}>
-            <Category type={node.type}>{node.category}</Category>
-            <PostTitle dangerouslySetInnerHTML={{ __html: node.name }}/>
-            <PostDescription>{node.body_md.slice(0, 100)}</PostDescription>
-            <Author style={{ marginTop: 'auto' }} post={node} />
-          </Cell>
-        </BetterLink>
-        )
-      })}
-      </Grid>
-      <Pagination>
-        <div>
-          <NavLink test={first} url={previousUrl} text="< Previous" />
-        </div>
-        <div style={{marginLeft: 'auto'}}>
-          <NavLink test={last} url={nextUrl} text="Next >" />
-        </div>
-      </Pagination>
-    </Container>
+    <Layout location={location}>
+      <Container>
+        <Helmet title={`mottox2 blog`}>
+          <meta property="description" content={'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。'} />
+        </Helmet>
+        { tag && <Title>{tag}<small>に関する記事</small></Title> }
+        { category && <Title>{category}<small>に関する記事</small></Title> }
+        <Grid>
+        {group.map(({ node }, index) => {
+          return (
+          <BetterLink node={node} key={index}>
+            <Cell key={node.number}>
+              <Category type={node.type}>{node.category}</Category>
+              <PostTitle dangerouslySetInnerHTML={{ __html: node.name }}/>
+              <PostDescription>{node.body_md.slice(0, 100)}</PostDescription>
+              <Author style={{ marginTop: 'auto' }} post={node} />
+            </Cell>
+          </BetterLink>
+          )
+        })}
+        </Grid>
+        <Pagination>
+          <div>
+            <NavLink test={first} url={previousUrl} text="< Previous" />
+          </div>
+          <div style={{marginLeft: 'auto'}}>
+            <NavLink test={last} url={nextUrl} text="Next >" />
+          </div>
+        </Pagination>
+      </Container>
+    </Layout>
   )
 }
 
