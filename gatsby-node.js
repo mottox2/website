@@ -36,7 +36,6 @@ exports.onCreateNode = ({ node, actions }) => {
     const matched = node.name.match(/ ?\[(.*?)\] ?/)
     const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
     const digest = createContentDigest('blog' + node.number)
-    console.log('create nodes')
     createNode({
       ...node,
       id: digest,
