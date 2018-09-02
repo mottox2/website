@@ -8,6 +8,7 @@ import Author from '../components/Author'
 import Content from '../components/Content'
 import SocialLinks from '../components/SocialLinks'
 import AuthorProfile from '../components/AuthorProfile'
+import Layout from '../layouts'
 
 export const Wrapper = styled.div`
   padding: 12px;
@@ -63,47 +64,49 @@ const SocialLinkWrapper = styled.div`
 class PostTemplate extends React.Component {
   render() {
     const post = this.props.data.esaExtendedPost
-    const { previous, next } = this.props.pathContext
+    const { previous, next } = this.props.pageContext
     const title = post.name
     const description = post.body_md.slice(0, 120)
     const image = 'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
     const url = `https://mottox2.com/posts/${post.number}/`
 
     return (
-      <Wrapper>
-        <Helmet title={`${post.name} - mottox2 blog`}>
-          <meta property="description" content={description} />
+      <Layout location={this.props.location}>
+        <Wrapper>
+          <Helmet title={`${post.name} - mottox2 blog`}>
+            <meta property="description" content={description} />
 
-          <meta property="og:url" content={url} />
-          <meta property="og:type" content="article" />
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={description} />
-          <meta property="og:image" content={image} />
-          {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
+            <meta property="og:url" content={url} />
+            <meta property="og:type" content="article" />
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+            <meta property="og:image" content={image} />
+            {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
 
-          {/* Twitter Card tags */}
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:creator" content={'@mottox2'} />
-          <meta name="twitter:title" content={title} />
-          <meta name="twitter:description" content={description} />
-          <meta name="twitter:image" content={image} />
-        </Helmet>
-        {/* <Link to={`/categories/${post.category}`}> */}
-          <Category>{post.category}</Category>
-        {/* </Link> */}
-        <Title dangerouslySetInnerHTML={{ __html: post.name}} />
-        { post.tags.map(tag => (
-          <Link to={`/tags/${tag}`} key={tag}>
-            <Tag>{tag}</Tag>
-          </Link>
-         )) }
-        <Author post={post} />
-        <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
-        <AuthorProfile/>
-        <SocialLinkWrapper>
-        <SocialLinks title={post.name} description={'description'} url={url} />
-        </SocialLinkWrapper>
-      </Wrapper>
+            {/* Twitter Card tags */}
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:creator" content={'@mottox2'} />
+            <meta name="twitter:title" content={title} />
+            <meta name="twitter:description" content={description} />
+            <meta name="twitter:image" content={image} />
+          </Helmet>
+          {/* <Link to={`/categories/${post.category}`}> */}
+            <Category>{post.category}</Category>
+          {/* </Link> */}
+          <Title dangerouslySetInnerHTML={{ __html: post.name}} />
+          { post.tags.map(tag => (
+            <Link to={`/tags/${tag}`} key={tag}>
+              <Tag>{tag}</Tag>
+            </Link>
+          )) }
+          <Author post={post} />
+          <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
+          <AuthorProfile/>
+          <SocialLinkWrapper>
+          <SocialLinks title={post.name} description={'description'} url={url} />
+          </SocialLinkWrapper>
+        </Wrapper>
+      </Layout>
     )
   }
 }

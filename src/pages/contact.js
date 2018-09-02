@@ -1,54 +1,57 @@
 import React from 'react'
 import Content from '../components/Content';
 import { Wrapper } from '../templates/PostTemplate';
+import Layout from '../layouts'
 import styled from 'styled-components'
 
-const ContactPage = () => (
-  <Wrapper>
-    <h1 style={{fontWeight: 600}}>お問い合わせ</h1>
-    <Content>
-      <p>
-        ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。<br/>
-        Webサービス・アプリ開発とUIデザイン制作を中心にお役に立つことが出来ると思います。<br/>
-      </p>
-      {/* <h3>得意なこと</h3>
-      <ul>
-        <li>新規事業立ち上げ</li>
-        <li>フロントエンド周りの技術選定・レビュー</li>
-        <li>フロントエンドの実装に配慮したUIデザイン</li>
-      </ul>
-      <h3>技術スタック</h3>
-      <p>
-        <b>Webエンジニアリング:</b> React(Redux), Vue(Vuex, Nuxt), React Native, TypeScript, Ruby(Ruby on Rails), Python, Go<br/> 
-        <b>UIデザイン:</b> Sketch, Photoshop, Illustrator
-      </p>  */}
-    </Content>
-    <div style={{marginTop: 32}}/>
-    <form
-      name="contact"
-      method="post"
-      data-netlify="true"
-      data-netlify-honeybot="bot-field"
-      action='/thanks'
-    >
-      <Hidden>
-        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-        <input type="hidden" name="form-name" value="contact" />
-      </Hidden>
-      <FormItem>
-        <label>名前: <Input type="text" name="name" placeholder='名前' /></label>   
-      </FormItem>
-      <FormItem>
-        <label>メールアドレス: <Input type="email" name="email" placeholder='メールアドレス' /></label>
-      </FormItem>
-      <FormItem>
-        <label>メッセージ: <Textarea name="message" placeholder='メッセージ' rows={3}/></label>
-      </FormItem>
-      <p>
-        <Submit type="submit">送信</Submit>
-      </p>
-    </form>
-  </Wrapper>
+const ContactPage = ({ location }) => (
+  <Layout location={location}>
+    <Wrapper>
+      <h1 style={{fontWeight: 600}}>お問い合わせ</h1>
+      <Content>
+        <p>
+          ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。<br/>
+          Webサービス・アプリ開発とUIデザイン制作を中心にお役に立つことが出来ると思います。<br/>
+        </p>
+        {/* <h3>得意なこと</h3>
+        <ul>
+          <li>新規事業立ち上げ</li>
+          <li>フロントエンド周りの技術選定・レビュー</li>
+          <li>フロントエンドの実装に配慮したUIデザイン</li>
+        </ul>
+        <h3>技術スタック</h3>
+        <p>
+          <b>Webエンジニアリング:</b> React(Redux), Vue(Vuex, Nuxt), React Native, TypeScript, Ruby(Ruby on Rails), Python, Go<br/>
+          <b>UIデザイン:</b> Sketch, Photoshop, Illustrator
+        </p>  */}
+      </Content>
+      <div style={{marginTop: 32}}/>
+      <form
+        name="contact"
+        method="post"
+        data-netlify="true"
+        data-netlify-honeybot="bot-field"
+        action='/thanks'
+      >
+        <Hidden>
+          <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+          <input type="hidden" name="form-name" value="contact" />
+        </Hidden>
+        <FormItem>
+          <label>名前: <Input type="text" name="name" placeholder='名前' /></label>
+        </FormItem>
+        <FormItem>
+          <label>メールアドレス: <Input type="email" name="email" placeholder='メールアドレス' /></label>
+        </FormItem>
+        <FormItem>
+          <label>メッセージ: <Textarea name="message" placeholder='メッセージ' rows={3}/></label>
+        </FormItem>
+        <p>
+          <Submit type="submit">送信</Submit>
+        </p>
+      </form>
+    </Wrapper>
+  </Layout>
 )
 
 const Hidden = styled.div`
@@ -66,13 +69,13 @@ const FormItem = styled.div`
 const Input = styled.input`
   border: 2px solid #ddd;
   width: 100%;
-  padding: 8px; 
+  padding: 8px;
   font-size: 16px;
   margin-top: 4px;
   border-radius: 3px;
 `
 
-const Textarea = Input.withComponent('textarea') 
+const Textarea = Input.withComponent('textarea')
 
 const Submit = styled.button`
   background-color: #4D9ABF;
