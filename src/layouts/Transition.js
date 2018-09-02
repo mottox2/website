@@ -3,26 +3,28 @@ import { css } from 'react-emotion';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const position = css`
-  left: 50%;
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  width: 100%;
 `;
 
 const enter = css`
   opacity: 0.01;
+  transition: opacity 150ms ease-in 120ms;
 `;
 
 const enterActive = css`
   opacity: 1;
-  transition: opacity 150ms ease-in;
 `;
 
 const exit = css`
   ${position} opacity: 1;
+  transition: opacity 80ms ease-in 0;
 `;
 
 const exitActive = css`
   ${position} opacity: 0.01;
-  transition: opacity 250ms ease-out;
 `;
 
 class TransitionHandler extends React.Component {
@@ -39,7 +41,7 @@ const Main = ({ children, location }) => (
   <TransitionGroup>
     <CSSTransition
       classNames={{ enter, enterActive, exit, exitActive }}
-      timeout={{ enter: 200, exit: 200 }}
+      timeout={{ enter: 270, exit: 100 }}
       key={location.pathname}
     >
       <TransitionHandler location={location}>

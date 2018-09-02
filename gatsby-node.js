@@ -161,18 +161,18 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           postEntities[postNode.number] = post
         })
 
-        Array.from(categoryMap.keys()).map((category) => {
-          const postNumbers = categoryMap.get(category)
-          createPaginatedPages({
-            edges: postNumbers.map(number => postEntities[number]),
-            createPage,
-            pageTemplate: blogList,
-            pageLength: 10,
-            pathPrefix: `categories/${category}`,
-            buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`,
-            context: { category }
-          });
-        })
+        // Array.from(categoryMap.keys()).map((category) => {
+        //   const postNumbers = categoryMap.get(category)
+        //   createPaginatedPages({
+        //     edges: postNumbers.map(number => postEntities[number]),
+        //     createPage,
+        //     pageTemplate: blogList,
+        //     pageLength: 10,
+        //     pathPrefix: `categories/${category}`,
+        //     buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`,
+        //     context: { category }
+        //   });
+        // })
 
         Array.from(tagMap.keys()).map((tag) => {
           const postNumbers = tagMap.get(tag)
