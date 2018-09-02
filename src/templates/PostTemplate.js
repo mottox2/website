@@ -64,7 +64,7 @@ const SocialLinkWrapper = styled.div`
 class PostTemplate extends React.Component {
   render() {
     const post = this.props.data.esaExtendedPost
-    const { previous, next } = this.props.pathContext
+    const { previous, next } = this.props.pageContext
     const title = post.name
     const description = post.body_md.slice(0, 120)
     const image = 'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
