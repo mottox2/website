@@ -169,7 +169,7 @@ exports.createPages = ({ graphql, actions }) => {
         //     pageTemplate: blogList,
         //     pageLength: 10,
         //     pathPrefix: `categories/${category}`,
-        //     buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`,
+        //     buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
         //     context: { category }
         //   });
         // })
@@ -182,7 +182,7 @@ exports.createPages = ({ graphql, actions }) => {
             pageTemplate: blogList,
             pageLength: 10,
             pathPrefix: `tags/${tag}`,
-            buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}?page=${index}` : `/${pathPrefix}`,
+            buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
             context: { tag }
           });
         })
