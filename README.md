@@ -1,1 +1,1 @@
-# gatsby-esa-starter
+# mottox2 blog
