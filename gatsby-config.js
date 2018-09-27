@@ -23,6 +23,63 @@ module.exports = {
    }
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-offline`
+    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allEsaExtendedPost } }) => {
+              return allEsaExtendedPost.edges.map(edge => {
+                const node = edge.node
+                return {
+                  url: site.siteMetadata.siteUrl + `/posts/${node.number}`,
+                  guid: node.number,
+                  title: node.name,
+                  description: node.body_md.truncate(100),
+                  pubDate: node.published_on
+                }
+              })
+            },
+            query: `
+              {
+                allEsaExtendedPost {
+                  edges {
+                    node {
+                      number
+                      category
+                      name
+                      body_md
+                      tags
+                      published_on
+                      published_on_unix
+                      updated_by {
+                        name
+                        screen_name
+                        icon
+                      }
+                      updated_at
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+          },
+        ],
+      },
+    },
   ]
 }
