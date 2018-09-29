@@ -1,3 +1,5 @@
+const dayjs = require('dayjs')
+
 module.exports = {
   siteMetadata: {
     title: 'mottox2 blog',
@@ -41,20 +43,23 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allEsaExtendedPost } }) => {
-              return allEsaExtendedPost.edges.map(edge => {
+            serialize: ({ query: { site, allEsaPost } }) => {
+              return allEsaPost.edges.map(edge => {
                 const node = edge.node
+                const matched = node.name.match(/ ?\[(.*?)\] ?/)
+                const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
                 return {
+                  date: day.toISOString(),
+                  pubDate: day.toISOString(),
                   url: site.siteMetadata.siteUrl + `/posts/${node.number}`,
                   guid: node.number,
                   title: node.name,
-                  pubDate: node.published_on
                 }
               })
             },
             query: `
               {
-                allEsaExtendedPost {
+                allEsaPost {
                   edges {
                     node {
                       number
@@ -62,8 +67,6 @@ module.exports = {
                       name
                       body_md
                       tags
-                      published_on
-                      published_on_unix
                       updated_by {
                         name
                         screen_name
