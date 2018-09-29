@@ -48,7 +48,6 @@ module.exports = {
                   url: site.siteMetadata.siteUrl + `/posts/${node.number}`,
                   guid: node.number,
                   title: node.name,
-                  description: '',
                   pubDate: node.published_on
                 }
               })
