@@ -25,6 +25,7 @@ module.exports = {
    }
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-twitter`,
     `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-feed`,
