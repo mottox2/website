@@ -7,8 +7,8 @@
     "url": "https://github.com/mottox2/blog/issues"
   },
   "dependencies": {
-    "babel-plugin-styled-components": "^1.5.1",
-    "dayjs": "^1.5.18",
+    "babel-plugin-styled-components": "^1.8.0",
+    "dayjs": "^1.7.7",
     "gatsby": "^2.0.21",
     "gatsby-paginate": "^1.0.16",
     "gatsby-plugin-feed": "^2.0.8",
@@ -18,14 +18,14 @@
     "gatsby-plugin-styled-components": "^3.0.0",
     "gatsby-plugin-twitter": "^2.0.6",
     "gatsby-source-esa": "^1.0.5",
-    "lodash": "^4.17.5",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "lodash": "^4.17.11",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0",
-    "react-share": "^2.1.1",
+    "react-share": "^2.3.1",
     "ress": "^1.2.2",
-    "rss-parser": "^3.1.3",
-    "styled-components": "^3.2.6"
+    "rss-parser": "^3.5.2",
+    "styled-components": "^3.4.10"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
