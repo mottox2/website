@@ -1,7 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
+import styled from "styled-components"
 
-const Content = styled.div`
+export default styled.div`
   margin-top: 24px;
   line-height: 1.8;
   font-size: 15px;
@@ -169,8 +168,9 @@ const Content = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 2px 7px;
     font-size: 10px;
-    font-family: 'Lato', Emoji, Arial, 'ヒラギノ角ゴPro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ',
-      Meiryo, 'ＭＳ Ｐゴシック', sans-serif;
+    font-family: "Lato", Emoji, Arial, "ヒラギノ角ゴPro W3",
+      "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック",
+      sans-serif;
   }
 
   .code-block__copy-button i {
@@ -183,11 +183,11 @@ const Content = styled.div`
   }
 
   .code-block__copy-label::after {
-    content: 'Copy';
+    content: "Copy";
   }
 
   .code-block__copy-label.copied::after {
-    content: 'Copied';
+    content: "Copied";
   }
 
   .code-block .highlight {
@@ -605,5 +605,3 @@ const Content = styled.div`
     font-weight: 600;
   }
 `
-
-export default Content

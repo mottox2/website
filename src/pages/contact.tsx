@@ -1,10 +1,10 @@
-import React from 'react'
-import Content from '../components/Content'
-import { Wrapper } from '../templates/post'
-import Layout from '../layouts'
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
+import Content from "../components/Content"
+import Layout from "../components/Layout"
+import { Wrapper } from "../templates/post"
 
-const ContactPage = ({ location }) => (
+const ContactPage = ({ location }: any) => (
   <Layout location={location}>
     <Wrapper>
       <h1 style={{ fontWeight: 600 }}>お問い合わせ</h1>
@@ -46,13 +46,13 @@ const ContactPage = ({ location }) => (
         </FormItem>
         <FormItem>
           <label>
-            メールアドレス:{' '}
+            メールアドレス:{" "}
             <Input type="email" name="email" placeholder="メールアドレス" />
           </label>
         </FormItem>
         <FormItem>
           <label>
-            メッセージ:{' '}
+            メッセージ:{" "}
             <Textarea name="message" placeholder="メッセージ" rows={3} />
           </label>
         </FormItem>
@@ -85,7 +85,7 @@ const Input = styled.input`
   border-radius: 3px;
 `
 
-const Textarea = Input.withComponent('textarea')
+const Textarea = Input.withComponent("textarea")
 
 const Submit = styled.button`
   background-color: #4d9abf;
