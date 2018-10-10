@@ -3,7 +3,7 @@ import React from "react"
 import Helmet from "react-helmet"
 import styled from "styled-components"
 import Author from "../components/Author"
-import Layout from "../layouts"
+import Layout from "../components/Layout"
 import { Category } from "./post"
 
 const Cell = styled.div`

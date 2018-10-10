@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import Content from "../components/Content"
-import Layout from "../layouts"
-import { Wapper } from "../templates/post"
+import Layout from "../components/Layout"
+import { Wrapper } from "../templates/post"
 
 const ContactPage = ({ location }) => (
   <Layout location={location}>
