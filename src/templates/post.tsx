@@ -28,7 +28,12 @@ const Title = styled.h1`
   }
 `
 
-const Tag = styled.div`
+const Tag = styled<
+  {
+    type?: string;
+  },
+  "div"
+>("div")`
   background-color: white;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.58);
