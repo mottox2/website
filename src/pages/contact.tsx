@@ -4,7 +4,7 @@ import Content from "../components/Content"
 import Layout from "../components/Layout"
 import { Wrapper } from "../templates/post"
 
-const ContactPage = ({ location }) => (
+const ContactPage = ({ location }: any) => (
   <Layout location={location}>
     <Wrapper>
       <h1 style={{ fontWeight: 600 }}>お問い合わせ</h1>

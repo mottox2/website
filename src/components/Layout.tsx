@@ -4,48 +4,40 @@ import Helmet from "react-helmet"
 import "ress"
 import styled from "styled-components"
 
-class Template extends React.Component {
-  render() {
-    const { children } = this.props
-
-    const link = (
-      <Link
-        style={{
-          boxShadow: "none",
-          color: "inherit",
-          textDecoration: "none"
-        }}
-        to={"/"}
-      >
-        mottox2 blog
-      </Link>
-    )
-
-    return (
-      <Container>
-        <Helmet>
-          <meta
-            name="google-site-verification"
-            content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4"
-          />
-        </Helmet>
-        <Header>
-          <h1
+const Template = (props: any) => {
+  return (
+    <Container>
+      <Helmet>
+        <meta
+          name="google-site-verification"
+          content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4"
+        />
+      </Helmet>
+      <Header>
+        <h1
+          style={{
+            fontFamily: "lato, sans-selif",
+            fontSize: 20,
+            fontWeight: 900,
+            marginBottom: 0,
+            marginTop: 0
+          }}
+        >
+          <Link
             style={{
-              fontFamily: "lato, sans-selif",
-              fontSize: 20,
-              fontWeight: 900,
-              marginBottom: 0,
-              marginTop: 0
+              boxShadow: "none",
+              color: "inherit",
+              textDecoration: "none"
             }}
+            to={"/"}
           >
-            {link}
-          </h1>
-        </Header>
-        <div>{children}</div>
-      </Container>
-    )
-  }
+            mottox2 blog
+          </Link>
+        </h1>
+      </Header>
+      <div>{props.children}</div>
+    </Container>
+  )
 }
 
 const Container = styled.div`

@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import React from "react"
 import Helmet from "react-helmet"
 import styled from "styled-components"
+
 import Author from "../components/Author"
 import Layout from "../components/Layout"
 import { Category } from "./post"
@@ -27,7 +28,7 @@ const Cell = styled.div`
   }
 `
 
-const NavLink = props => {
+const NavLink = (props: any) => {
   if (!props.test) {
     return <Link to={props.url}>{props.text}</Link>
   } else {
@@ -64,7 +65,7 @@ const PostDescription = styled.p`
   max-height: ${14 * 1.6 * 3}px;
 `
 
-const BetterLink = props => {
+const BetterLink = (props: any) => {
   const { node } = props
   return node.url ? (
     <a
@@ -85,7 +86,7 @@ const BetterLink = props => {
   )
 }
 
-const IndexPage = ({ data, pageContext, location }) => {
+const IndexPage = ({ data, pageContext, location }: any) => {
   const {
     group,
     index,

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const Content = styled.div`
+export default styled.div`
   margin-top: 24px;
   line-height: 1.8;
   font-size: 15px;
@@ -605,5 +605,3 @@ const Content = styled.div`
     font-weight: 600;
   }
 `
-
-export default Content

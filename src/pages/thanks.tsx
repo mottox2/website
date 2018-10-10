@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   margin: 24px auto 48px;
 `
 
-const ContactThanksPage = ({ location }) => (
+const ContactThanksPage = ({ location }: any) => (
   <Layout location={location}>
     <Wrapper>
       <h1
