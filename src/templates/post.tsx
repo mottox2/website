@@ -1,14 +1,13 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import Link from 'gatsby-link'
-import get from 'lodash/get'
-import styled from 'styled-components'
+import { graphql, Link } from "gatsby"
+import React from "react"
+import Helmet from "react-helmet"
+import styled from "styled-components"
 
-import Author from '../components/Author'
-import Content from '../components/Content'
-import SocialLinks from '../components/SocialLinks'
-import AuthorProfile from '../components/AuthorProfile'
-import Layout from '../layouts'
+import Author from "../components/Author"
+import AuthorProfile from "../components/authorProfile"
+import Content from "../components/Content"
+import SocialLinks from "../components/SocialLinks"
+import Layout from "../layouts"
 
 export const Wrapper = styled.div`
   padding: 12px;
@@ -20,9 +19,9 @@ const Title = styled.h1`
   font-size: 24px;
   line-height: 1.4;
   font-weight: 600;
-  font-family: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue',
-    'Hiragino Sans', '游ゴシック Medium', 'YuGothic',
-    'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo,sans-serif';
+  font-family: -apple-system, "BlinkMacSystemFont", "Helvetica Neue",
+    "Hiragino Sans", "游ゴシック Medium", "YuGothic",
+    "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo,sans-serif";
 
   @media (min-width: 600px) {
     font-size: 30px;
@@ -44,9 +43,9 @@ const Tag = styled.div`
 
 export const Category = Tag.extend`
   background-image: ${props =>
-    props.type === 'note'
-      ? 'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)'
-      : 'linear-gradient(45deg,#4d9abf 0,#00c7b7 100%)'};
+    props.type === "note"
+      ? "linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)"
+      : "linear-gradient(45deg,#4d9abf 0,#00c7b7 100%)"};
   color: white;
   border: 1px solid transparent;
   border-color: #00c7b7;
@@ -68,7 +67,7 @@ class PostTemplate extends React.Component {
     const title = post.name
     const description = post.body_md.slice(0, 120)
     const image =
-      'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
+      "https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png"
     const url = `https://mottox2.com/posts/${post.number}/`
 
     return (
@@ -86,7 +85,7 @@ class PostTemplate extends React.Component {
 
             {/* Twitter Card tags */}
             <meta name="twitter:card" content="summary" />
-            <meta name="twitter:creator" content={'@mottox2'} />
+            <meta name="twitter:creator" content={"@mottox2"} />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={image} />
@@ -106,7 +105,7 @@ class PostTemplate extends React.Component {
           <SocialLinkWrapper>
             <SocialLinks
               title={post.name}
-              description={'description'}
+              description={"description"}
               url={url}
             />
           </SocialLinkWrapper>

@@ -1,40 +1,42 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 import {
-  FacebookShareButton,
-  TwitterShareButton,
-  FacebookShareCount,
   FacebookIcon,
-  TwitterIcon
-} from 'react-share'
-import styled from 'styled-components'
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton
+} from "react-share"
+import styled from "styled-components"
 
 class SocialLinks extends Component {
   render() {
     const { title, description, url } = this.props
 
     const iconSize = 42
-    const filter = count => (count > 0 ? count : '')
+    const filter = count => (count > 0 ? count : "")
 
     return (
-      <div className={`social-links ${this.props.className}`} style={{ ...this.props.style }}>
+      <div
+        className={`social-links ${this.props.className}`}
+        style={{ ...this.props.style }}
+      >
         <TwitterShareButton url={url} title={title} name="Share">
-          <TwitterIcon round size={iconSize} />
+          <TwitterIcon round={true} size={iconSize} />
         </TwitterShareButton>
         <FacebookShareButton url={url} quote={title}>
-          <FacebookIcon round size={iconSize} />
+          <FacebookIcon round={true} size={iconSize} />
           {/* <FacebookShareCount url={url}>
             {count => <div className="share-count">{filter(count)}</div>}
           </FacebookShareCount> */}
         </FacebookShareButton>
         <div
           role="button"
-          tabIndex="0"
+          tabIndex={0}
           className="SocialMediaShareButton"
           onClick={() => {
             window.open(`http://b.hatena.ne.jp/entry/${url}`)
           }}
         >
-          <div style={{ width: 42, height: 42, position: 'relative' }}>
+          <div style={{ width: 42, height: 42, position: "relative" }}>
             <svg
               viewBox="0 0 64 64"
               width="42"

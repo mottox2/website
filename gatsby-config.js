@@ -9,6 +9,7 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
+    'gatsby-plugin-typescript',
     {
       resolve: `gatsby-source-esa`,
       options: {

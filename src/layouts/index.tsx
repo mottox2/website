@@ -1,31 +1,31 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import Helmet from 'react-helmet'
-import 'ress'
-import styled from 'styled-components'
+import { Link } from "gatsby"
+import React from "react"
+import Helmet from "react-helmet"
+import "ress"
+import styled from "styled-components"
 
 class Template extends React.Component {
   render() {
     const { location, children } = this.props
     let header
-    const rootPath = '/'
+    const rootPath = "/"
 
     const headerStyles = {
       marginTop: 0,
       marginBottom: 0,
       fontSize: 20,
-      fontFamily: 'lato, sans-selif',
-      fontWeight: 900,
+      fontFamily: "lato, sans-selif",
+      fontWeight: 900
     }
 
     const link = (
       <Link
         style={{
-          boxShadow: 'none',
-          textDecoration: 'none',
-          color: 'inherit',
+          boxShadow: "none",
+          textDecoration: "none",
+          color: "inherit"
         }}
-        to={'/'}
+        to={"/"}
       >
         mottox2 blog
       </Link>
@@ -45,18 +45,16 @@ class Template extends React.Component {
           />
         </Helmet>
         <Header>{header}</Header>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </Container>
     )
   }
 }
 
 const Container = styled.div`
-  font-family: -apple-system-body, BlinkMacSystemFont, 'Helvetica Neue',
-    'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans Japanese',
-    '游ゴシック  Medium', 'Yu Gothic Medium', 'メイリオ', meiryo, sans-serif;
+  font-family: -apple-system-body, BlinkMacSystemFont, "Helvetica Neue",
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans Japanese",
+    "游ゴシック  Medium", "Yu Gothic Medium", "メイリオ", meiryo, sans-serif;
   @media screen and (-webkit-min-device-pixel-ratio: 2),
     screen and (min-resolution: 2dppx) {
     -moz-osx-font-smoothing: grayscale;
