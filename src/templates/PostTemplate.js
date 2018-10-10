@@ -20,8 +20,9 @@ const Title = styled.h1`
   font-size: 24px;
   line-height: 1.4;
   font-weight: 600;
-  font-family: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue', 'Hiragino Sans',
-    '游ゴシック Medium', 'YuGothic', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo,sans-serif';
+  font-family: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue',
+    'Hiragino Sans', '游ゴシック Medium', 'YuGothic',
+    'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo,sans-serif';
 
   @media (min-width: 600px) {
     font-size: 30px;
@@ -42,11 +43,10 @@ const Tag = styled.div`
 `
 
 export const Category = Tag.extend`
-  background-image: ${
-    props => props.type === 'note' ?
-    'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)' :
-    'linear-gradient(45deg,#4d9abf 0,#00c7b7 100%)'
-  };
+  background-image: ${props =>
+    props.type === 'note'
+      ? 'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)'
+      : 'linear-gradient(45deg,#4d9abf 0,#00c7b7 100%)'};
   color: white;
   border: 1px solid transparent;
   border-color: #00c7b7;
@@ -67,7 +67,8 @@ class PostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
     const title = post.name
     const description = post.body_md.slice(0, 120)
-    const image = 'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
+    const image =
+      'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
     const url = `https://mottox2.com/posts/${post.number}/`
 
     return (
@@ -91,19 +92,23 @@ class PostTemplate extends React.Component {
             <meta name="twitter:image" content={image} />
           </Helmet>
           {/* <Link to={`/categories/${post.category}`}> */}
-            <Category>{post.category}</Category>
+          <Category>{post.category}</Category>
           {/* </Link> */}
-          <Title dangerouslySetInnerHTML={{ __html: post.name}} />
-          { post.tags.map(tag => (
+          <Title dangerouslySetInnerHTML={{ __html: post.name }} />
+          {post.tags.map(tag => (
             <Link to={`/tags/${tag}`} key={tag}>
               <Tag>{tag}</Tag>
             </Link>
-          )) }
+          ))}
           <Author post={post} />
           <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
-          <AuthorProfile/>
+          <AuthorProfile />
           <SocialLinkWrapper>
-          <SocialLinks title={post.name} description={'description'} url={url} />
+            <SocialLinks
+              title={post.name}
+              description={'description'}
+              url={url}
+            />
           </SocialLinkWrapper>
         </Wrapper>
       </Layout>

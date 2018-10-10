@@ -19,41 +19,45 @@ class Template extends React.Component {
       fontWeight: 900,
     }
 
-    const link = <Link
-      style={{
-        boxShadow: 'none',
-        textDecoration: 'none',
-        color: 'inherit'
-      }}
-      to={'/'}
-    >
-      mottox2 blog
-    </Link>
+    const link = (
+      <Link
+        style={{
+          boxShadow: 'none',
+          textDecoration: 'none',
+          color: 'inherit',
+        }}
+        to={'/'}
+      >
+        mottox2 blog
+      </Link>
+    )
 
     if (location.pathname === rootPath) {
-      header = (<h1 style={headerStyles}> {link} </h1>)
+      header = <h1 style={headerStyles}> {link} </h1>
     } else {
-      header = (<h3 style={headerStyles}> {link} </h3>)
+      header = <h3 style={headerStyles}> {link} </h3>
     }
     return (
       <Container>
         <Helmet>
-          <meta name="google-site-verification" content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4" />
+          <meta
+            name="google-site-verification"
+            content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4"
+          />
         </Helmet>
-        <Header>
-          {header}
-        </Header>
-        <Transition location={location}>
-        {children}
-        </Transition>
+        <Header>{header}</Header>
+        <Transition location={location}>{children}</Transition>
       </Container>
     )
   }
 }
 
 const Container = styled.div`
-  font-family: -apple-system-body, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans Japanese", "游ゴシック  Medium", "Yu Gothic Medium", "メイリオ", meiryo, sans-serif;
-  @media screen and (-webkit-min-device-pixel-ratio: 2),screen and (min-resolution:2dppx) {
+  font-family: -apple-system-body, BlinkMacSystemFont, 'Helvetica Neue',
+    'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans Japanese',
+    '游ゴシック  Medium', 'Yu Gothic Medium', 'メイリオ', meiryo, sans-serif;
+  @media screen and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-resolution: 2dppx) {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
   }
@@ -62,7 +66,7 @@ const Container = styled.div`
 const Header = styled.header`
   border-bottom: 1px solid #eee;
   text-align: center;
-  background-image: linear-gradient(45deg,#4d9abf 0,#00c7b7 100%);
+  background-image: linear-gradient(45deg, #4d9abf 0, #00c7b7 100%);
   color: white;
   font-weight: 500;
   padding: 18px 0;

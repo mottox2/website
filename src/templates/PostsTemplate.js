@@ -14,7 +14,7 @@ const Cell = styled.div`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border-radius: 3px;
   transform: translateY(0);
-  transition: transform .15s ease-in, box-shadow .15s ease-in;
+  transition: transform 0.15s ease-in, box-shadow 0.15s ease-in;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -64,25 +64,36 @@ const PostDescription = styled.p`
   max-height: ${14 * 1.6 * 3}px;
 `
 
-const BetterLink = (props) => {
-  const { node }  = props
-  return node.url ?
+const BetterLink = props => {
+  const { node } = props
+  return node.url ? (
     <a
       href={node.url}
       style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
-      target='_blank'
+      target="_blank"
       rel="noopener noreferrer"
-    >{props.children}</a> :
+    >
+      {props.children}
+    </a>
+  ) : (
     <Link
       style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
       to={`/posts/${node.number}/`}
     >
       {props.children}
     </Link>
+  )
 }
 
 const IndexPage = ({ data, pageContext, location }) => {
-  const { group, index, first, last, pageCount, additionalContext } = pageContext
+  const {
+    group,
+    index,
+    first,
+    last,
+    pageCount,
+    additionalContext,
+  } = pageContext
   const previousUrl = index - 1 == 1 ? '/' : '/page/' + (index - 1).toString()
   const nextUrl = '/page/' + (index + 1).toString()
   const { tag, category } = additionalContext
@@ -91,29 +102,46 @@ const IndexPage = ({ data, pageContext, location }) => {
     <Layout location={location}>
       <Container>
         <Helmet title={`mottox2 blog`}>
-          <meta property="description" content={'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。'} />
+          <meta
+            property="description"
+            content={
+              'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。'
+            }
+          />
         </Helmet>
-        { tag && <Title>{tag}<small>に関する記事</small></Title> }
-        { category && <Title>{category}<small>に関する記事</small></Title> }
+        {tag && (
+          <Title>
+            {tag}
+            <small>に関する記事</small>
+          </Title>
+        )}
+        {category && (
+          <Title>
+            {category}
+            <small>に関する記事</small>
+          </Title>
+        )}
         <Grid>
-        {group.map(({ node }, index) => {
-          return (
-          <BetterLink node={node} key={index}>
-            <Cell key={node.number}>
-              <Category type={node.type}>{node.category}</Category>
-              <PostTitle dangerouslySetInnerHTML={{ __html: node.name }}/>
-              <PostDescription>{node.body_md.slice(0, 100)}</PostDescription>
-              <Author style={{ marginTop: 'auto' }} post={node} />
-            </Cell>
-          </BetterLink>
-          )
-        })}
+          {group.map(({ node }, index) => {
+            return (
+              <BetterLink node={node} key={index}>
+                <Cell key={node.number}>
+                  <Category type={node.type}>{node.category}</Category>
+                  <PostTitle dangerouslySetInnerHTML={{ __html: node.name }} />
+                  <PostDescription>
+                    {node.body_md.slice(0, 100)}
+                  </PostDescription>
+                  <Author style={{ marginTop: 'auto' }} post={node} />
+                </Cell>
+              </BetterLink>
+            )
+          })}
         </Grid>
         <Pagination>
           <div>
             <NavLink test={first} url={previousUrl} text="< Previous" />
           </div>
-          <div style={{marginLeft: 'auto'}}>
+          <div style={{ marginLeft: 'auto' }}>
             <NavLink test={last} url={nextUrl} text="Next >" />
           </div>
         </Pagination>
