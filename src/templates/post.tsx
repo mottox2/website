@@ -103,11 +103,7 @@ class PostTemplate extends React.Component {
           <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
           <AuthorProfile />
           <SocialLinkWrapper>
-            <SocialLinks
-              title={post.name}
-              description={"description"}
-              url={url}
-            />
+            <SocialLinks title={post.name} url={url} />
           </SocialLinkWrapper>
         </Wrapper>
       </Layout>

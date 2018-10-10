@@ -9,6 +9,7 @@
     "ordered-imports": [true],
     "no-console": [false],
     "no-var-requires": true,
+    "jsx-no-lambda": false,
     "quotemark": [true, "double", "jsx-double"]
   },
   "rulesDirectory": []

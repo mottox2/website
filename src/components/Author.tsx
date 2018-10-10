@@ -30,7 +30,7 @@ const UpdatedAt = styled.div`
   margin-top: 4px;
 `
 
-const Author = props => {
+const Author = (props: any) => {
   const node = props.post
 
   return (
