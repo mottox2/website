@@ -1,6 +1,6 @@
 import React from 'react'
 import Content from '../components/Content'
-import { Wrapper } from '../templates/PostTemplate'
+import { Wrapper } from '../templates/post'
 import Layout from '../layouts'
 import styled from 'styled-components'
 

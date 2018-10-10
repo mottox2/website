@@ -4,7 +4,7 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Author from '../components/Author'
 import Layout from '../layouts'
-import { Category } from './PostTemplate'
+import { Category } from './post'
 
 const Cell = styled.div`
   height: 100%;
