@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Content from "../components/Content"
-import Layout from "../layouts"
+import Layout from "../components/Layout"
 
 // FIXME: templatesのWrapperを読もうとするとビルドが失敗する
 const Wrapper = styled.div`

@@ -7,6 +7,7 @@
     "url": "https://github.com/mottox2/blog/issues"
   },
   "dependencies": {
+    "@types/react-share": "^2.1.1",
     "babel-plugin-styled-components": "^1.8.0",
     "dayjs": "^1.7.7",
     "gatsby": "^2.0.21",

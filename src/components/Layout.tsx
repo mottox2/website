@@ -6,24 +6,14 @@ import styled from "styled-components"
 
 class Template extends React.Component {
   render() {
-    const { location, children } = this.props
-    let header
-    const rootPath = "/"
-
-    const headerStyles = {
-      marginTop: 0,
-      marginBottom: 0,
-      fontSize: 20,
-      fontFamily: "lato, sans-selif",
-      fontWeight: 900
-    }
+    const { children } = this.props
 
     const link = (
       <Link
         style={{
           boxShadow: "none",
-          textDecoration: "none",
-          color: "inherit"
+          color: "inherit",
+          textDecoration: "none"
         }}
         to={"/"}
       >
@@ -31,11 +21,6 @@ class Template extends React.Component {
       </Link>
     )
 
-    if (location.pathname === rootPath) {
-      header = <h1 style={headerStyles}> {link} </h1>
-    } else {
-      header = <h3 style={headerStyles}> {link} </h3>
-    }
     return (
       <Container>
         <Helmet>
@@ -44,7 +29,19 @@ class Template extends React.Component {
             content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4"
           />
         </Helmet>
-        <Header>{header}</Header>
+        <Header>
+          <h1
+            style={{
+              fontFamily: "lato, sans-selif",
+              fontSize: 20,
+              fontWeight: 900,
+              marginBottom: 0,
+              marginTop: 0
+            }}
+          >
+            {link}
+          </h1>
+        </Header>
         <div>{children}</div>
       </Container>
     )

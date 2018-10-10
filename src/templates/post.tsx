@@ -6,8 +6,8 @@ import styled from "styled-components"
 import Author from "../components/Author"
 import AuthorProfile from "../components/authorProfile"
 import Content from "../components/Content"
-import Layout from "../components/Layout";
-import ScialLinks from "../components/SocialLinks"
+import Layout from "../components/Layout"
+import SocialLinks from "../components/SocialLinks"
 
 export const Wrapper = styled.div`
   padding: 12px;
