@@ -3,7 +3,6 @@ import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import 'ress'
 import styled from 'styled-components'
-import Transition from './Transition'
 
 class Template extends React.Component {
   render() {
@@ -46,7 +45,9 @@ class Template extends React.Component {
           />
         </Helmet>
         <Header>{header}</Header>
-        <Transition location={location}>{children}</Transition>
+        <div>
+          {children}
+        </div>
       </Container>
     )
   }
