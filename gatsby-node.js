@@ -35,7 +35,7 @@ exports.sourceNodes = async ({ actions, createNodeId }) => {
   })
 };
 
-const createDateNode = ({ createNodeId, nodeId, day }) => {
+const buildDateNode = ({ createNodeId, nodeId, day }) => {
   return {
     id: createNodeId(`${nodeId} >>> PublishedDate`),
     published_on: day.toISOString(),
@@ -55,28 +55,19 @@ exports.onCreateNode = ({ node, actions, createNodeId }) => {
   const { createNode, createParentChildLink, createNodeField } = actions
 
   if (node.internal.type === 'EsaPost') {
+    createNodeField({ node, name: 'title', value: node.name.replace(DATE_REGEXP, '') })
+
+    // Extract the date part from node.name (ex. "[2018-10-08] I participated in Techbook Festival")
     const matched = node.name.match(DATE_REGEXP)
-    createNodeField({
-      node,
-      name: 'title',
-      value: node.name.replace(DATE_REGEXP, '')
-    })
     const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
-    const dateNode = createDateNode({
-      nodeId: node.id, day, createNodeId
-    })
+    const dateNode = buildDateNode({ nodeId: node.id, day, createNodeId })
     createNode(dateNode)
     createParentChildLink({parent: node, child: dateNode})
   } else if (node.internal.type === 'Note') {
+    createNodeField({ node, name: 'title', value: node.title })
+
     const day = dayjs(node.pubDate)
-    const dateNode = createDateNode({
-      nodeId: node.id, day, createNodeId
-    })
-    createNodeField({
-      node,
-      name: 'title',
-      value: node.title
-    })
+    const dateNode = buildDateNode({ nodeId: node.id, day, createNodeId })
     createNode(dateNode)
     createParentChildLink({parent: node, child: dateNode})
   }
@@ -147,7 +138,7 @@ exports.createPages = ({ graphql, actions }) => {
         const notes = result.data.allNote.edges
 
         createPaginatedPages({
-          edges: posts.concat(notes).sort((a, b) => {
+          edges: [...posts, ...notes].sort((a, b) => {
             return b.node.childPublishedDate.published_on_unix - a.node.childPublishedDate.published_on_unix
           }),
           createPage,
@@ -163,7 +154,7 @@ exports.createPages = ({ graphql, actions }) => {
         const categoryEntities = {}
         const tagEntities = {}
 
-        _.each(posts, (post, index) => {
+        _.each(posts, (post) => {
           const postNode = post.node
 
           postNode.tags.forEach(tag => {

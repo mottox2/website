@@ -124,7 +124,6 @@ const IndexPage = ({ data, pageContext, location }: any) => {
         )}
         <Grid>
           {group.map(({ node }: any) => {
-            console.log(node)
             return (
               <BetterLink node={node} key={node.number || node.url}>
                 <Cell>
