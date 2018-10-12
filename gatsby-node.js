@@ -12,12 +12,8 @@ const createContentDigest = obj => crypto.createHash('md5').update(obj).digest('
 exports.sourceNodes = async ({ actions }) => {
   await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
     feed.items.forEach(item => {
-      const digest = createContentDigest(item.link)
-      const day = dayjs(item.pubDate)
       actions.createNode(Object.assign({}, item, {
         id: digest,
-        published_on: day.toISOString(),
-        published_on_unix: day.unix(),
         parent: `__SOURCE__`,
         children: [],
         internal: {
@@ -97,7 +93,6 @@ exports.createPages = ({ graphql, actions }) => {
                     screen_name
                     icon
                   }
-                  updated_at
                 }
               }
             }
@@ -133,11 +128,7 @@ exports.createPages = ({ graphql, actions }) => {
             name: note.title,
             body_md: note.contentSnippet,
             url: note.link,
-            type: 'note',
             category: 'note',
-            key: note.id,
-            number: index,
-            updated_at: note.isoDate,
             updated_by: {
               screen_name: 'mottox2',
               icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
