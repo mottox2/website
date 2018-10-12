@@ -9,9 +9,10 @@ const parser = new Parser()
 const crypto = require('crypto');
 const createContentDigest = obj => crypto.createHash('md5').update(obj).digest('hex');
 
-exports.sourceNodes = async ({ actions }) => {
+exports.sourceNodes = async ({ actions, createNodeId }) => {
   await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
     feed.items.forEach(item => {
+      const digest = createNodeId(`${item.link}`)
       actions.createNode(Object.assign({}, item, {
         id: digest,
         parent: `__SOURCE__`,
@@ -19,10 +20,33 @@ exports.sourceNodes = async ({ actions }) => {
         internal: {
           contentDigest: digest,
           type: 'Note',
+        },
+        // EsaPostと形式を揃えている
+        name: item.title,
+        body_md: item.contentSnippet,
+        url: item.link,
+        category: 'note',
+        updated_by: {
+          screen_name: 'mottox2',
+          icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
         }
       }))
     })
   })
+};
+
+const createDateNode = ({ createNodeId, nodeId, day }) => {
+  return {
+    id: createNodeId(`${nodeId} >>> PublishedDate`),
+    published_on: day.toISOString(),
+    published_on_unix: day.unix(),
+    children: [],
+    parent: nodeId,
+    internal: {
+      contentDigest: createNodeId(`${nodeId} >>> PublishedDate`),
+      type: 'PublishedDate',
+    }
+  }
 }
 
 exports.onCreateNode = ({ node, actions, createNodeId }) => {
@@ -31,36 +55,16 @@ exports.onCreateNode = ({ node, actions, createNodeId }) => {
   if (node.internal.type === 'EsaPost') {
     const matched = node.name.match(/ ?\[(.*?)\] ?/)
     const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
-    const digest = createContentDigest('blog' + node.number)
-
-    const dateNode = {
-      id: createNodeId(`${node.id} >>> PublishedDate`),
-      published_on: day.toISOString(),
-      published_on_unix: day.unix(),
-      children: [],
-      parent: node.id,
-      internal: {
-        contentDigest: createNodeId(`${node.id} >>> PublishedDate`),
-        type: 'PublishedDate',
-      },
-    }
+    const dateNode = createDateNode({
+      nodeId: node.id, day, createNodeId
+    })
     createNode(dateNode)
     createParentChildLink({parent: node, child: dateNode})
   } else if (node.internal.type === 'Note') {
-    const digest = createContentDigest(node.link)
     const day = dayjs(node.pubDate)
-
-    const dateNode = {
-      id: createNodeId(`${node.id} >>> PublishedDate`),
-      published_on: day.toISOString(),
-      published_on_unix: day.unix(),
-      children: [],
-      parent: node.id,
-      internal: {
-        contentDigest: createNodeId(`${node.id} >>> PublishedDate`),
-        type: 'PublishedDate',
-      },
-    }
+    const dateNode = createDateNode({
+      nodeId: node.id, day, createNodeId
+    })
     createNode(dateNode)
     createParentChildLink({parent: node, child: dateNode})
   }
@@ -120,21 +124,8 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors)
           reject(result.errors)
         }
-        const posts = result.data.allEsaPost.edges;
-        const notes = result.data.allNote.edges.map((noteEdge, index) => {
-          const note = noteEdge.node
-          return { node: {
-            ...noteEdge.node,
-            name: note.title,
-            body_md: note.contentSnippet,
-            url: note.link,
-            category: 'note',
-            updated_by: {
-              screen_name: 'mottox2',
-              icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
-            }
-          }}
-        })
+        const posts = result.data.allEsaPost.edges
+        const notes = result.data.allNote.edges
 
         createPaginatedPages({
           edges: posts.concat(notes).sort((a, b) => {
