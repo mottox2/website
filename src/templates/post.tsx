@@ -1,13 +1,13 @@
-import { graphql, Link } from "gatsby"
-import React from "react"
-import Helmet from "react-helmet"
-import styled from "styled-components"
+import { graphql, Link } from 'gatsby'
+import React from 'react'
+import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
-import Author from "../components/Author"
-import AuthorProfile from "../components/AuthorProfile"
-import Content from "../components/Content"
-import Layout from "../components/Layout"
-import SocialLinks from "../components/SocialLinks"
+import Author from '../components/Author'
+import AuthorProfile from '../components/AuthorProfile'
+import Content from '../components/Content'
+import Layout from '../components/Layout'
+import SocialLinks from '../components/SocialLinks'
 
 export const Wrapper = styled.div`
   padding: 12px;
@@ -32,8 +32,8 @@ const Tag = styled<
   {
     type?: string;
   },
-  "div"
->("div")`
+  'div'
+>('div')`
   background-color: white;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.58);
@@ -48,9 +48,9 @@ const Tag = styled<
 
 export const Category = Tag.extend`
   background-image: ${props =>
-    props.type === "note"
-      ? "linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)"
-      : "linear-gradient(45deg,#4d9abf 0,#00c7b7 100%)"};
+    props.type === 'note'
+      ? 'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)'
+      : 'linear-gradient(45deg,#4d9abf 0,#00c7b7 100%)'};
   color: white;
   border: 1px solid transparent;
   border-color: #00c7b7;
@@ -71,7 +71,7 @@ const PostTemplate = (props: any) => {
   const title = post.name
   const description = post.body_md.slice(0, 120)
   const image =
-    "https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png"
+    'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
   const url = `https://mottox2.com/posts/${post.number}/`
 
   return (
@@ -89,7 +89,7 @@ const PostTemplate = (props: any) => {
 
           {/* Twitter Card tags */}
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:creator" content={"@mottox2"} />
+          <meta name="twitter:creator" content={'@mottox2'} />
           <meta name="twitter:title" content={title} />
           <meta name="twitter:description" content={description} />
           <meta name="twitter:image" content={image} />

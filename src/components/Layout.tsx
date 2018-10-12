@@ -1,8 +1,8 @@
-import { Link } from "gatsby"
-import React from "react"
-import Helmet from "react-helmet"
-import "ress"
-import styled from "styled-components"
+import { Link } from 'gatsby'
+import React from 'react'
+import Helmet from 'react-helmet'
+import 'ress'
+import styled from 'styled-components'
 
 const Template = (props: any) => {
   return (
@@ -16,20 +16,20 @@ const Template = (props: any) => {
       <Header>
         <h1
           style={{
-            fontFamily: "lato, sans-selif",
+            fontFamily: 'lato, sans-selif',
             fontSize: 20,
             fontWeight: 900,
             marginBottom: 0,
-            marginTop: 0
+            marginTop: 0,
           }}
         >
           <Link
             style={{
-              boxShadow: "none",
-              color: "inherit",
-              textDecoration: "none"
+              boxShadow: 'none',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
-            to={"/"}
+            to={'/'}
           >
             mottox2 blog
           </Link>

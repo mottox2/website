@@ -1,6 +1,6 @@
-import dayjs from "dayjs"
-import React from "react"
-import styled from "styled-components"
+import dayjs from 'dayjs'
+import React from 'react'
+import styled from 'styled-components'
 
 const UpdatedBy = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ const Author = (props: any) => {
       />
       <div>
         <UpdatedUser>{node.updated_by.screen_name}</UpdatedUser>
-        <UpdatedAt>{dayjs(node.published_on).format("YYYY/MM/DD")}</UpdatedAt>
+        <UpdatedAt>{dayjs(node.published_on).format('YYYY/MM/DD')}</UpdatedAt>
       </div>
     </UpdatedBy>
   )

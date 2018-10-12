@@ -1,11 +1,11 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import {
   FacebookIcon,
   FacebookShareButton,
   TwitterIcon,
-  TwitterShareButton
-} from "react-share"
-import styled from "styled-components"
+  TwitterShareButton,
+} from 'react-share'
+import styled from 'styled-components'
 
 const SocialLinks = (props: any) => {
   const { title, url } = props
@@ -31,7 +31,7 @@ const SocialLinks = (props: any) => {
           window.open(`http://b.hatena.ne.jp/entry/${url}`)
         }}
       >
-        <div style={{ width: 42, height: 42, position: "relative" }}>
+        <div style={{ width: 42, height: 42, position: 'relative' }}>
           <svg
             viewBox="0 0 64 64"
             width="42"

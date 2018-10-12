@@ -1,11 +1,11 @@
-import { Link } from "gatsby"
-import React from "react"
-import Helmet from "react-helmet"
-import styled from "styled-components"
+import { Link } from 'gatsby'
+import React from 'react'
+import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
-import Author from "../components/Author"
-import Layout from "../components/Layout"
-import { Category } from "./post"
+import Author from '../components/Author'
+import Layout from '../components/Layout'
+import { Category } from './post'
 
 const Cell = styled.div`
   height: 100%;
@@ -70,7 +70,7 @@ const BetterLink = (props: any) => {
   return node.url ? (
     <a
       href={node.url}
-      style={{ textDecoration: "none", boxShadow: "none", color: "inherit" }}
+      style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -78,7 +78,7 @@ const BetterLink = (props: any) => {
     </a>
   ) : (
     <Link
-      style={{ textDecoration: "none", boxShadow: "none", color: "inherit" }}
+      style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
       to={`/posts/${node.number}/`}
     >
       {props.children}
@@ -93,10 +93,10 @@ const IndexPage = ({ data, pageContext, location }: any) => {
     first,
     last,
     pageCount,
-    additionalContext
+    additionalContext,
   } = pageContext
-  const previousUrl = index - 1 === 1 ? "/" : "/page/" + (index - 1).toString()
-  const nextUrl = "/page/" + (index + 1).toString()
+  const previousUrl = index - 1 === 1 ? '/' : '/page/' + (index - 1).toString()
+  const nextUrl = '/page/' + (index + 1).toString()
   const { tag, category } = additionalContext
 
   return (
@@ -106,7 +106,7 @@ const IndexPage = ({ data, pageContext, location }: any) => {
           <meta
             property="description"
             content={
-              "mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。"
+              'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。'
             }
           />
         </Helmet>
@@ -132,7 +132,7 @@ const IndexPage = ({ data, pageContext, location }: any) => {
                   <PostDescription>
                     {node.body_md.slice(0, 100)}
                   </PostDescription>
-                  <Author style={{ marginTop: "auto" }} post={node} />
+                  <Author style={{ marginTop: 'auto' }} post={node} />
                 </Cell>
               </BetterLink>
             )
@@ -142,7 +142,7 @@ const IndexPage = ({ data, pageContext, location }: any) => {
           <div>
             <NavLink test={first} url={previousUrl} text="< Previous" />
           </div>
-          <div style={{ marginLeft: "auto" }}>
+          <div style={{ marginLeft: 'auto' }}>
             <NavLink test={last} url={nextUrl} text="Next >" />
           </div>
         </Pagination>
