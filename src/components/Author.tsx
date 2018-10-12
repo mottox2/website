@@ -43,7 +43,9 @@ const Author = (props: any) => {
       />
       <div>
         <UpdatedUser>{node.updated_by.screen_name}</UpdatedUser>
-        <UpdatedAt>{dayjs(node.published_on).format('YYYY/MM/DD')}</UpdatedAt>
+        <UpdatedAt>
+          {dayjs(node.childPublishedDate.published_on).format('YYYY/MM/DD')}
+        </UpdatedAt>
       </div>
     </UpdatedBy>
   )

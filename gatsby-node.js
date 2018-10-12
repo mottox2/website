@@ -6,47 +6,70 @@ const dayjs = require('dayjs')
 
 const Parser = require('rss-parser')
 const parser = new Parser()
-const crypto = require('crypto');
-const createContentDigest = obj => crypto.createHash('md5').update(obj).digest('hex');
 
-exports.sourceNodes = async ({ actions }) => {
+exports.sourceNodes = async ({ actions, createNodeId }) => {
   await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
     feed.items.forEach(item => {
-      const digest = createContentDigest(item.link)
-      const day = dayjs(item.pubDate)
-      actions.createNode(Object.assign({}, item, {
+      const digest = createNodeId(`${item.link}`)
+      actions.createNode(Object.assign({}, {
+        ...item,
+        // EsaPostと形式を揃えている
+        name: item.title,
+        body_md: item.contentSnippet,
+        url: item.link,
+        category: 'note',
+        updated_by: {
+          screen_name: 'mottox2',
+          icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
+        }
+      }, {
         id: digest,
-        published_on: day.toISOString(),
-        published_on_unix: day.unix(),
         parent: `__SOURCE__`,
         children: [],
         internal: {
           contentDigest: digest,
           type: 'Note',
-        }
+        },
       }))
     })
   })
+};
+
+const buildDateNode = ({ createNodeId, nodeId, day }) => {
+  return {
+    id: createNodeId(`${nodeId} >>> PublishedDate`),
+    published_on: day.toISOString(),
+    published_on_unix: day.unix(),
+    children: [],
+    parent: nodeId,
+    internal: {
+      contentDigest: createNodeId(`${nodeId} >>> PublishedDate`),
+      type: 'PublishedDate',
+    }
+  }
 }
 
-exports.onCreateNode = ({ node, actions }) => {
-  const { createNode } = actions
+const DATE_REGEXP = / ?\[(.*?)\] ?/
+
+exports.onCreateNode = ({ node, actions, createNodeId }) => {
+  const { createNode, createParentChildLink, createNodeField } = actions
 
   if (node.internal.type === 'EsaPost') {
-    const matched = node.name.match(/ ?\[(.*?)\] ?/)
+    createNodeField({ node, name: 'title', value: node.name.replace(DATE_REGEXP, '') })
+
+    // Extract the date part from node.name (ex. "[2018-10-08] I participated in Techbook Festival")
+    const matched = node.name.match(DATE_REGEXP)
     const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
-    const digest = createContentDigest('blog' + node.number)
-    createNode({
-      ...node,
-      id: digest,
-      name: matched ? node.name.replace(matched[0], '') : node.name,
-      published_on: day.toISOString(),
-      published_on_unix: day.unix(),
-      internal: {
-        contentDigest: digest,
-        type: 'EsaExtendedPost'
-      }
-    })
+    const dateNode = buildDateNode({ nodeId: node.id, day, createNodeId })
+    createNode(dateNode)
+    createParentChildLink({parent: node, child: dateNode})
+  } else if (node.internal.type === 'Note') {
+    createNodeField({ node, name: 'title', value: node.title })
+
+    const day = dayjs(node.pubDate)
+    const dateNode = buildDateNode({ nodeId: node.id, day, createNodeId })
+    createNode(dateNode)
+    createParentChildLink({parent: node, child: dateNode})
   }
 }
 
@@ -60,22 +83,25 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allEsaExtendedPost {
+            allEsaPost {
               edges {
                 node {
                   number
                   category
+                  fields {
+                    title
+                  }
                   name
                   body_md
                   tags
-                  published_on
-                  published_on_unix
+                  childPublishedDate {
+                    published_on
+                    published_on_unix
+                  }
                   updated_by {
-                    name
                     screen_name
                     icon
                   }
-                  updated_at
                 }
               }
             }
@@ -83,13 +109,20 @@ exports.createPages = ({ graphql, actions }) => {
             allNote {
               edges {
                 node {
-                  id
-                  title
+                  category
+                  fields {
+                    title
+                  }
                   link
-                  published_on
-                  published_on_unix
-                  contentSnippet
-                  isoDate
+                  body_md
+                  childPublishedDate {
+                    published_on
+                    published_on_unix
+                  }
+                  updated_by {
+                    screen_name
+                    icon
+                  }
                 }
               }
             }
@@ -101,30 +134,12 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors)
           reject(result.errors)
         }
-        const posts = result.data.allEsaExtendedPost.edges;
-        const notes = result.data.allNote.edges.map((noteEdge, index) => {
-          const note = noteEdge.node
-          return { node: {
-            name: note.title,
-            body_md: note.contentSnippet,
-            url: note.link,
-            type: 'note',
-            category: 'note',
-            key: note.id,
-            number: index,
-            published_on: note.published_on,
-            published_on_unix: note.published_on_unix,
-            updated_at: note.isoDate,
-            updated_by: {
-              screen_name: 'mottox2',
-              icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
-            }
-          }}
-        })
+        const posts = result.data.allEsaPost.edges
+        const notes = result.data.allNote.edges
 
         createPaginatedPages({
-          edges: posts.concat(notes).sort((a, b) => {
-            return b.node.published_on_unix - a.node.published_on_unix
+          edges: [...posts, ...notes].sort((a, b) => {
+            return b.node.childPublishedDate.published_on_unix - a.node.childPublishedDate.published_on_unix
           }),
           createPage,
           pageTemplate: blogList,
@@ -139,7 +154,7 @@ exports.createPages = ({ graphql, actions }) => {
         const categoryEntities = {}
         const tagEntities = {}
 
-        _.each(posts, (post, index) => {
+        _.each(posts, (post) => {
           const postNode = post.node
 
           postNode.tags.forEach(tag => {

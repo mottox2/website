@@ -66,9 +66,9 @@ const SocialLinkWrapper = styled.div`
 `
 
 const PostTemplate = (props: any) => {
-  const post = props.data.esaExtendedPost
+  const post = props.data.esaPost
   const { previous, next } = props.pageContext
-  const title = post.name
+  const title = post.fields.title
   const description = post.body_md.slice(0, 120)
   const image =
     'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
@@ -97,7 +97,7 @@ const PostTemplate = (props: any) => {
         {/* <Link to={`/categories/${post.category}`}> */}
         <Category>{post.category}</Category>
         {/* </Link> */}
-        <Title dangerouslySetInnerHTML={{ __html: post.name }} />
+        <Title dangerouslySetInnerHTML={{ __html: title }} />
         {post.tags.map((tag: any) => (
           <Link to={`/tags/${tag}`} key={tag}>
             <Tag>{tag}</Tag>
@@ -118,16 +118,20 @@ export default PostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($number: Int!) {
-    esaExtendedPost(number: { eq: $number }) {
+    esaPost(number: { eq: $number }) {
       number
       category
-      name
+      fields {
+        title
+      }
       wip
       body_md
       body_html
       tags
       updated_at
-      published_on
+      childPublishedDate {
+        published_on
+      }
       updated_by {
         name
         screen_name

@@ -128,7 +128,9 @@ const IndexPage = ({ data, pageContext, location }: any) => {
               <BetterLink node={node} key={node.number || node.url}>
                 <Cell>
                   <Category type={node.type}>{node.category}</Category>
-                  <PostTitle dangerouslySetInnerHTML={{ __html: node.name }} />
+                  <PostTitle
+                    dangerouslySetInnerHTML={{ __html: node.fields.title }}
+                  />
                   <PostDescription>
                     {node.body_md.slice(0, 100)}
                   </PostDescription>
