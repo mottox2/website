@@ -6,21 +6,13 @@ const dayjs = require('dayjs')
 
 const Parser = require('rss-parser')
 const parser = new Parser()
-const crypto = require('crypto');
-const createContentDigest = obj => crypto.createHash('md5').update(obj).digest('hex');
 
 exports.sourceNodes = async ({ actions, createNodeId }) => {
   await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
     feed.items.forEach(item => {
       const digest = createNodeId(`${item.link}`)
-      actions.createNode(Object.assign({}, item, {
-        id: digest,
-        parent: `__SOURCE__`,
-        children: [],
-        internal: {
-          contentDigest: digest,
-          type: 'Note',
-        },
+      actions.createNode(Object.assign({}, {
+        ...item,
         // EsaPostと形式を揃えている
         name: item.title,
         body_md: item.contentSnippet,
@@ -30,6 +22,14 @@ exports.sourceNodes = async ({ actions, createNodeId }) => {
           screen_name: 'mottox2',
           icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
         }
+      }, {
+        id: digest,
+        parent: `__SOURCE__`,
+        children: [],
+        internal: {
+          contentDigest: digest,
+          type: 'Note',
+        },
       }))
     })
   })
@@ -49,11 +49,18 @@ const createDateNode = ({ createNodeId, nodeId, day }) => {
   }
 }
 
+const DATE_REGEXP = / ?\[(.*?)\] ?/
+
 exports.onCreateNode = ({ node, actions, createNodeId }) => {
-  const { createNode, createParentChildLink } = actions
+  const { createNode, createParentChildLink, createNodeField } = actions
 
   if (node.internal.type === 'EsaPost') {
-    const matched = node.name.match(/ ?\[(.*?)\] ?/)
+    const matched = node.name.match(DATE_REGEXP)
+    createNodeField({
+      node,
+      name: 'title',
+      value: node.name.replace(DATE_REGEXP, '')
+    })
     const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
     const dateNode = createDateNode({
       nodeId: node.id, day, createNodeId
@@ -64,6 +71,11 @@ exports.onCreateNode = ({ node, actions, createNodeId }) => {
     const day = dayjs(node.pubDate)
     const dateNode = createDateNode({
       nodeId: node.id, day, createNodeId
+    })
+    createNodeField({
+      node,
+      name: 'title',
+      value: node.title
     })
     createNode(dateNode)
     createParentChildLink({parent: node, child: dateNode})
@@ -85,6 +97,9 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   number
                   category
+                  fields {
+                    title
+                  }
                   name
                   body_md
                   tags
@@ -93,7 +108,6 @@ exports.createPages = ({ graphql, actions }) => {
                     published_on_unix
                   }
                   updated_by {
-                    name
                     screen_name
                     icon
                   }
@@ -104,14 +118,19 @@ exports.createPages = ({ graphql, actions }) => {
             allNote {
               edges {
                 node {
-                  id
-                  title
+                  category
+                  fields {
+                    title
+                  }
                   link
-                  contentSnippet
-                  isoDate
+                  body_md
                   childPublishedDate {
                     published_on
                     published_on_unix
+                  }
+                  updated_by {
+                    screen_name
+                    icon
                   }
                 }
               }
