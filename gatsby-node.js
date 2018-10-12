@@ -29,24 +29,44 @@ exports.sourceNodes = async ({ actions }) => {
   })
 }
 
-exports.onCreateNode = ({ node, actions }) => {
-  const { createNode } = actions
+exports.onCreateNode = ({ node, actions, createNodeId }) => {
+  const { createNode, createParentChildLink } = actions
 
   if (node.internal.type === 'EsaPost') {
     const matched = node.name.match(/ ?\[(.*?)\] ?/)
     const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
     const digest = createContentDigest('blog' + node.number)
-    createNode({
-      ...node,
-      id: digest,
-      name: matched ? node.name.replace(matched[0], '') : node.name,
+
+    const dateNode = {
+      id: createNodeId(`${node.id} >>> PublishedDate`),
       published_on: day.toISOString(),
       published_on_unix: day.unix(),
+      children: [],
+      parent: node.id,
       internal: {
-        contentDigest: digest,
-        type: 'EsaExtendedPost'
-      }
-    })
+        contentDigest: createNodeId(`${node.id} >>> PublishedDate`),
+        type: 'PublishedDate',
+      },
+    }
+    createNode(dateNode)
+    createParentChildLink({parent: node, child: dateNode})
+  } else if (node.internal.type === 'Note') {
+    const digest = createContentDigest(node.link)
+    const day = dayjs(node.pubDate)
+
+    const dateNode = {
+      id: createNodeId(`${node.id} >>> PublishedDate`),
+      published_on: day.toISOString(),
+      published_on_unix: day.unix(),
+      children: [],
+      parent: node.id,
+      internal: {
+        contentDigest: createNodeId(`${node.id} >>> PublishedDate`),
+        type: 'PublishedDate',
+      },
+    }
+    createNode(dateNode)
+    createParentChildLink({parent: node, child: dateNode})
   }
 }
 
@@ -60,7 +80,7 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allEsaExtendedPost {
+            allEsaPost {
               edges {
                 node {
                   number
@@ -68,8 +88,10 @@ exports.createPages = ({ graphql, actions }) => {
                   name
                   body_md
                   tags
-                  published_on
-                  published_on_unix
+                  childPublishedDate {
+                    published_on
+                    published_on_unix
+                  }
                   updated_by {
                     name
                     screen_name
@@ -86,10 +108,12 @@ exports.createPages = ({ graphql, actions }) => {
                   id
                   title
                   link
-                  published_on
-                  published_on_unix
                   contentSnippet
                   isoDate
+                  childPublishedDate {
+                    published_on
+                    published_on_unix
+                  }
                 }
               }
             }
@@ -101,10 +125,11 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors)
           reject(result.errors)
         }
-        const posts = result.data.allEsaExtendedPost.edges;
+        const posts = result.data.allEsaPost.edges;
         const notes = result.data.allNote.edges.map((noteEdge, index) => {
           const note = noteEdge.node
           return { node: {
+            ...noteEdge.node,
             name: note.title,
             body_md: note.contentSnippet,
             url: note.link,
@@ -112,8 +137,6 @@ exports.createPages = ({ graphql, actions }) => {
             category: 'note',
             key: note.id,
             number: index,
-            published_on: note.published_on,
-            published_on_unix: note.published_on_unix,
             updated_at: note.isoDate,
             updated_by: {
               screen_name: 'mottox2',
@@ -124,7 +147,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         createPaginatedPages({
           edges: posts.concat(notes).sort((a, b) => {
-            return b.node.published_on_unix - a.node.published_on_unix
+            return b.node.childPublishedDate.published_on_unix - a.node.childPublishedDate.published_on_unix
           }),
           createPage,
           pageTemplate: blogList,

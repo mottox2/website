@@ -66,7 +66,7 @@ const SocialLinkWrapper = styled.div`
 `
 
 const PostTemplate = (props: any) => {
-  const post = props.data.esaExtendedPost
+  const post = props.data.esaPost
   const { previous, next } = props.pageContext
   const title = post.name
   const description = post.body_md.slice(0, 120)
@@ -118,7 +118,7 @@ export default PostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($number: Int!) {
-    esaExtendedPost(number: { eq: $number }) {
+    esaPost(number: { eq: $number }) {
       number
       category
       name
@@ -127,7 +127,9 @@ export const pageQuery = graphql`
       body_html
       tags
       updated_at
-      published_on
+      childPublishedDate {
+        published_on
+      }
       updated_by {
         name
         screen_name
