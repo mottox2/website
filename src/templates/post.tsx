@@ -66,7 +66,7 @@ const SocialLinkWrapper = styled.div`
 const PostTemplate = (props: any) => {
   const post = props.data.esaPost
   const { previous, next } = props.pageContext
-  const title = post.fields.title
+  const title = post.fields.title.replace(/&#35;/g, '#')
   const description = post.body_md.slice(0, 120)
   const category = post.relative_category || 'blog'
   const image =
