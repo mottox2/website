@@ -17,7 +17,7 @@ exports.sourceNodes = async ({ actions, createNodeId }) => {
         name: item.title,
         body_md: item.contentSnippet,
         url: item.link,
-        category: 'note',
+        relative_category: 'note',
         updated_by: {
           screen_name: 'mottox2',
           icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
@@ -87,7 +87,7 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   number
-                  category
+                  relative_category
                   fields {
                     title
                   }
@@ -109,7 +109,7 @@ exports.createPages = ({ graphql, actions }) => {
             allNote {
               edges {
                 node {
-                  category
+                  relative_category
                   fields {
                     title
                   }

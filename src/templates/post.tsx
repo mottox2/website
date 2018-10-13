@@ -93,7 +93,7 @@ const PostTemplate = (props: any) => {
           <meta name="twitter:image" content={image} />
         </Helmet>
         {/* <Link to={`/categories/${post.category}`}> */}
-        <Category>{post.category}</Category>
+        <Category>{post.relative_category || 'blog'}</Category>
         {/* </Link> */}
         <Title dangerouslySetInnerHTML={{ __html: title }} />
         {post.tags.map((tag: any) => (
@@ -118,7 +118,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($number: Int!) {
     esaPost(number: { eq: $number }) {
       number
-      category
+      relative_category
       fields {
         title
       }
