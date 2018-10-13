@@ -15,7 +15,8 @@ module.exports = {
       options: {
         accessToken: process.env.ACCESS_TOKEN,
         teamName: process.env.TEAM_NAME,
-        q: `in:blog wip:false`
+        q: `in:blog wip:false`,
+        baseCategory: 'blog'
       }
     },
     `gatsby-plugin-styled-components`,
