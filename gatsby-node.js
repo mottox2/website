@@ -154,40 +154,41 @@ exports.createPages = ({ graphql, actions }) => {
         const categoryEntities = {}
         const tagEntities = {}
 
-        _.each(posts, (post) => {
-          const postNode = post.node
+        _.each(posts, (postEdge) => {
+          const post = postEdge.node
+          const number = post.number
 
-          postNode.tags.forEach(tag => {
-            tagMap.set(tag, tagMap.get(tag) ? tagMap.get(tag).concat(postNode.number) : [postNode.number])
+          post.tags.forEach(tag => {
+            tagMap.set(tag, tagMap.get(tag) ? tagMap.get(tag).concat(number) : [number])
           })
-          categoryMap.set(
-            postNode.category,
-            categoryMap.get(postNode.category) ? categoryMap.get(postNode.category).concat(postNode.number) : [postNode.number]
-          )
+
+          const category = post.relative_category || 'blog'
+          const numbersByCategory = categoryMap.get(category)
+          categoryMap.set(category, numbersByCategory ? numbersByCategory.concat(number) : [number])
 
           createPage({
-            path: `posts/${postNode.number}`,
+            path: `posts/${post.number}`,
             component: blogPost,
             context: {
-              number: postNode.number
+              number: post.number
             },
           })
 
-          postEntities[postNode.number] = post
+          postEntities[post.number] = postEdge
         })
 
-        // Array.from(categoryMap.keys()).map((category) => {
-        //   const postNumbers = categoryMap.get(category)
-        //   createPaginatedPages({
-        //     edges: postNumbers.map(number => postEntities[number]),
-        //     createPage,
-        //     pageTemplate: blogList,
-        //     pageLength: 10,
-        //     pathPrefix: `categories/${category}`,
-        //     buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
-        //     context: { category }
-        //   });
-        // })
+        Array.from(categoryMap.keys()).map((category) => {
+          const postNumbers = categoryMap.get(category)
+          createPaginatedPages({
+            edges: postNumbers.map(number => postEntities[number]),
+            createPage,
+            pageTemplate: blogList,
+            pageLength: 10,
+            pathPrefix: `categories/${category}`,
+            buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
+            context: { category }
+          });
+        })
 
         Array.from(tagMap.keys()).map((tag) => {
           const postNumbers = tagMap.get(tag)
