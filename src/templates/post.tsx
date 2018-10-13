@@ -68,6 +68,7 @@ const PostTemplate = (props: any) => {
   const { previous, next } = props.pageContext
   const title = post.fields.title
   const description = post.body_md.slice(0, 120)
+  const category = post.relative_category || 'blog'
   const image =
     'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
   const url = `https://mottox2.com/posts/${post.number}/`
@@ -92,8 +93,9 @@ const PostTemplate = (props: any) => {
           <meta name="twitter:description" content={description} />
           <meta name="twitter:image" content={image} />
         </Helmet>
-        {/* <Link to={`/categories/${post.category}`}> */}
-        <Category>{post.relative_category || 'blog'}</Category>
+        <Link to={`/categories/${category}`}>
+          <Category>{category}</Category>
+        </Link>
         {/* </Link> */}
         <Title dangerouslySetInnerHTML={{ __html: title }} />
         {post.tags.map((tag: any) => (

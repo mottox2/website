@@ -11,26 +11,21 @@ exports.sourceNodes = async ({ actions, createNodeId }) => {
   await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
     feed.items.forEach(item => {
       const digest = createNodeId(`${item.link}`)
-      actions.createNode(Object.assign({}, {
+      actions.createNode({
         ...item,
-        // EsaPostと形式を揃えている
-        name: item.title,
-        body_md: item.contentSnippet,
-        url: item.link,
-        relative_category: 'note',
-        updated_by: {
-          screen_name: 'mottox2',
-          icon: 'https://img.esa.io/uploads/production/members/26458/icon/thumb_m_19f30e93b0112f046e71c4c5a2569034.jpg',
-        }
-      }, {
         id: digest,
-        parent: `__SOURCE__`,
+        parent: null,
         children: [],
         internal: {
           contentDigest: digest,
           type: 'Note',
         },
-      }))
+        // EsaPostと形式を揃えている
+        name: item.title,
+        body_md: item.contentSnippet,
+        url: item.link,
+        relative_category: 'note',
+      })
     })
   })
 };
@@ -98,10 +93,6 @@ exports.createPages = ({ graphql, actions }) => {
                     published_on
                     published_on_unix
                   }
-                  updated_by {
-                    screen_name
-                    icon
-                  }
                 }
               }
             }
@@ -118,10 +109,6 @@ exports.createPages = ({ graphql, actions }) => {
                   childPublishedDate {
                     published_on
                     published_on_unix
-                  }
-                  updated_by {
-                    screen_name
-                    icon
                   }
                 }
               }

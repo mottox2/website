@@ -159,7 +159,6 @@ const IndexPage = ({ pageContext, location }: any) => {
                     <PostDescription>
                       {node.body_md.slice(0, 100)}
                     </PostDescription>
-                    {/* <Author style={{ marginTop: 'auto' }} post={node} /> */}
                   </CellContent>
                   <CellFooter>
                     <Day>
