@@ -4121,15 +4121,15 @@ gatsby-react-router-scroll@^2.0.0:
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
-gatsby-source-esa@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/gatsby-source-esa/-/gatsby-source-esa-1.0.5.tgz#181b8a287d426d693758606e3b8a4fe79507d7cd"
+gatsby-source-esa@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gatsby-source-esa/-/gatsby-source-esa-1.1.0.tgz#21d1e0d4920fb966a4e32e0a2c7fc0bacb68d163"
   dependencies:
     frisbee "^1.6.4"
 
-gatsby@^2.0.21:
-  version "2.0.21"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.21.tgz#c182ad534f5f6cc19cc1dbf0ac6c267b39e42652"
+gatsby@^2.0.22:
+  version "2.0.22"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.22.tgz#bbce1efd2993705be91b2c06ace1bb1d2183976a"
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"
