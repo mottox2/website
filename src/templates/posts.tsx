@@ -67,9 +67,9 @@ const PostDescription = styled.p`
 
 const BetterLink = (props: any) => {
   const { node } = props
-  return node.url ? (
+  return node.link ? (
     <a
-      href={node.url}
+      href={node.link}
       style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
       target="_blank"
       rel="noopener noreferrer"
@@ -125,9 +125,11 @@ const IndexPage = ({ data, pageContext, location }: any) => {
         <Grid>
           {group.map(({ node }: any) => {
             return (
-              <BetterLink node={node} key={node.number || node.url}>
+              <BetterLink node={node} key={node.number || node.link}>
                 <Cell>
-                  <Category type={node.type}>{node.category}</Category>
+                  <Category type={node.link ? 'note' : 'blog'}>
+                    {node.relative_category || 'blog'}
+                  </Category>
                   <PostTitle
                     dangerouslySetInnerHTML={{ __html: node.fields.title }}
                   />
