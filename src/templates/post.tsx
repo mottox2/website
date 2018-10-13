@@ -76,7 +76,7 @@ const PostTemplate = (props: any) => {
   return (
     <Layout location={props.location}>
       <Wrapper>
-        <Helmet title={`${post.name} - mottox2 blog`}>
+        <Helmet title={`${title} - mottox2 blog`}>
           <meta property="description" content={description} />
 
           <meta property="og:url" content={url} />
