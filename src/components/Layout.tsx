@@ -52,13 +52,11 @@ const Container = styled.div`
 `
 
 const Header = styled.header`
-  border-bottom: 1px solid #eee;
   text-align: center;
-  background-image: linear-gradient(45deg, #4d9abf 0, #00c7b7 100%);
+  background-image: linear-gradient(45deg, #4d9abf 0, #00a2c7 100%);
   color: white;
   font-weight: 500;
   padding: 18px 0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 
   @media screen and (min-width: 600px) {
     padding: 22px 0;

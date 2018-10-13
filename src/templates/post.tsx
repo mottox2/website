@@ -40,7 +40,6 @@ const Tag = styled<
   display: inline-block;
   padding: 6px 16px;
   border: 1px solid #ddd;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
   font-size: 12px;
   margin: 4px 8px 4px 0;
   border-radius: 20px;
@@ -50,12 +49,11 @@ export const Category = Tag.extend`
   background-image: ${props =>
     props.type === 'note'
       ? 'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)'
-      : 'linear-gradient(45deg,#4d9abf 0,#00c7b7 100%)'};
+      : 'linear-gradient(45deg,#4d9abf 0,#00a2c7 100%)'};
   color: white;
-  border: 1px solid transparent;
-  border-color: #00c7b7;
+  border-width: 0;
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 `
 
 const SocialLinkWrapper = styled.div`
