@@ -51,9 +51,13 @@ export const Category = Tag.extend`
       ? 'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)'
       : 'linear-gradient(45deg,#4d9abf 0,#00a2c7 100%)'};
   color: white;
+  padding: 4px 6px;
+  border-radius: 3px;
   border-width: 0;
   margin-top: 0;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
 `
 
 const SocialLinkWrapper = styled.div`
@@ -107,7 +111,7 @@ const PostTemplate = (props: any) => {
         <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
         <AuthorProfile />
         <SocialLinkWrapper>
-          <SocialLinks title={post.name} url={url} />
+          <SocialLinks title={title} url={url} />
         </SocialLinkWrapper>
       </Wrapper>
     </Layout>
