@@ -13,7 +13,7 @@ module.exports = {
     {
       resolve: `gatsby-source-esa`,
       options: {
-        accessToken: process.env.ACCESS_TOKEN,
+        accessToken: process.env.ESA_TOKEN,
         teamName: process.env.TEAM_NAME,
         q: `in:blog wip:false`,
         baseCategory: 'blog'
@@ -28,7 +28,23 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-twitter`,
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        runtimeCaching: [
+          {
+            // Add runtime caching of various page resources.
+            urlPattern: /\.(?:png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+            handler: `networkFirst`,
+          },
+          {
+            // Use the Network First handler for external resources
+            urlPattern: /^https:/,
+            handler: `networkFirst`,
+          },
+        ],
+      }
+    },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
