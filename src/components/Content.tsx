@@ -152,7 +152,6 @@ export default styled.div`
 
   pre code {
     background: #f6f6f6;
-    white-space: pre;
   }
 
   .code-block .highlight {
