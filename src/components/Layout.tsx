@@ -3,6 +3,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import 'ress'
 import styled from 'styled-components'
+import Logo from './logo.svg'
 
 const Template = (props: any) => {
   return (
@@ -31,7 +32,7 @@ const Template = (props: any) => {
             }}
             to={'/'}
           >
-            mottox2 blog
+            <img src={Logo} alt="mottox2 blog" />
           </Link>
         </h1>
       </Header>
@@ -60,6 +61,11 @@ const Header = styled.header`
 
   @media screen and (min-width: 600px) {
     padding: 22px 0;
+  }
+
+  img {
+    position: relative;
+    top: 1px;
   }
 `
 
