@@ -46,6 +46,18 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'mottox2\'s site',
+        short_name: `mottox2`,
+        start_url: `/`,
+        background_color: `#5F9CBB`,
+        theme_color: `#5F9CBB`,
+        display: `minimal-ui`,
+        icon: `src/images/logo.png`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-feed`,
       options: {
         query: `
