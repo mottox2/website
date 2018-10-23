@@ -9,6 +9,7 @@ const Template = (props: any) => {
   return (
     <Container>
       <Helmet>
+        <html lang="ja" />
         <meta
           name="google-site-verification"
           content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4"

@@ -76,7 +76,7 @@ const CellFooter = styled.div`
 const Day = styled.time`
   font-size: 12px;
   font-weight: 600;
-  color: #888;
+  color: #666;
   &:after {
     content: " ";
     width: 1px;
