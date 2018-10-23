@@ -126,7 +126,7 @@ const IndexPage = ({ pageContext, location }: any) => {
       <Container>
         <Helmet title={`mottox2 blog`}>
           <meta
-            property="description"
+            name="description"
             content={
               'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとかを中心に書いています。'
             }
