@@ -72,7 +72,7 @@ const PostTemplate = (props: any) => {
   const post = props.data.esaPost
   const { previous, next } = props.pageContext
   const title = post.fields.title.replace(/&#35;/g, '#')
-  const description = post.body_md.slice(0, 120)
+  const description = post.fields.excerpt.slice(0, 120)
   const category = post.relative_category || 'blog'
   const image =
     'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
@@ -128,6 +128,7 @@ export const pageQuery = graphql`
       relative_category
       fields {
         title
+        excerpt
       }
       wip
       body_md
