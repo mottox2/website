@@ -18,7 +18,8 @@ export const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: 24px;
   line-height: 1.4;
-  font-weight: 600;
+  font-weight: 700;
+  color: #222;
   font-family: -apple-system, "BlinkMacSystemFont", "Helvetica Neue",
     "Hiragino Sans", "游ゴシック Medium", "YuGothic",
     "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo,sans-serif";

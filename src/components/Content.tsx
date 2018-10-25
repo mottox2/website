@@ -601,6 +601,6 @@ export default styled.div`
   h4,
   h5,
   h6 {
-    font-weight: 600;
+    font-weight: 700;
   }
 `

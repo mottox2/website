@@ -15,7 +15,7 @@ const ContactThanksPage = ({ location }: any) => (
     <Wrapper>
       <h1
         style={{
-          fontWeight: 600,
+          fontWeight: 700,
         }}
       >
         {' '}

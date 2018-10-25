@@ -55,7 +55,7 @@ const PostTitle = styled.h3`
   margin-bottom: 4px;
   font-size: 18px;
   line-height: 1.48;
-  font-weight: 600;
+  color: #222;
 `
 
 const PostDescription = styled.p`
@@ -75,7 +75,7 @@ const CellFooter = styled.div`
 
 const Day = styled.time`
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   color: #666;
   &:after {
     content: " ";

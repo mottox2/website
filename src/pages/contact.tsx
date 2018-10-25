@@ -7,7 +7,7 @@ import { Wrapper } from '../templates/post'
 const ContactPage = ({ location }: any) => (
   <Layout location={location}>
     <Wrapper>
-      <h1 style={{ fontWeight: 600 }}>お問い合わせ</h1>
+      <h1 style={{ fontWeight: 700 }}>お問い合わせ</h1>
       <Content>
         <p>
           ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。<br />
