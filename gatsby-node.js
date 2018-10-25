@@ -68,6 +68,8 @@ exports.onCreateNode = ({ node, actions, createNodeId }) => {
   }
 }
 
+const perPage = 12
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -121,16 +123,15 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors)
           reject(result.errors)
         }
-        const posts = result.data.allEsaPost.edges
-        const notes = result.data.allNote.edges
+        const { allEsaPost, allNote } = result.data
 
         createPaginatedPages({
-          edges: [...posts, ...notes].sort((a, b) => {
+          edges: [...allEsaPost.edges, ...allNote.edges].sort((a, b) => {
             return b.node.childPublishedDate.published_on_unix - a.node.childPublishedDate.published_on_unix
           }),
           createPage,
           pageTemplate: blogList,
-          pageLength: 12,
+          pageLength: perPage,
           pathPrefix: '',
           buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`
         });
@@ -138,10 +139,8 @@ exports.createPages = ({ graphql, actions }) => {
         const categoryMap = new Map()
         const tagMap = new Map()
         const postEntities = {}
-        const categoryEntities = {}
-        const tagEntities = {}
 
-        _.each(posts, (postEdge) => {
+        _.each(allEsaPost.edges, (postEdge) => {
           const post = postEdge.node
           const number = post.number
 
@@ -170,7 +169,7 @@ exports.createPages = ({ graphql, actions }) => {
             edges: postNumbers.map(number => postEntities[number]),
             createPage,
             pageTemplate: blogList,
-            pageLength: 10,
+            pageLength: perPage,
             pathPrefix: `categories/${category}`,
             buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
             context: { category }
@@ -183,7 +182,7 @@ exports.createPages = ({ graphql, actions }) => {
             edges: postNumbers.map(number => postEntities[number]),
             createPage,
             pageTemplate: blogList,
-            pageLength: 10,
+            pageLength: perPage,
             pathPrefix: `tags/${tag}`,
             buildPath: (index, pathPrefix) => index > 1 ? `${pathPrefix}/page/${index}` : `/${pathPrefix}`,
             context: { tag }
