@@ -157,7 +157,7 @@ const IndexPage = ({ pageContext, location }: any) => {
                       dangerouslySetInnerHTML={{ __html: node.fields.title }}
                     />
                     <PostDescription>
-                      {node.body_md.slice(0, 100)}
+                      {node.fields.excerpt.slice(0, 100)}
                     </PostDescription>
                   </CellContent>
                   <CellFooter>

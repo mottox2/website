@@ -84,7 +84,8 @@ module.exports = {
                   pubDate: day.toISOString(),
                   url: site.siteMetadata.siteUrl + `/posts/${node.number}`,
                   guid: node.number,
-                  title: node.name,
+                  title: node.fields.title,
+                  description: node.fields.excerpt
                 }
               })
             },
@@ -95,6 +96,10 @@ module.exports = {
                     node {
                       number
                       category
+                      fields {
+                        title
+                        excerpt
+                      }
                       name
                       body_md
                       tags

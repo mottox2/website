@@ -21,6 +21,7 @@
     "gatsby-plugin-twitter": "^2.0.6",
     "gatsby-plugin-typescript": "^2.0.0",
     "gatsby-source-esa": "^1.1.0",
+    "html2plaintext": "^2.1.0",
     "lodash": "^4.17.11",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
