@@ -78,8 +78,7 @@ module.exports = {
             serialize: ({ query: { site, allEsaPost } }) => {
               return allEsaPost.edges.map(edge => {
                 const node = edge.node
-                const matched = node.name.match(/ ?\[(.*?)\] ?/)
-                const day = matched ? dayjs(matched[1]) : dayjs(node.updated_at)
+                const day = dayjs(node.childPublishedDate.published_on)
                 return {
                   date: day.toISOString(),
                   pubDate: day.toISOString(),
@@ -100,12 +99,10 @@ module.exports = {
                         title
                         excerpt
                       }
-                      updated_by {
-                        name
-                        screen_name
-                        icon
+                      childPublishedDate {
+                        published_on
+                        published_on_unix
                       }
-                      updated_at
                     }
                   }
                 }
