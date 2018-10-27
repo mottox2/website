@@ -86,14 +86,24 @@ const Tag = styled.span`
   }
 `
 
-const BetterLink = ({ node, children }: any) => {
-  const style = { textDecoration: 'none', boxShadow: 'none', color: 'inherit' }
+const PostLink = ({ node, children, style }: any) => {
+  const styles = {
+    boxShadow: 'none',
+    color: 'inherit',
+    textDecoration: 'none',
+    ...style,
+  }
   return node.link ? (
-    <a href={node.link} style={style} target="_blank" rel="noopener noreferrer">
+    <a
+      href={node.link}
+      style={styles}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {children}
     </a>
   ) : (
-    <Link style={style} to={`/posts/${node.number}/`}>
+    <Link style={styles} to={`/posts/${node.number}/`}>
       {children}
     </Link>
   )
@@ -101,8 +111,8 @@ const BetterLink = ({ node, children }: any) => {
 
 const IndexPage = ({ pageContext, location }: any) => {
   const { group, index, first, last, additionalContext } = pageContext
-  const previousUrl = index - 1 === 1 ? '/' : '/page/' + (index - 1).toString()
-  const nextUrl = '/page/' + (index + 1).toString()
+  const previousUrl = index - 1 === 1 ? '/' : `/page/${index - 1}`
+  const nextUrl = `/page/${index + 1}`
   const { tag, category } = additionalContext
 
   return (
@@ -131,7 +141,7 @@ const IndexPage = ({ pageContext, location }: any) => {
         <Grid>
           {group.map(({ node }: any) => {
             return (
-              <BetterLink node={node} key={node.number || node.link}>
+              <PostLink node={node} key={node.number || node.link}>
                 <Cell>
                   <CellContent>
                     <Category type={node.link ? 'note' : 'blog'}>
@@ -156,20 +166,16 @@ const IndexPage = ({ pageContext, location }: any) => {
                       })}
                   </CellFooter>
                 </Cell>
-              </BetterLink>
+              </PostLink>
             )
           })}
         </Grid>
         <Pagination>
-          {!first && (
-            <div>
-              <Link to={previousUrl}>{'< Previous'}</Link>
-            </div>
-          )}
+          {!first && <Link to={previousUrl}>{'< Previous'}</Link>}
           {!last && (
-            <div style={{ marginLeft: 'auto' }}>
-              <Link to={nextUrl}>{'Next >'}</Link>
-            </div>
+            <Link style={{ marginLeft: 'auto' }} to={nextUrl}>
+              {'Next >'}
+            </Link>
           )}
         </Pagination>
       </Container>
