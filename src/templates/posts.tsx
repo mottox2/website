@@ -31,14 +31,6 @@ const CellContent = styled.div`
   }
 `
 
-const NavLink = (props: any) => {
-  if (!props.test) {
-    return <Link to={props.url}>{props.text}</Link>
-  } else {
-    return <span>{props.text}</span>
-  }
-}
-
 const Title = styled.h1`
   margin: 24px 0;
   font-size: 22px;
@@ -94,23 +86,15 @@ const Tag = styled.span`
   }
 `
 
-const BetterLink = (props: any) => {
-  const { node } = props
+const BetterLink = ({ node, children }: any) => {
+  const style = { textDecoration: 'none', boxShadow: 'none', color: 'inherit' }
   return node.link ? (
-    <a
-      href={node.link}
-      style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {props.children}
+    <a href={node.link} style={style} target="_blank" rel="noopener noreferrer">
+      {children}
     </a>
   ) : (
-    <Link
-      style={{ textDecoration: 'none', boxShadow: 'none', color: 'inherit' }}
-      to={`/posts/${node.number}/`}
-    >
-      {props.children}
+    <Link style={style} to={`/posts/${node.number}/`}>
+      {children}
     </Link>
   )
 }
@@ -177,12 +161,16 @@ const IndexPage = ({ pageContext, location }: any) => {
           })}
         </Grid>
         <Pagination>
-          <div>
-            <NavLink test={first} url={previousUrl} text="< Previous" />
-          </div>
-          <div style={{ marginLeft: 'auto' }}>
-            <NavLink test={last} url={nextUrl} text="Next >" />
-          </div>
+          {!first && (
+            <div>
+              <Link to={previousUrl}>{'< Previous'}</Link>
+            </div>
+          )}
+          {!last && (
+            <div style={{ marginLeft: 'auto' }}>
+              <Link to={nextUrl}>{'Next >'}</Link>
+            </div>
+          )}
         </Pagination>
       </Container>
     </Layout>
