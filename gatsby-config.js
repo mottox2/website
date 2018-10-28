@@ -76,7 +76,9 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allEsaPost } }) => {
-              return allEsaPost.edges.map(edge => {
+              return allEsaPost.edges.sort((a, b) => {
+                return b.node.childPublishedDate.published_on_unix - a.node.childPublishedDate.published_on_unix
+              }).map(edge => {
                 const node = edge.node
                 const day = dayjs(node.childPublishedDate.published_on)
                 return {
