@@ -7,7 +7,6 @@
     "url": "https://github.com/mottox2/blog/issues"
   },
   "dependencies": {
-    "@types/react-share": "^2.1.1",
     "babel-plugin-styled-components": "^1.8.0",
     "dayjs": "^1.7.7",
     "gatsby": "^2.0.22",
@@ -33,14 +32,15 @@
     "styled-components": "^3.4.10"
   },
   "devDependencies": {
-    "@types/react": "^16.4.18",
-    "@types/react-dom": "^16.0.9",
-    "@types/react-helmet": "^5.0.7",
-    "prettier": "^1.12.0",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
-    "tslint-react": "^3.6.0",
-    "typescript": "^3.1.2"
+    "@types/react": "16.4.18",
+    "@types/react-dom": "16.0.9",
+    "@types/react-helmet": "5.0.7",
+    "@types/react-share": "^2.1.1",
+    "prettier": "1.14.3",
+    "tslint": "5.11.0",
+    "tslint-config-prettier": "1.15.0",
+    "tslint-react": "3.6.0",
+    "typescript": "3.1.6"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
   "keywords": [
