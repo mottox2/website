@@ -35,7 +35,7 @@
     "@types/react": "16.4.18",
     "@types/react-dom": "16.0.9",
     "@types/react-helmet": "5.0.7",
-    "@types/react-share": "^2.1.1",
+    "@types/react-share": "2.1.1",
     "eslint": "4.19.1",
     "eslint-plugin-react": "7.7.0",
     "prettier": "1.14.3",

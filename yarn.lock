@@ -802,7 +802,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-share@^2.1.1":
+"@types/react-share@2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@types/react-share/-/react-share-2.1.1.tgz#0b6b6c73440f6100745db832d69bb0d639f8ccf4"
   dependencies:
