@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@types/react": "16.7.1",
-    "@types/react-dom": "16.0.9",
+    "@types/react-dom": "16.0.11",
     "@types/react-helmet": "5.0.7",
     "@types/react-share": "2.1.1",
     "prettier": "1.15.1",
