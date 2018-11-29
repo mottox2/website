@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import { Link } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
@@ -24,15 +23,9 @@ const IndexPage = ({ pageContext, location }: any) => {
             }
           />
         </Helmet>
-        {tag && (
+        {(tag || category) && (
           <Title>
-            {tag}
-            <small>に関する記事</small>
-          </Title>
-        )}
-        {category && (
-          <Title>
-            {category}
+            {tag || category}
             <small>に関する記事</small>
           </Title>
         )}

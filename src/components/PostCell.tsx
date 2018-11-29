@@ -76,6 +76,7 @@ const PostLink = ({ node, children, style }: any) => {
   const styles = {
     boxShadow: 'none',
     color: 'inherit',
+    display: 'block',
     textDecoration: 'none',
     ...style,
   }
@@ -97,13 +98,14 @@ const PostLink = ({ node, children, style }: any) => {
 
 interface Props {
   post: any
+  style: any
 }
 
-const PostCell : React.SFC<Props> = ({ post }) => {
+const PostCell : React.SFC<Props> = ({ post, style = {} }) => {
   const postNode: any = post
 
   return (
-    <PostLink node={postNode} key={postNode.number || postNode.link}>
+    <PostLink style={style} node={postNode} key={postNode.number || postNode.link}>
       <Cell>
         <CellContent>
           <Category type={postNode.link ? 'note' : 'blog'}>

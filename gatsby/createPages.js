@@ -75,6 +75,8 @@ module.exports = ({ graphql, actions }) => {
         const tagMap = new Map()
         const postEntities = {}
 
+        const latestPostEdges = allEsaPost.edges.filter((_, index) => index < 4)
+
         _.each(allEsaPost.edges, (postEdge) => {
           const post = postEdge.node
           const number = post.number
@@ -91,7 +93,10 @@ module.exports = ({ graphql, actions }) => {
             path: `posts/${post.number}`,
             component: blogPost,
             context: {
-              number: post.number
+              number: post.number,
+              latestPosts: latestPostEdges.filter(latestPostEdge => {
+                return latestPostEdge.node.number !== post.number
+              }),
             },
           })
 

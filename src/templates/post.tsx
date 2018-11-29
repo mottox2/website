@@ -7,6 +7,7 @@ import Author from '../components/Author'
 import AuthorProfile from '../components/AuthorProfile'
 import Content from '../components/Content'
 import Layout from '../components/Layout'
+import PostCell from '../components/PostCell'
 import SocialLinks from '../components/SocialLinks'
 
 export const Wrapper = styled.div`
@@ -66,11 +67,12 @@ const SocialLinkWrapper = styled.div`
   bottom: 12px;
   left: 0;
   right: 0;
+  z-index: 10;
 `
 
 const PostTemplate = (props: any) => {
   const post = props.data.esaPost
-  const { previous, next } = props.pageContext
+  const { latestPosts } = props.pageContext
   const title = post.fields.title.replace(/&#35;/g, '#')
   const description = post.fields.excerpt.slice(0, 120)
   const category = post.relative_category || 'blog'
@@ -114,6 +116,10 @@ const PostTemplate = (props: any) => {
         <SocialLinkWrapper>
           <SocialLinks title={title} url={url} />
         </SocialLinkWrapper>
+        { latestPosts.map(postEdge => {
+          const post = postEdge.node
+          return <PostCell key={post.number} style={{ margin: '12px 0' }} post={post}/>
+        })}
       </Wrapper>
     </Layout>
   )

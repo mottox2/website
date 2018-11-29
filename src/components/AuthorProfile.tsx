@@ -30,6 +30,7 @@ const AuthorProfile = () => {
 const Wrapper = styled.div`
   margin-top: 32px;
   border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   padding: 32px 0;
   display: flex;
 `
