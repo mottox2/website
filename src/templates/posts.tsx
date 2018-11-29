@@ -96,4 +96,16 @@ const Grid = ScreenWidth.extend`
   }
 `
 
+const Title = styled.h1`
+  margin: 24px 0;
+  font-size: 22px;
+  text-align: center;
+  small {
+    font-size: 13px;
+    font-weight: 400;
+    margin-left: 4px;
+    opacity: 0.6;
+  }
+`
+
 export default IndexPage
