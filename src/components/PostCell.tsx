@@ -90,7 +90,7 @@ const PostLink = ({ node, children, style }: any) => {
       {children}
     </a>
   ) : (
-    <Link style={styles} to={`/posts/${node.number}/`}>
+    <Link style={styles} to={`/posts/${node.number}`}>
       {children}
     </Link>
   )
