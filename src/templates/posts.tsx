@@ -5,109 +5,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 
 import Layout from '../components/Layout'
-import { Category } from './post'
-
-const Cell = styled.div`
-  height: 100%;
-  border: 1px solid #eee;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
-  transform: translateY(0);
-  transition: transform 0.15s ease-in, box-shadow 0.15s ease-in;
-  display: flex;
-  flex-direction: column;
-  &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
-    transform: translateY(-4px);
-  }
-`
-
-const CellContent = styled.div`
-  padding: 20px 12px 12px;
-  @media (min-width: 600px) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-`
-
-const Title = styled.h1`
-  margin: 24px 0;
-  font-size: 22px;
-  text-align: center;
-  small {
-    font-size: 13px;
-    font-weight: 400;
-    margin-left: 4px;
-    opacity: 0.6;
-  }
-`
-
-const PostTitle = styled.h3`
-  margin-bottom: 4px;
-  font-size: 18px;
-  line-height: 1.48;
-  color: #222;
-`
-
-const PostDescription = styled.p`
-  opacity: 0.58;
-  font-size: 14px;
-  line-height: 1.6;
-  word-break: break-all;
-  overflow-y: hidden;
-  max-height: ${14 * 1.6 * 3}px;
-`
-
-const CellFooter = styled.div`
-  border-top: 1px solid #eee;
-  padding: 9px 20px 12px;
-  margin-top: auto;
-`
-
-const Day = styled.time`
-  font-size: 12px;
-  font-weight: 700;
-  color: #666;
-  &:after {
-    content: " ";
-    width: 1px;
-    height: 100%;
-    background-color: #ddd;
-    display: inline-block;
-  }
-`
-
-const Tag = styled.span`
-  font-size: 12px;
-  margin-left: 4px;
-  &:before {
-    content: "#";
-  }
-`
-
-const PostLink = ({ node, children, style }: any) => {
-  const styles = {
-    boxShadow: 'none',
-    color: 'inherit',
-    textDecoration: 'none',
-    ...style,
-  }
-  return node.link ? (
-    <a
-      href={node.link}
-      style={styles}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {children}
-    </a>
-  ) : (
-    <Link style={styles} to={`/posts/${node.number}/`}>
-      {children}
-    </Link>
-  )
-}
+import PostCell from '../components/PostCell'
 
 const IndexPage = ({ pageContext, location }: any) => {
   const { group, index, first, last, additionalContext } = pageContext
@@ -139,36 +37,7 @@ const IndexPage = ({ pageContext, location }: any) => {
           </Title>
         )}
         <Grid>
-          {group.map(({ node }: any) => {
-            return (
-              <PostLink node={node} key={node.number || node.link}>
-                <Cell>
-                  <CellContent>
-                    <Category type={node.link ? 'note' : 'blog'}>
-                      {node.relative_category || 'blog'}
-                    </Category>
-                    <PostTitle
-                      dangerouslySetInnerHTML={{ __html: node.fields.title }}
-                    />
-                    <PostDescription>
-                      {node.fields.excerpt.slice(0, 100)}
-                    </PostDescription>
-                  </CellContent>
-                  <CellFooter>
-                    <Day>
-                      {dayjs(node.childPublishedDate.published_on).format(
-                        'YYYY/MM/DD',
-                      )}
-                    </Day>
-                    {node.tags &&
-                      node.tags.map((tagName: string) => {
-                        return <Tag key={tagName}>{tagName}</Tag>
-                      })}
-                  </CellFooter>
-                </Cell>
-              </PostLink>
-            )
-          })}
+          {group.map(({ node }: any) => <PostCell key={node.number || node.link} post={node} />)}
         </Grid>
         <Pagination>
           {!first && <Link to={previousUrl}>{'< Previous'}</Link>}
