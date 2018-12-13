@@ -99,7 +99,10 @@ const PostTemplate = (props: any) => {
           <meta name="twitter:title" content={title} />
           <meta name="twitter:description" content={description} />
           <meta name="twitter:image" content={image} />
+
+          <link rel="canonical" href={url} />
         </Helmet>
+
         <Link to={`/categories/${category}`}>
           <Category>{category}</Category>
         </Link>
