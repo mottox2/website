@@ -1,10 +1,15 @@
+import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 
 export default () => {
   return <Footer>
     <Container>
-      <a href="/contact">CONTACT</a>
+      <Menu>
+        <Link to="/contact">CONTACT</Link>
+        <a target="_blank" rel="noopener" href="https://twitter.com/mottox2">TWITTER</a>
+        <a target="_blank" rel="noopener" href="https://mottox2.booth.pm/">BOOTH</a>
+      </Menu>
       <Copyright>
         Copyright &copy; 2018 @mottox2 All Rights Reserved.
       </Copyright>
@@ -20,21 +25,28 @@ const Footer = styled.footer`
 `
 
 const Container = styled.div`
-  max-width: 980px;
+  max-width: ${1032 - 24}px;
   margin: auto;
   @media screen and (min-width: 600px) {
     display: flex;
+    align-items: center;
+  }
+`
+
+const Menu = styled.nav`
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: 600px) {
+    margin: 0;
   }
   a {
     color: white;
     font-size: 14px;
+    font-weight: 500;
     text-decoration: none;
-    margin-bottom: 10px;
     display: block;
-    @media screen and (min-width: 600px) {
-      margin: 0;
-      display: inline-block;
-    }
+    margin-right: 12px;
     &:hover {
       text-decoration: underline;
     }
@@ -43,5 +55,5 @@ const Container = styled.div`
 
 const Copyright = styled.div`
   margin-left: auto;
-  font-size: 14px;
+  font-size: 12px;
 `
