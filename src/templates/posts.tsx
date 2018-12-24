@@ -31,11 +31,9 @@ const IndexPage = ({ pageContext, location }: any) => {
               <small>に関する記事</small>
             </Title>
           )}
-          {/* <Grid> */}
           {group.map(({ node }: any) => (
             <PostCell key={node.number || node.link} post={node} />
           ))}
-          {/* </Grid> */}
           <Pagination>
             {!first && <Link to={previousUrl}>{'< Previous'}</Link>}
             {!last && (

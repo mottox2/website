@@ -105,7 +105,7 @@ const PostTemplate = (props: any) => {
       </Helmet>
 
       <Container>
-        <MainColumn>
+        <MainColumn style={{ marginTop: 32 }}>
           <Link to={`/categories/${category}`}>
             <Category>{category}</Category>
           </Link>

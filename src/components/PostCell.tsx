@@ -12,14 +12,11 @@ const Cell = styled.div`
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #eee;
+  padding: 20px 0;
 `
 
 const CellContent = styled.div`
-  padding: 20px 12px 12px;
-  @media (min-width: 600px) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+  margin-bottom: 8px;
 `
 
 const PostTitle = styled.h3`
@@ -40,7 +37,6 @@ const PostDescription = styled.p`
 
 const CellFooter = styled.div`
   /* border-top: 1px solid #eee; */
-  padding: 0 20px 20px;
   margin-top: auto;
 `
 
