@@ -4,7 +4,6 @@ const path = require('path')
 const createPaginatedPages = require("gatsby-paginate");
 const dayjs = require('dayjs')
 const h2p = require('html2plaintext')
-const visit = require('unist-util-visit')
 
 const Parser = require('rss-parser')
 const parser = new Parser()
@@ -68,24 +67,7 @@ exports.onCreateNode = ({ node, actions, createNodeId }) => {
     const dateNode = buildDateNode({ nodeId: node.id, day, createNodeId })
     createNode(dateNode)
     createParentChildLink({parent: node, child: dateNode})
-  } else if (node.internal.type === 'MarkdownRemark') {
-    // console.log(node)
-    // visit(node.htmlAst, 'image', (node) => {
-    //   console.log(JSON.stringify(node, null , 4))
-
-    // })
   }
-}
-
-exports.setFieldsOnGraphQLNodeType = (
-  { type, store, pathPrefix, getNode, getNodesByType, cache, reporter },
-  pluginOptions
-) => {
-  if (type.name !== `MarkdownRemark`) {
-    return {}
-  }
-
-  // console.log(JSON.stringify(type, null ,4))
 }
 
 exports.createPages = require('./gatsby/createPages')
