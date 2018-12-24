@@ -7,18 +7,11 @@ import { Category } from '../templates/post'
 
 const Cell = styled.div`
   height: 100%;
-  border: 1px solid #eee;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  transform: translateY(0);
-  transition: transform 0.15s ease-in, box-shadow 0.15s ease-in;
   display: flex;
   flex-direction: column;
-  &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
-    transform: translateY(-4px);
-  }
+  border-bottom: 1px solid #eee;
 `
 
 const CellContent = styled.div`
@@ -46,8 +39,8 @@ const PostDescription = styled.p`
 `
 
 const CellFooter = styled.div`
-  border-top: 1px solid #eee;
-  padding: 9px 20px 12px;
+  /* border-top: 1px solid #eee; */
+  padding: 0 20px 20px;
   margin-top: auto;
 `
 
@@ -101,11 +94,15 @@ interface Props {
   style: any
 }
 
-const PostCell : React.SFC<Props> = ({ post, style = {} }) => {
+const PostCell: React.SFC<Props> = ({ post, style = {} }) => {
   const postNode: any = post
 
   return (
-    <PostLink style={style} node={postNode} key={postNode.number || postNode.link}>
+    <PostLink
+      style={style}
+      node={postNode}
+      key={postNode.number || postNode.link}
+    >
       <Cell>
         <CellContent>
           <Category type={postNode.link ? 'note' : 'blog'}>
