@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import styled from 'styled-components'
+
+import styled from '@emotion/styled'
 
 const AuthorProfile = () => {
   return (

@@ -1,24 +1,31 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import styled from 'styled-components'
+
+import styled from '@emotion/styled'
 
 export default () => {
-  return <Footer>
-    <Container>
-      <Menu>
-        <Link to="/contact">CONTACT</Link>
-        <a target="_blank" rel="noopener" href="https://twitter.com/mottox2">TWITTER</a>
-        <a target="_blank" rel="noopener" href="https://mottox2.booth.pm/">BOOTH</a>
-      </Menu>
-      <Copyright>
-        Copyright &copy; 2018 @mottox2 All Rights Reserved.
-      </Copyright>
-    </Container>
-  </Footer>
+  return (
+    <Footer>
+      <Container>
+        <Menu>
+          <Link to="/contact">CONTACT</Link>
+          <a target="_blank" rel="noopener" href="https://twitter.com/mottox2">
+            TWITTER
+          </a>
+          <a target="_blank" rel="noopener" href="https://mottox2.booth.pm/">
+            BOOTH
+          </a>
+        </Menu>
+        <Copyright>
+          Copyright &copy; 2018 @mottox2 All Rights Reserved.
+        </Copyright>
+      </Container>
+    </Footer>
+  )
 }
 
 const Footer = styled.footer`
-  background-color: #4AA1C4;
+  background-color: #4aa1c4;
   color: white;
   padding: 32px 0;
   text-align: center;

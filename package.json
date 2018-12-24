@@ -7,17 +7,18 @@
     "url": "https://github.com/mottox2/blog/issues"
   },
   "dependencies": {
-    "babel-plugin-styled-components": "^1.8.0",
+    "@emotion/core": "^10.0.5",
+    "@emotion/styled": "^10.0.5",
     "dayjs": "^1.7.7",
     "gatsby": "^2.0.75",
     "gatsby-paginate": "^1.0.16",
+    "gatsby-plugin-emotion": "^4.0.1",
     "gatsby-plugin-feed": "^2.0.11",
     "gatsby-plugin-google-analytics": "^2.0.8",
     "gatsby-plugin-manifest": "^2.0.12",
     "gatsby-plugin-offline": "^2.0.20",
     "gatsby-plugin-react-helmet": "^3.0.5",
     "gatsby-plugin-remove-serviceworker": "^1.0.0",
-    "gatsby-plugin-styled-components": "^3.0.4",
     "gatsby-plugin-twitter": "^2.0.8",
     "gatsby-plugin-typescript": "^2.0.3",
     "gatsby-source-esa": "^1.1.2",
@@ -29,9 +30,7 @@
     "react-helmet": "^5.2.0",
     "react-share": "^2.4.0",
     "ress": "^1.2.2",
-    "rss-parser": "^3.5.3",
-    "styled-components": "^3.4.10",
-    "unist-util-visit": "^1.4.0"
+    "rss-parser": "^3.5.3"
   },
   "devDependencies": {
     "@types/react": "16.7.18",

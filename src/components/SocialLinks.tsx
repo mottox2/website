@@ -5,7 +5,8 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from 'react-share'
-import styled from 'styled-components'
+
+import styled from '@emotion/styled'
 
 const SocialLinks = (props: any) => {
   const { title, url } = props

@@ -1,9 +1,11 @@
 import dayjs from 'dayjs'
 import { Link } from 'gatsby'
 import React from 'react'
-import styled from 'styled-components'
 
-const Cell = styled.div`
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
+
+const cell = css`
   height: 100%;
   background-color: white;
   border-radius: 8px;
@@ -88,25 +90,19 @@ const Tag = styled.span`
   }
 `
 
-const PostLink = ({ node, children, style }: any) => {
-  const styles = {
-    boxShadow: 'none',
-    color: 'inherit',
-    display: 'block',
-    textDecoration: 'none',
-    ...style,
-  }
+const PostLink = ({ node, children }: any) => {
+  const link = css`
+    box-shadow: none;
+    color: inherit;
+    display: block;
+    text-decoration: none;
+  `
   return node.link ? (
-    <a
-      href={node.link}
-      style={styles}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a href={node.link} css={link} target="_blank" rel="noopener noreferrer">
       {children}
     </a>
   ) : (
-    <Link style={styles} to={`/posts/${node.number}`}>
+    <Link css={link} to={`/posts/${node.number}`}>
       {children}
     </Link>
   )
@@ -114,19 +110,14 @@ const PostLink = ({ node, children, style }: any) => {
 
 interface Props {
   post: any
-  style?: any
 }
 
-const PostCell: React.SFC<Props> = ({ post, style }) => {
+const PostCell: React.SFC<Props> = ({ post }) => {
   const postNode: any = post
 
   return (
-    <PostLink
-      style={style}
-      node={postNode}
-      key={postNode.number || postNode.link}
-    >
-      <Cell>
+    <PostLink node={postNode} key={postNode.number || postNode.link}>
+      <div css={cell}>
         <CellContent>
           <Category type={postNode.link ? 'note' : 'blog'}>
             {postNode.relative_category || 'blog'}
@@ -150,7 +141,7 @@ const PostCell: React.SFC<Props> = ({ post, style }) => {
               return <Tag key={tagName}>{tagName}</Tag>
             })}
         </CellFooter>
-      </Cell>
+      </div>
     </PostLink>
   )
 }

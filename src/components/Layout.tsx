@@ -2,9 +2,10 @@ import { Link } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
 import 'ress'
-import styled, { injectGlobal } from 'styled-components'
 import Footer from './Footer'
 import Logo from './logo.svg'
+
+import styled from '@emotion/styled'
 
 const Template = (props: any) => {
   return (
@@ -39,7 +40,7 @@ const Template = (props: any) => {
         </h1>
       </Header>
       <div>{props.children}</div>
-      <Footer/>
+      <Footer />
     </Container>
   )
 }
