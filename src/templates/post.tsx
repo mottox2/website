@@ -8,7 +8,9 @@ import AuthorProfile from '../components/AuthorProfile'
 import Content from '../components/Content'
 import Layout from '../components/Layout'
 import PostCell from '../components/PostCell'
+import Sidebar from '../components/Sidebar'
 import SocialLinks from '../components/SocialLinks'
+import { Container, MainColumn } from './posts'
 
 export const Wrapper = styled.div`
   padding: 12px;
@@ -82,48 +84,56 @@ const PostTemplate = (props: any) => {
 
   return (
     <Layout location={props.location}>
-      <Wrapper>
-        <Helmet title={`${title} - mottox2 blog`}>
-          <meta name="description" content={description} />
+      <Helmet title={`${title} - mottox2 blog`}>
+        <meta name="description" content={description} />
 
-          <meta property="og:url" content={url} />
-          <meta property="og:type" content="article" />
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={description} />
-          <meta property="og:image" content={image} />
-          {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
 
-          {/* Twitter Card tags */}
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:creator" content={'@mottox2'} />
-          <meta name="twitter:title" content={title} />
-          <meta name="twitter:description" content={description} />
-          <meta name="twitter:image" content={image} />
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:creator" content={'@mottox2'} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
 
-          <link rel="canonical" href={url} />
-        </Helmet>
+        <link rel="canonical" href={url} />
+      </Helmet>
 
-        <Link to={`/categories/${category}`}>
-          <Category>{category}</Category>
-        </Link>
-        {/* </Link> */}
-        <Title dangerouslySetInnerHTML={{ __html: title }} />
-        {post.tags.map((tag: any) => (
-          <Link to={`/tags/${tag}`} key={tag}>
-            <Tag>{tag}</Tag>
+      <Container>
+        <MainColumn>
+          <Link to={`/categories/${category}`}>
+            <Category>{category}</Category>
           </Link>
-        ))}
-        <Author post={post} />
-        <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
-        <AuthorProfile />
-        <SocialLinkWrapper>
-          <SocialLinks title={title} url={url} />
-        </SocialLinkWrapper>
-        { latestPosts.map(postEdge => {
-          const post = postEdge.node
-          return <PostCell key={post.number} style={{ margin: '12px 0' }} post={post}/>
-        })}
-      </Wrapper>
+          <Title dangerouslySetInnerHTML={{ __html: title }} />
+          {post.tags.map((tag: any) => (
+            <Link to={`/tags/${tag}`} key={tag}>
+              <Tag>{tag}</Tag>
+            </Link>
+          ))}
+          <Author post={post} />
+          <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
+          <AuthorProfile />
+          <SocialLinkWrapper>
+            <SocialLinks title={title} url={url} />
+          </SocialLinkWrapper>
+          {latestPosts.map(postEdge => {
+            const postNode = postEdge.node
+            return (
+              <PostCell
+                key={postNode.number}
+                style={{ margin: '12px 0' }}
+                post={postNode}
+              />
+            )
+          })}
+        </MainColumn>
+        <Sidebar />
+      </Container>
     </Layout>
   )
 }

@@ -91,7 +91,7 @@ const PostLink = ({ node, children, style }: any) => {
 
 interface Props {
   post: any
-  style: any
+  style?: any
 }
 
 const PostCell: React.SFC<Props> = ({ post, style = {} }) => {
