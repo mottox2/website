@@ -15,6 +15,9 @@ const Cell = styled.div`
     padding-left: 0;
     padding-right: 0;
   }
+  &:hover .title {
+    color: #4d9abf;
+  }
 `
 
 const Category = styled.div`
@@ -129,6 +132,7 @@ const PostCell: React.SFC<Props> = ({ post, style }) => {
             {postNode.relative_category || 'blog'}
           </Category>
           <PostTitle
+            className="title"
             dangerouslySetInnerHTML={{ __html: postNode.fields.title }}
           />
           <PostDescription>
