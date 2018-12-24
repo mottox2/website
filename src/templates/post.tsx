@@ -106,21 +106,23 @@ const PostTemplate = (props: any) => {
 
       <Container>
         <MainColumn style={{ marginTop: 32 }}>
-          <Link to={`/categories/${category}`}>
-            <Category>{category}</Category>
-          </Link>
-          <Title dangerouslySetInnerHTML={{ __html: title }} />
-          {post.tags.map((tag: any) => (
-            <Link to={`/tags/${tag}`} key={tag}>
-              <Tag>{tag}</Tag>
+          <Padding>
+            <Link to={`/categories/${category}`}>
+              <Category>{category}</Category>
             </Link>
-          ))}
-          <Author post={post} />
-          <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
-          <AuthorProfile />
-          <SocialLinkWrapper>
-            <SocialLinks title={title} url={url} />
-          </SocialLinkWrapper>
+            <Title dangerouslySetInnerHTML={{ __html: title }} />
+            {post.tags.map((tag: any) => (
+              <Link to={`/tags/${tag}`} key={tag}>
+                <Tag>{tag}</Tag>
+              </Link>
+            ))}
+            <Author post={post} />
+            <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
+            <AuthorProfile />
+            <SocialLinkWrapper>
+              <SocialLinks title={title} url={url} />
+            </SocialLinkWrapper>
+          </Padding>
           {latestPosts.map(postEdge => {
             const postNode = postEdge.node
             return (
@@ -139,6 +141,13 @@ const PostTemplate = (props: any) => {
 }
 
 export default PostTemplate
+
+const Padding = styled.div`
+  padding: 0 12px;
+  @media (min-width: 980px) {
+    padding: 0;
+  }
+`
 
 export const pageQuery = graphql`
   query BlogPostBySlug($number: Int!) {

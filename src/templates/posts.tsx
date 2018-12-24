@@ -49,31 +49,27 @@ const IndexPage = ({ pageContext, location }: any) => {
   )
 }
 
-const ScreenWidth = styled.div`
-  @media (min-width: ${(320 + 24) * 2}px) {
-    max-width: ${(320 + 24) * 2}px;
-  }
-
-  @media (min-width: ${(320 + 24) * 3}px) {
-    max-width: ${(320 + 24) * 3}px;
-  }
-`
-
 export const Container = styled.div`
   /* max-width: 980px; */
   /* margin: 0 auto; */
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: 980px) {
+    flex-direction: row;
+  }
 `
 
 export const MainColumn = styled.div`
   max-width: 600px;
+  width: 100%;
   margin: 20px auto;
 `
 
-const Pagination = ScreenWidth.extend`
+const Pagination = styled.div`
   display: flex;
-  margin: 16px auto 32px;
-  padding: 0 12px;
+  width: 100%;
+  margin: 24px 0;
 `
 
 const Title = styled.h1`

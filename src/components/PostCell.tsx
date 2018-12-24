@@ -12,7 +12,11 @@ const Cell = styled.div`
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #eee;
-  padding: 20px 0;
+  padding: 20px 12px;
+  @media (min-width: 624px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 `
 
 const CellContent = styled.div`

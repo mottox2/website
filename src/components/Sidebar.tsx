@@ -40,11 +40,16 @@ const Tag = styled(Link)`
 
 const Base = styled.aside`
   min-width: 320px;
-  width: 320px;
-  margin-left: 20px;
-  padding: 32px 20px;
+  padding: 32px 12px;
   background-color: #f8f8f8;
-  border-left: 1px #eee solid;
+
+  @media (min-width: 980px) {
+    width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 20px;
+    border-left: 1px #eee solid;
+  }
 `
 
 const SideSection = styled.div`
