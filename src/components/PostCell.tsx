@@ -3,34 +3,51 @@ import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Category } from '../templates/post'
-
 const Cell = styled.div`
   height: 100%;
-  border: 1px solid #eee;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  transform: translateY(0);
-  transition: transform 0.15s ease-in, box-shadow 0.15s ease-in;
   display: flex;
   flex-direction: column;
-  &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
-    transform: translateY(-4px);
+  border-bottom: 1px solid #eee;
+  padding: 20px 12px;
+  @media (min-width: 624px) {
+    padding-left: 0;
+    padding-right: 0;
   }
+  &:hover .title {
+    color: #4d9abf;
+  }
+`
+
+const Category = styled.div`
+  background-color: white;
+  font-weight: 600;
+  display: inline-block;
+  font-size: 12px;
+  background-image: linear-gradient(
+    45deg,
+    rgb(77, 154, 191) 0px,
+    rgb(0, 162, 199) 100%
+  );
+  color: white;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+  border-style: solid;
+  border-color: rgb(221, 221, 221);
+  border-image: initial;
+  margin: 0px 8px 4px 0px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  border-width: 0px;
 `
 
 const CellContent = styled.div`
-  padding: 20px 12px 12px;
-  @media (min-width: 600px) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+  margin-bottom: 8px;
 `
 
 const PostTitle = styled.h3`
-  margin-bottom: 4px;
+  margin-bottom: 1px;
   font-size: 18px;
   line-height: 1.48;
   color: #222;
@@ -46,8 +63,7 @@ const PostDescription = styled.p`
 `
 
 const CellFooter = styled.div`
-  border-top: 1px solid #eee;
-  padding: 9px 20px 12px;
+  /* border-top: 1px solid #eee; */
   margin-top: auto;
 `
 
@@ -98,20 +114,25 @@ const PostLink = ({ node, children, style }: any) => {
 
 interface Props {
   post: any
-  style: any
+  style?: any
 }
 
-const PostCell : React.SFC<Props> = ({ post, style = {} }) => {
+const PostCell: React.SFC<Props> = ({ post, style }) => {
   const postNode: any = post
 
   return (
-    <PostLink style={style} node={postNode} key={postNode.number || postNode.link}>
+    <PostLink
+      style={style}
+      node={postNode}
+      key={postNode.number || postNode.link}
+    >
       <Cell>
         <CellContent>
           <Category type={postNode.link ? 'note' : 'blog'}>
             {postNode.relative_category || 'blog'}
           </Category>
           <PostTitle
+            className="title"
             dangerouslySetInnerHTML={{ __html: postNode.fields.title }}
           />
           <PostDescription>
