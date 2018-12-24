@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Profile from './Profile'
+import Tag from './Tag'
 
 const Sidebar = () => {
   return (
@@ -19,24 +20,6 @@ const Sidebar = () => {
     </Base>
   )
 }
-
-const Tag = styled(Link)`
-  display: inline-block;
-  background-color: #eee;
-  color: rgba(0, 0, 0, 0.6);
-  padding: 6px 12px;
-  margin-right: 8px;
-  font-weight: bold;
-  font-size: 12px;
-  border-radius: 4px;
-  text-decoration: none;
-  &:hover {
-    background-color: #ddd;
-  }
-  &:before {
-    content: "#";
-  }
-`
 
 const Base = styled.aside`
   min-width: 320px;

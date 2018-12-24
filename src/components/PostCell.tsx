@@ -3,8 +3,6 @@ import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 
-import { Category } from '../templates/post'
-
 const Cell = styled.div`
   height: 100%;
   background-color: white;
@@ -19,12 +17,34 @@ const Cell = styled.div`
   }
 `
 
+const Category = styled.div`
+  background-color: white;
+  font-weight: 600;
+  display: inline-block;
+  font-size: 12px;
+  background-image: linear-gradient(
+    45deg,
+    rgb(77, 154, 191) 0px,
+    rgb(0, 162, 199) 100%
+  );
+  color: white;
+  text-transform: capitalize;
+  letter-spacing: 0.2px;
+  border-style: solid;
+  border-color: rgb(221, 221, 221);
+  border-image: initial;
+  margin: 0px 8px 4px 0px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  border-width: 0px;
+`
+
 const CellContent = styled.div`
   margin-bottom: 8px;
 `
 
 const PostTitle = styled.h3`
-  margin-bottom: 4px;
+  margin-bottom: 1px;
   font-size: 18px;
   line-height: 1.48;
   color: #222;
