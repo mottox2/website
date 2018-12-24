@@ -1,8 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
 import Content from '../components/Content'
 import Layout from '../components/Layout'
 import { Wrapper } from '../templates/post'
+
+import styled from '@emotion/styled'
 
 const ContactPage = ({ location }: any) => (
   <Layout location={location}>
@@ -10,8 +11,10 @@ const ContactPage = ({ location }: any) => (
       <h1 style={{ fontWeight: 700 }}>お問い合わせ</h1>
       <Content>
         <p>
-          ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。<br />
-          Webサービス・アプリ開発とUIデザイン制作を中心にお役に立つことが出来ると思います。<br />
+          ご依頼・お問い合わせなどございましたら、下記よりお気軽にご連絡ください。
+          <br />
+          Webサービス・アプリ開発とUIデザイン制作を中心にお役に立つことが出来ると思います。
+          <br />
         </p>
         {/* <h3>得意なこと</h3>
         <ul>

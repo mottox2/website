@@ -1,7 +1,8 @@
 import { graphql, Link } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
+
+import styled from '@emotion/styled'
 
 import Author from '../components/Author'
 import AuthorProfile from '../components/AuthorProfile'
@@ -33,7 +34,7 @@ const Title = styled.h1`
   }
 `
 
-const Category = Tag.extend`
+const Category = styled(Tag)<{ type: string }>`
   background-image: ${props =>
     props.type === 'note'
       ? 'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)'

@@ -1,7 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 import Content from '../components/Content'
 import Layout from '../components/Layout'
+
+import styled from '@emotion/styled'
 
 // FIXME: templatesのWrapperを読もうとするとビルドが失敗する
 const Wrapper = styled.div`

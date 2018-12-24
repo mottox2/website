@@ -19,7 +19,7 @@ module.exports = {
         baseCategory: 'blog'
       }
     },
-    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
