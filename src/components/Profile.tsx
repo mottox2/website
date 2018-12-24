@@ -8,6 +8,7 @@ const Profile = () => {
         <img
           className="avatar"
           src="https://img.esa.io/uploads/production/teams/6967/icon/thumb_ms_fec180ecca810585b0ad19eb60c24fcc.jpg"
+          alt="mottox2"
         />
         <div className="nameArea">
           <h3 className="name">@mottox2</h3>

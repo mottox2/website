@@ -125,13 +125,7 @@ const PostTemplate = (props: any) => {
           </Padding>
           {latestPosts.map(postEdge => {
             const postNode = postEdge.node
-            return (
-              <PostCell
-                key={postNode.number}
-                style={{ margin: '12px 0' }}
-                post={postNode}
-              />
-            )
+            return <PostCell key={postNode.number} post={postNode} />
           })}
         </MainColumn>
         <Sidebar />

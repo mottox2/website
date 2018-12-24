@@ -70,6 +70,7 @@ const Pagination = styled.div`
   display: flex;
   width: 100%;
   margin: 24px 0;
+  padding: 0 12px;
 `
 
 const Title = styled.h1`

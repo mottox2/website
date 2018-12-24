@@ -94,7 +94,7 @@ interface Props {
   style?: any
 }
 
-const PostCell: React.SFC<Props> = ({ post, style = {} }) => {
+const PostCell: React.SFC<Props> = ({ post, style }) => {
   const postNode: any = post
 
   return (
