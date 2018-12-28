@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import React from 'react'
 
 import { css } from '@emotion/core'
@@ -16,6 +16,7 @@ interface Props {
 }
 
 interface State {
+  cursor: number
   filteredData: Item[]
   isActive: boolean
   query: string
@@ -27,6 +28,7 @@ export default class Search extends React.Component<Props, State> {
   constructor(props: any) {
     super(props)
     this.state = {
+      cursor: -1,
       filteredData: [],
       isActive: false,
       query: '',
@@ -49,11 +51,35 @@ export default class Search extends React.Component<Props, State> {
       )
     })
 
-    this.setState({ query, filteredData })
+    this.setState({ query, filteredData, cursor: -1 })
+  }
+
+  handleKeyDown = e => {
+    const { cursor, filteredData } = this.state
+    if (e.keyCode === 38) {
+      // Up
+      this.setState({
+        cursor: Math.max(cursor - 1, -1),
+      })
+      e.preventDefault()
+    } else if (e.keyCode === 40) {
+      // Down
+      this.setState({
+        cursor: Math.min(cursor + 1, filteredData.length - 1),
+      })
+      e.preventDefault()
+    } else if (e.keyCode === 13) {
+      // Enter
+      if (cursor < 0) {
+        return
+      }
+      const item = filteredData[cursor]
+      navigate(item.path)
+    }
   }
 
   render() {
-    const { query, isActive, filteredData } = this.state
+    const { query, isActive, filteredData, cursor } = this.state
     return (
       <Base>
         <input
@@ -62,6 +88,7 @@ export default class Search extends React.Component<Props, State> {
           onChange={this.handleInput}
           value={query}
           placeholder="Search Posts"
+          onKeyDown={this.handleKeyDown}
           onFocus={() => this.setState({ isActive: true })}
           onBlur={() => this.setState({ isActive: false })}
         />
@@ -69,14 +96,20 @@ export default class Search extends React.Component<Props, State> {
           <>
             {filteredData.length > 0 ? (
               <ul>
-                {filteredData.map(matchedItem => {
+                {filteredData.map((matchedItem, index) => {
                   return (
                     <li
                       css={listItem}
+                      style={{
+                        backgroundColor: cursor === index ? '#eee' : 'white',
+                      }}
                       key={matchedItem.number}
                       onMouseDown={e => e.preventDefault()}
                     >
-                      <Link to={matchedItem.path}>{matchedItem.title}</Link>
+                      <Link
+                        to={matchedItem.path}
+                        dangerouslySetInnerHTML={{ __html: matchedItem.title }}
+                      />
                     </li>
                   )
                 })}
