@@ -26,11 +26,13 @@ interface State {
 const keyCodes = {
   DOWN: 40,
   ENTER: 13,
+  SLASH: 191,
   UP: 38,
 }
 
 export default class Search extends React.Component<Props, State> {
   data: Item[]
+  input: React.RefObject<HTMLInputElement>
 
   constructor(props: any) {
     super(props)
@@ -41,11 +43,25 @@ export default class Search extends React.Component<Props, State> {
       query: '',
     }
     this.data = []
+    this.input = React.createRef()
   }
 
   async componentDidMount() {
     const res = await axios.get('/search.json')
     this.data = res.data
+
+    window.addEventListener('keydown', e => {
+      if (e.keyCode === keyCodes.SLASH && !this.state.isActive) {
+        this.focusInput()
+        e.preventDefault()
+      }
+    })
+  }
+
+  focusInput = () => {
+    if (this.input.current) {
+      this.input.current.focus()
+    }
   }
 
   handleInput = e => {
@@ -106,6 +122,7 @@ export default class Search extends React.Component<Props, State> {
           onKeyDown={this.handleKeyDown}
           onFocus={() => this.setState({ isActive: true })}
           onBlur={() => this.setState({ isActive: false })}
+          ref={this.input}
         />
         <svg
           css={icon}
