@@ -119,9 +119,9 @@ export default class Search extends React.Component<Props, State> {
           <path d="M0 0h24v24H0z" fill="none" />
         </svg>
         {isActive && query.length > 0 && (
-          <>
+          <div css={listWrapper}>
             {filteredData.length > 0 ? (
-              <ul>
+              <ul css={list}>
                 {filteredData.map((matchedItem, index) => {
                   return (
                     <li
@@ -141,11 +141,11 @@ export default class Search extends React.Component<Props, State> {
                 })}
               </ul>
             ) : (
-              <ul>
+              <ul css={list}>
                 <p css={blankMessage}>結果が見つかりませんでした。</p>
               </ul>
             )}
-          </>
+          </div>
         )}
       </Base>
     )
@@ -163,19 +163,52 @@ const Base = styled.div`
   @media (min-width: 980px) {
     display: flex;
   }
+`
 
-  ul {
+const listWrapper = css`
+  position: absolute;
+  top: 64px;
+  right: 0;
+  &:before {
+    border-color: transparent;
+    border-style: solid;
+    border-width: 8px;
+    border-bottom: 8px solid white;
+    content: " ";
+    display: block;
     position: absolute;
-    top: 52px;
-    right: 0;
-    list-style-type: none;
-    background-color: white;
-    min-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-    border: 1px solid #eee;
-    padding: 4px 0;
-    border-radius: 4px;
-    z-index: 10;
+    top: -15px;
+    z-index: 11;
+    right: 185px;
+    pointer-events: none;
+  }
+`
+
+const list = css`
+  list-style-type: none;
+  background-color: white;
+  min-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  border: 1px solid #eee;
+  padding: 4px 0;
+  border-radius: 4px;
+
+  /* FIXME: キーボードでスクロールされない */
+  z-index: 10;
+  max-height: 400px;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #fff;
+    border-left: solid 1px #ececec;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 2px #fff;
   }
 `
 
@@ -185,12 +218,14 @@ const input = css`
   background-color: rgba(255, 255, 255, 0.2);
   transition: background-color 0.15s;
   outline: none;
+  color: rgba(255, 255, 255);
   &:hover {
     background-color: rgba(255, 255, 255, 0.4);
   }
   &:focus,
   &:active {
     background-color: white;
+    color: inherit;
     ::placeholder {
       color: rgba(0, 0, 0, 0.4);
     }
