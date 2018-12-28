@@ -9,6 +9,7 @@ interface Item {
   path: string
   number: number
   title: string
+  tags: string[]
 }
 
 interface Props {
@@ -48,16 +49,23 @@ export default class Search extends React.Component<Props, State> {
   }
 
   handleInput = e => {
-    const query = e.target.value
+    const rawQuery: string = e.target.value
+    const queries = rawQuery
+      .trim()
+      .toLowerCase()
+      .split(' ')
 
     const filteredData = this.data.filter(item => {
-      return (
-        item.path !== this.props.location.pathname &&
-        JSON.stringify(item).indexOf(query) > 0
-      )
+      const itemString = `${item.title} ${item.tags.join('')}`.toLowerCase()
+      for (const query of queries) {
+        if (!(itemString.indexOf(query) > -1)) {
+          return false
+        }
+      }
+      return item.path !== this.props.location.pathname
     })
 
-    this.setState({ query, filteredData, cursor: -1 })
+    this.setState({ query: rawQuery, filteredData, cursor: -1 })
   }
 
   handleKeyDown = e => {
