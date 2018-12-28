@@ -22,6 +22,12 @@ interface State {
   query: string
 }
 
+const keyCodes = {
+  DOWN: 40,
+  ENTER: 13,
+  UP: 38,
+}
+
 export default class Search extends React.Component<Props, State> {
   data: Item[]
 
@@ -56,25 +62,26 @@ export default class Search extends React.Component<Props, State> {
 
   handleKeyDown = e => {
     const { cursor, filteredData } = this.state
-    if (e.keyCode === 38) {
-      // Up
-      this.setState({
-        cursor: Math.max(cursor - 1, -1),
-      })
-      e.preventDefault()
-    } else if (e.keyCode === 40) {
-      // Down
-      this.setState({
-        cursor: Math.min(cursor + 1, filteredData.length - 1),
-      })
-      e.preventDefault()
-    } else if (e.keyCode === 13) {
-      // Enter
-      if (cursor < 0) {
-        return
-      }
-      const item = filteredData[cursor]
-      navigate(item.path)
+    switch (e.keyCode) {
+      case keyCodes.UP:
+        this.setState({
+          cursor: Math.max(cursor - 1, -1),
+        })
+        e.preventDefault()
+        break
+      case keyCodes.DOWN:
+        this.setState({
+          cursor: Math.min(cursor + 1, filteredData.length - 1),
+        })
+        e.preventDefault()
+        break
+      case keyCodes.ENTER:
+        if (cursor < 0) {
+          return
+        }
+        const item = filteredData[cursor]
+        navigate(item.path)
+        break
     }
   }
 
