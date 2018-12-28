@@ -157,8 +157,12 @@ const Base = styled.div`
   right: 12px;
   top: 0;
   bottom: 0;
-  display: flex;
   align-items: center;
+
+  display: none;
+  @media (min-width: 980px) {
+    display: flex;
+  }
 
   ul {
     position: absolute;
