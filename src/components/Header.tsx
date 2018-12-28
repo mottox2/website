@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import Logo from './logo.svg'
+import Search from './Search'
 
 import styled from '@emotion/styled'
 
@@ -27,19 +28,23 @@ const Header = () => {
           <img src={Logo} alt="mottox2 blog" />
         </Link>
       </h1>
+      <Search />
     </Base>
   )
 }
 
 const Base = styled.header`
-  text-align: center;
   background-image: linear-gradient(45deg, #4d9abf 0, #00a2c7 100%);
-  color: white;
   font-weight: 500;
   padding: 18px 0;
+  position: relative;
 
   @media screen and (min-width: 600px) {
     padding: 22px 0;
+  }
+
+  h1 {
+    text-align: center;
   }
 
   img {
