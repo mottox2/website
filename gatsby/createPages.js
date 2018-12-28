@@ -1,6 +1,7 @@
+const fs = require('fs')
+const path = require('path')
 const _ = require('lodash')
 const Promise = require('bluebird')
-const path = require('path')
 const createPaginatedPages = require("gatsby-paginate");
 
 const perPage = 12
@@ -59,6 +60,18 @@ module.exports = ({ graphql, actions }) => {
           reject(result.errors)
         }
         const { allEsaPost, allNote } = result.data
+
+        const searchJSON = allEsaPost.edges.map(postEdge => {
+          const postNode = postEdge.node
+          const { field, number, tags} = postNode
+          const { title } = postNode.fields
+          return {
+            title, tags, number,
+            path: `/posts/${number}`
+          }
+        })
+
+        fs.writeFileSync('./static/search.json', JSON.stringify(searchJSON, null , 2))
 
         createPaginatedPages({
           edges: [...allEsaPost.edges, ...allNote.edges].sort((a, b) => {
