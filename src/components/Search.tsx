@@ -65,20 +65,28 @@ export default class Search extends React.Component<Props, State> {
           onFocus={() => this.setState({ isActive: true })}
           onBlur={() => this.setState({ isActive: false })}
         />
-        {isActive && filteredData.length > 0 && (
-          <ul>
-            {filteredData.map(matchedItem => {
-              return (
-                <li
-                  css={listItem}
-                  key={matchedItem.number}
-                  onMouseDown={e => e.preventDefault()}
-                >
-                  <Link to={matchedItem.path}>{matchedItem.title}</Link>
-                </li>
-              )
-            })}
-          </ul>
+        {isActive && query.length > 0 && (
+          <>
+            {filteredData.length > 0 ? (
+              <ul>
+                {filteredData.map(matchedItem => {
+                  return (
+                    <li
+                      css={listItem}
+                      key={matchedItem.number}
+                      onMouseDown={e => e.preventDefault()}
+                    >
+                      <Link to={matchedItem.path}>{matchedItem.title}</Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            ) : (
+              <ul>
+                <p css={blankMessage}>結果が見つかりませんでした。</p>
+              </ul>
+            )}
+          </>
         )}
       </Base>
     )
@@ -143,4 +151,9 @@ const listItem = css`
       background-color: #f5f5f5;
     }
   }
+`
+
+const blankMessage = css`
+  color: #888;
+  padding: 12px;
 `
