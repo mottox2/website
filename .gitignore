@@ -61,3 +61,5 @@ typings/
 public/
 
 .DS_Store
+
+static/search.json
