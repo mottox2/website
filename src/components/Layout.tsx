@@ -17,7 +17,7 @@ const Template = (props: any) => {
           content="Ea1K1N5NXjUJEV6XxsrA2va96TOyyIyuSdQE5gLLNu4"
         />
       </Helmet>
-      <Header />
+      <Header location={props.location} />
       <div>{props.children}</div>
       <Footer />
     </Container>

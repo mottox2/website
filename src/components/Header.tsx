@@ -5,7 +5,7 @@ import Search from './Search'
 
 import styled from '@emotion/styled'
 
-const Header = () => {
+const Header = props => {
   return (
     <Base>
       <h1
@@ -28,7 +28,7 @@ const Header = () => {
           <img src={Logo} alt="mottox2 blog" />
         </Link>
       </h1>
-      <Search />
+      <Search location={props.location} />
     </Base>
   )
 }
