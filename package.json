@@ -29,6 +29,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-helmet": "^5.2.0",
+    "react-pose": "^4.0.4",
     "react-share": "^2.4.0",
     "ress": "^1.2.2",
     "rss-parser": "^3.5.3"

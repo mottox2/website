@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { Link, navigate } from 'gatsby'
 import React from 'react'
+import posed, { PoseGroup } from 'react-pose'
 
-import { css, keyframes } from '@emotion/core'
+import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 interface Item {
@@ -136,35 +137,39 @@ export default class Search extends React.Component<Props, State> {
           <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
           <path d="M0 0h24v24H0z" fill="none" />
         </svg>
-        {isActive && query.length > 0 && (
-          <div css={listWrapper}>
-            {filteredData.length > 0 ? (
-              <ul css={list}>
-                {filteredData.map((matchedItem, index) => {
-                  return (
-                    <li
-                      css={listItem}
-                      style={{
-                        backgroundColor: cursor === index ? '#eee' : 'white',
-                      }}
-                      key={matchedItem.number}
-                      onMouseDown={e => e.preventDefault()}
-                    >
-                      <Link
-                        to={matchedItem.path}
-                        dangerouslySetInnerHTML={{ __html: matchedItem.title }}
-                      />
-                    </li>
-                  )
-                })}
-              </ul>
-            ) : (
-              <ul css={list}>
-                <p css={blankMessage}>結果が見つかりませんでした。</p>
-              </ul>
-            )}
-          </div>
-        )}
+        <PoseGroup>
+          {isActive && query.length > 0 && (
+            <Popover key="popover" css={listWrapper}>
+              {filteredData.length > 0 ? (
+                <ul css={list}>
+                  {filteredData.map((matchedItem, index) => {
+                    return (
+                      <li
+                        css={listItem}
+                        style={{
+                          backgroundColor: cursor === index ? '#eee' : 'white',
+                        }}
+                        key={matchedItem.number}
+                        onMouseDown={e => e.preventDefault()}
+                      >
+                        <Link
+                          to={matchedItem.path}
+                          dangerouslySetInnerHTML={{
+                            __html: matchedItem.title,
+                          }}
+                        />
+                      </li>
+                    )
+                  })}
+                </ul>
+              ) : (
+                <ul css={list}>
+                  <p css={blankMessage}>結果が見つかりませんでした。</p>
+                </ul>
+              )}
+            </Popover>
+          )}
+        </PoseGroup>
       </Base>
     )
   }
@@ -183,22 +188,24 @@ const Base = styled.div`
   }
 `
 
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`
+const Popover = posed.div({
+  enter: {
+    opacity: 1,
+    transition: { duration: 150 },
+    y: 0,
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: 150 },
+    y: 8,
+  },
+})
 
 const listWrapper = css`
   position: absolute;
   top: 64px;
   right: 0;
-  animation: ${fadeIn} 0.2s;
+  z-index: 10;
   &:before {
     border-color: transparent;
     border-style: solid;
