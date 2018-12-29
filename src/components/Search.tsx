@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Link, navigate } from 'gatsby'
 import React from 'react'
 
-import { css } from '@emotion/core'
+import { css, keyframes } from '@emotion/core'
 import styled from '@emotion/styled'
 
 interface Item {
@@ -125,6 +125,7 @@ export default class Search extends React.Component<Props, State> {
           ref={this.input}
         />
         <svg
+          onClick={this.focusInput}
           css={icon}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -182,10 +183,22 @@ const Base = styled.div`
   }
 `
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
+
 const listWrapper = css`
   position: absolute;
   top: 64px;
   right: 0;
+  animation: ${fadeIn} 0.2s;
   &:before {
     border-color: transparent;
     border-style: solid;
