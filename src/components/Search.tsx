@@ -220,11 +220,15 @@ const listWrapper = css`
 const list = css`
   list-style-type: none;
   background-color: white;
-  min-width: 400px;
+  max-width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
   border: 1px solid #eee;
   padding: 4px 0;
   border-radius: 4px;
+
+  @media screen and (min-width: 600px) {
+    min-width: 400px;
+  }
 
   /* FIXME: キーボードでスクロールされない */
   z-index: 10;

@@ -1,12 +1,12 @@
 import { Link } from 'gatsby'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Logo from './logo.svg'
 import Search from './Search'
 
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-export const simpleHeaderBreakpoint = 600
+const simpleHeaderBreakpoint = 600
 const searchClassName = 'search'
 
 export default (props: any) => {
@@ -66,6 +66,7 @@ const Base = styled.header`
     top: 1px;
   }
 
+  /* FIXME */
   @media screen and (max-width: ${simpleHeaderBreakpoint + 1}px) {
     .${searchClassName} {
       display: none;
