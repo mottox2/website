@@ -15,6 +15,8 @@ interface Item {
 
 interface Props {
   location: any
+  style: React.CSSProperties
+  className: string
 }
 
 interface State {
@@ -112,8 +114,9 @@ export default class Search extends React.Component<Props, State> {
 
   render() {
     const { query, isActive, filteredData, cursor } = this.state
+
     return (
-      <Base>
+      <Base className={this.props.className} style={this.props.style}>
         <input
           css={input}
           type="text"
@@ -176,16 +179,9 @@ export default class Search extends React.Component<Props, State> {
 }
 
 const Base = styled.div`
-  position: absolute;
-  right: 12px;
-  top: 0;
-  bottom: 0;
+  margin-left: auto;
   align-items: center;
-
-  display: none;
-  @media (min-width: 980px) {
-    display: flex;
-  }
+  position: relative;
 `
 
 const Popover = posed.div({
@@ -203,7 +199,7 @@ const Popover = posed.div({
 
 const listWrapper = css`
   position: absolute;
-  top: 64px;
+  top: 44px;
   right: 0;
   z-index: 10;
   &:before {
