@@ -930,9 +930,9 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-helmet@5.0.7":
-  version "5.0.7"
-  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.7.tgz#1cae65b2c37fe54cf56f40cd388836d4619dbc51"
+"@types/react-helmet@5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.8.tgz#f080eea6652e44f60b4574463d238f268d81d9af"
   dependencies:
     "@types/react" "*"
 
