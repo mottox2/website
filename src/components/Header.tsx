@@ -24,6 +24,7 @@ export default (props: any) => {
         className={searchClassName}
         style={showLogo ? {} : { display: 'block' }}
         location={props.location}
+        isMobileShow={!showLogo}
       />
       <button css={searchToggle} onClick={() => updateShowLogo(!showLogo)}>
         {showLogo ? (

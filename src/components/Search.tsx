@@ -17,6 +17,7 @@ interface Props {
   location: any
   style: React.CSSProperties
   className: string
+  isMobileShow: boolean
 }
 
 interface State {
@@ -59,6 +60,13 @@ export default class Search extends React.Component<Props, State> {
         e.preventDefault()
       }
     })
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { isMobileShow } = this.props
+    if (isMobileShow !== prevProps.isMobileShow && this.input.current) {
+      this.input.current.focus()
+    }
   }
 
   focusInput = () => {
