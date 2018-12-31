@@ -10,7 +10,7 @@ const simpleHeaderBreakpoint = 600
 const searchClassName = 'search'
 
 export default (props: any) => {
-  const [showLogo, hideLogoState] = useState(true)
+  const [showLogo, updateShowLogo] = useState(true)
 
   return (
     <Base>
@@ -25,7 +25,7 @@ export default (props: any) => {
         style={showLogo ? {} : { display: 'block' }}
         location={props.location}
       />
-      <button css={searchToggle} onClick={() => hideLogoState(!showLogo)}>
+      <button css={searchToggle} onClick={() => updateShowLogo(!showLogo)}>
         {showLogo ? (
           <svg
             css={toggleIcon}
