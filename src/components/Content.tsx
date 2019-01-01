@@ -4,6 +4,7 @@ export default styled.div`
   margin-top: 24px;
   line-height: 1.8;
   font-size: 15px;
+  word-break: break-all;
   .hidden {
     display: none;
   }
