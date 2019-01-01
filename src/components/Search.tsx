@@ -264,6 +264,9 @@ const input = css`
   transition: background-color 0.15s;
   outline: none;
   color: rgba(255, 255, 255);
+
+  /* for mobile */
+  height: 34px;
   &:hover {
     background-color: rgba(255, 255, 255, 0.4);
   }

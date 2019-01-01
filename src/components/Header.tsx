@@ -94,6 +94,7 @@ const title = css`
 
 const toggleIcon = css`
   fill: white;
+  display: block;
 `
 
 const searchToggle = css`
