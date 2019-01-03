@@ -128,7 +128,7 @@ export default PostTemplate
 
 const Padding = styled.div`
   padding: 0 12px;
-  @media (min-width: 980px) {
+  @media (min-width: 600px) {
     padding: 0;
   }
 `

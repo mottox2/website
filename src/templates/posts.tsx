@@ -62,7 +62,7 @@ export const Container = styled.div`
 `
 
 export const MainColumn = styled.div`
-  max-width: 600px;
+  max-width: 620px;
   width: 100%;
   margin: 20px auto;
 `
