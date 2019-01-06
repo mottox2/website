@@ -69,6 +69,7 @@ const PostTemplate = (props: any) => {
   const image =
     post.fields.thumbnail ||
     'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
+  const card = post.fields.thumbnail ? 'summary_large_image' : 'summary'
   const url = `https://mottox2.com/posts/${post.number}`
 
   return (
@@ -84,7 +85,7 @@ const PostTemplate = (props: any) => {
         {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
 
         {/* Twitter Card tags */}
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content={card} />
         <meta name="twitter:creator" content={'@mottox2'} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
