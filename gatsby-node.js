@@ -4,6 +4,7 @@ const path = require('path')
 const createPaginatedPages = require("gatsby-paginate");
 const dayjs = require('dayjs')
 const h2p = require('html2plaintext')
+const cheerio = require('cheerio')
 
 const Parser = require('rss-parser')
 const parser = new Parser()
@@ -52,6 +53,10 @@ exports.onCreateNode = ({ node, actions, createNodeId }) => {
   if (node.internal.type === 'EsaPost') {
     createNodeField({ node, name: 'title', value: node.name.replace(DATE_REGEXP, '') })
     createNodeField({ node, name: 'excerpt', value: h2p(node.body_html)})
+
+    const html = cheerio.load(node.body_html)
+    const imageUrl = html('img[alt="thumbnail"]').attr('src')
+    createNodeField({ node, name: 'thumbnail', value: imageUrl })
 
     // Extract the date part from node.name (ex. "[2018-10-08] I participated in Techbook Festival")
     const matched = node.name.match(DATE_REGEXP)
