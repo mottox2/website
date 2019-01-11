@@ -13,6 +13,7 @@ const IndexPage = ({ pageContext, location }: any) => {
   const previousUrl = index - 1 === 1 ? '/' : `/page/${index - 1}`
   const nextUrl = `/page/${index + 1}`
   const { tag, category } = additionalContext
+  console.log(group)
 
   return (
     <Layout location={location}>

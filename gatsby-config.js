@@ -45,6 +45,8 @@ module.exports = {
     //     ],
     //   }
     // },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     'gatsby-plugin-remove-serviceworker',
     {
       resolve: `gatsby-plugin-manifest`,

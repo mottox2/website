@@ -5,11 +5,36 @@ const createPaginatedPages = require("gatsby-paginate");
 const dayjs = require('dayjs')
 const h2p = require('html2plaintext')
 const cheerio = require('cheerio')
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
 const Parser = require('rss-parser')
 const parser = new Parser()
 
-exports.sourceNodes = async ({ actions, createNodeId }) => {
+exports.sourceNodes = async ({ actions, createNodeId, store, cache }) => {
+  const { createNode, createParentChildLink, createNodeField }  = actions
+  // const defaultFileNode = await createRemoteFileNode({
+  //   url: 'https://img.esa.io/uploads/production/teams/6967/icon/thumb_ms_fec180ecca810585b0ad19eb60c24fcc.jpg',
+  //   store, cache, createNode, createNodeId,
+  // })
+  store.getState().nodes.forEach(async node => {
+    if (node.internal && node.internal.type == "EsaPost") {
+      if ( node.fields && node.fields.thumbnail) {
+        const fileNode = await createRemoteFileNode({
+          url: node.fields.thumbnail,
+          store, cache, createNode, createNodeId,
+        })
+        createNodeField({ node, name: 'file', value: fileNode })
+        // createParentChildLink({
+        //   parent: node, child: fileNode
+        // })
+      } else {
+        // createParentChildLink({
+        //   parent: node, child: defaultFileNode
+        // })
+      }
+    }
+  })
+
   await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
     feed.items.forEach(item => {
       const digest = createNodeId(`${item.link}`)

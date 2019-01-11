@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { graphql, Link } from 'gatsby'
+import Img from 'gatsby-image'
 import React from 'react'
 import Helmet from 'react-helmet'
 
@@ -110,6 +111,9 @@ const PostTemplate = (props: any) => {
             >
               {dayjs(post.childPublishedDate.published_on).format('YYYY.MM.DD')}
             </time>
+            <Img
+              fluid={props.data.esaPost.childrenFile[0].childImageSharp.fluid}
+            />
             <Title dangerouslySetInnerHTML={{ __html: title }} />
             <Category to={`/categories/${category}`}>{category}</Category>
             {post.tags.map((tag: any) => (

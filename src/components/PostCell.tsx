@@ -5,6 +5,8 @@ import React from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
+import Img from 'gatsby-image'
+
 const cell = css`
   height: 100%;
   background-color: white;
@@ -114,10 +116,16 @@ interface Props {
 
 const PostCell: React.SFC<Props> = ({ post }) => {
   const postNode: any = post
+  console.log(post)
+  const file = post.childrenFile && post.childrenFile[0]
+  console.log(file)
+  const thumbnail = post.fields.thumbnail
 
   return (
     <PostLink node={postNode} key={postNode.number || postNode.link}>
       <div css={cell}>
+        {file && <Img fluid={file.childImageSharp.fluid} />}
+        {thumbnail && <Img src={thumbnail} />}
         <CellContent>
           <Category type={postNode.link ? 'note' : 'blog'}>
             {postNode.relative_category || 'blog'}
