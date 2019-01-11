@@ -1,11 +1,11 @@
+import dayjs from 'dayjs'
 import { graphql, Link } from 'gatsby'
 import React from 'react'
 import Helmet from 'react-helmet'
 
+import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import Author from '../components/Author'
-import AuthorProfile from '../components/AuthorProfile'
 import Content from '../components/Content'
 import Layout from '../components/Layout'
 import PostCell from '../components/PostCell'
@@ -24,6 +24,7 @@ const Title = styled.h1`
   font-size: 24px;
   line-height: 1.4;
   font-weight: 700;
+  margin-bottom: 4px;
   color: #222;
   font-family: -apple-system, "BlinkMacSystemFont", "Helvetica Neue",
     "Hiragino Sans", "游ゴシック Medium", "YuGothic",
@@ -69,6 +70,7 @@ const PostTemplate = (props: any) => {
   const image =
     post.fields.thumbnail ||
     'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
+  const card = post.fields.thumbnail ? 'summary_large_image' : 'summary'
   const url = `https://mottox2.com/posts/${post.number}`
 
   return (
@@ -84,7 +86,7 @@ const PostTemplate = (props: any) => {
         {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
 
         {/* Twitter Card tags */}
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content={card} />
         <meta name="twitter:creator" content={'@mottox2'} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
@@ -96,8 +98,20 @@ const PostTemplate = (props: any) => {
       <Container>
         <MainColumn style={{ marginTop: 32 }}>
           <Padding>
-            <Category to={`/categories/${category}`}>{category}</Category>
+            <time
+              css={css`
+                display: block;
+                margin-bottom: 4px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                opacity: 0.6;
+                font-size: 15px;
+              `}
+            >
+              {dayjs(post.childPublishedDate.published_on).format('YYYY.MM.DD')}
+            </time>
             <Title dangerouslySetInnerHTML={{ __html: title }} />
+            <Category to={`/categories/${category}`}>{category}</Category>
             {post.tags.map((tag: any) => (
               <Tag
                 to={`/tags/${tag}`}
@@ -107,9 +121,8 @@ const PostTemplate = (props: any) => {
                 {tag}
               </Tag>
             ))}
-            <Author post={post} />
+            {/* <Author post={post} /> */}
             <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
-            <AuthorProfile />
             <SocialLinkWrapper>
               <SocialLinks title={title} url={url} />
             </SocialLinkWrapper>
