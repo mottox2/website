@@ -18,7 +18,7 @@ export default styled.div`
     word-break: break-all;
     word-wrap: break-word;
     color: #333333;
-    background-color: #f5f5f5;
+    background-color: #3e4149;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
@@ -58,8 +58,17 @@ export default styled.div`
     margin: 30px 0;
     margin-bottom: 10px;
     font-weight: 900;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 10px;
+    position: relative;
+    &:before {
+      position: absolute;
+      content: " ";
+      width: 100px;
+      bottom: -3px;
+      height: 3px;
+      background-color: #4d9abf;
+    }
   }
 
   h2 .emoji {
@@ -226,6 +235,7 @@ export default styled.div`
   img {
     max-width: 100%;
     border: 1px solid #eee;
+    border-radius: 4px;
   }
 
   .anchor {
@@ -298,8 +308,8 @@ export default styled.div`
     top: 4px;
     display: inline-block;
     padding: 3px 10px;
-    background-color: #f6f6f6;
-    color: #888;
+    background-color: #3e4149;
+    color: #fff;
     font-size: 85%;
     line-height: 1.5;
     margin-bottom: -10px;
@@ -307,7 +317,7 @@ export default styled.div`
 
   .code-filename i {
     color: rgba(60, 74, 96, 0.3);
-    margin-right: 4px;
+    /* margin-right: 4px; */
   }
 
   @media (max-width: 900px) {
@@ -319,281 +329,220 @@ export default styled.div`
   .highlight code table td {
     padding: 5px;
   }
-
   .highlight code table pre {
     margin: 0;
   }
-
-  .highlight code .cm {
-    color: #999988;
-    font-style: italic;
-  }
-
-  .highlight code .cp {
-    color: #999999;
-    font-weight: bold;
-  }
-
-  .highlight code .c1 {
-    color: #999988;
-    font-style: italic;
-  }
-
-  .highlight code .cs {
-    color: #999999;
-    font-weight: bold;
-    font-style: italic;
-  }
-
   .highlight code .c,
   .highlight code .cd {
-    color: #999988;
+    color: #75715e;
     font-style: italic;
   }
-
+  .highlight code .cm {
+    color: #75715e;
+    font-style: italic;
+  }
+  .highlight code .c1 {
+    color: #75715e;
+    font-style: italic;
+  }
+  .highlight code .cp {
+    color: #75715e;
+    font-weight: bold;
+  }
+  .highlight code .cs {
+    color: #75715e;
+    font-weight: bold;
+    font-style: italic;
+  }
   .highlight code .err {
-    color: #a61717;
-    background-color: #e3d2d2;
+    color: #960050;
+    background-color: #1e0010;
   }
-
+  .highlight code .gi {
+    color: #ffffff;
+    background-color: #324932;
+  }
   .highlight code .gd {
-    color: #000000;
-    background-color: #ffdddd;
+    color: #ffffff;
+    background-color: #493131;
   }
-
   .highlight code .ge {
     color: #000000;
     font-style: italic;
   }
-
   .highlight code .gr {
     color: #aa0000;
   }
-
-  .highlight code .gh {
-    color: #999999;
-  }
-
-  .highlight code .gi {
-    color: #000000;
-    background-color: #ddffdd;
-  }
-
-  .highlight code .go {
-    color: #888888;
-  }
-
-  .highlight code .gp {
-    color: #555555;
-  }
-
-  .highlight code .gs {
-    font-weight: bold;
-  }
-
-  .highlight code .gu {
-    color: #aaaaaa;
-  }
-
   .highlight code .gt {
     color: #aa0000;
   }
-
-  .highlight code .kc {
-    color: #000000;
+  .highlight code .gh {
+    color: #999999;
+  }
+  .highlight code .go {
+    color: #888888;
+  }
+  .highlight code .gp {
+    color: #555555;
+  }
+  .highlight code .gs {
     font-weight: bold;
   }
-
-  .highlight code .kd {
-    color: #000000;
-    font-weight: bold;
+  .highlight code .gu {
+    color: #aaaaaa;
   }
-
-  .highlight code .kn {
-    color: #000000;
-    font-weight: bold;
-  }
-
-  .highlight code .kp {
-    color: #000000;
-    font-weight: bold;
-  }
-
-  .highlight code .kr {
-    color: #000000;
-    font-weight: bold;
-  }
-
-  .highlight code .kt {
-    color: #445588;
-    font-weight: bold;
-  }
-
   .highlight code .k,
   .highlight code .kv {
-    color: #000000;
+    color: #66d9ef;
     font-weight: bold;
   }
-
+  .highlight code .kc {
+    color: #66d9ef;
+    font-weight: bold;
+  }
+  .highlight code .kd {
+    color: #66d9ef;
+    font-weight: bold;
+  }
+  .highlight code .kp {
+    color: #66d9ef;
+    font-weight: bold;
+  }
+  .highlight code .kr {
+    color: #66d9ef;
+    font-weight: bold;
+  }
+  .highlight code .kt {
+    color: #66d9ef;
+    font-weight: bold;
+  }
+  .highlight code .kn {
+    color: #f92672;
+    font-weight: bold;
+  }
+  .highlight code .ow {
+    color: #f92672;
+    font-weight: bold;
+  }
+  .highlight code .o {
+    color: #f92672;
+    font-weight: bold;
+  }
   .highlight code .mf {
-    color: #009999;
+    color: #ae81ff;
   }
-
   .highlight code .mh {
-    color: #009999;
+    color: #ae81ff;
   }
-
   .highlight code .il {
-    color: #009999;
+    color: #ae81ff;
   }
-
   .highlight code .mi {
-    color: #009999;
+    color: #ae81ff;
   }
-
   .highlight code .mo {
-    color: #009999;
+    color: #ae81ff;
   }
-
   .highlight code .m,
   .highlight code .mb,
   .highlight code .mx {
-    color: #009999;
+    color: #ae81ff;
   }
-
-  .highlight code .sb {
-    color: #d14;
-  }
-
-  .highlight code .sc {
-    color: #d14;
-  }
-
-  .highlight code .sd {
-    color: #d14;
-  }
-
-  .highlight code .s2 {
-    color: #d14;
-  }
-
   .highlight code .se {
-    color: #d14;
+    color: #ae81ff;
   }
-
+  .highlight code .sb {
+    color: #e6db74;
+  }
+  .highlight code .sc {
+    color: #e6db74;
+  }
+  .highlight code .sd {
+    color: #e6db74;
+  }
+  .highlight code .s2 {
+    color: #e6db74;
+  }
   .highlight code .sh {
-    color: #d14;
+    color: #e6db74;
   }
-
   .highlight code .si {
-    color: #d14;
+    color: #e6db74;
   }
-
   .highlight code .sx {
-    color: #d14;
+    color: #e6db74;
   }
-
   .highlight code .sr {
-    color: #009926;
+    color: #e6db74;
   }
-
   .highlight code .s1 {
-    color: #d14;
+    color: #e6db74;
   }
-
   .highlight code .ss {
-    color: #990073;
+    color: #e6db74;
   }
-
   .highlight code .s {
-    color: #d14;
+    color: #e6db74;
   }
-
   .highlight code .na {
-    color: #008080;
+    color: #a6e22e;
   }
-
-  .highlight code .bp {
-    color: #999999;
-  }
-
-  .highlight code .nb {
-    color: #0086b3;
-  }
-
   .highlight code .nc {
-    color: #445588;
+    color: #a6e22e;
     font-weight: bold;
   }
-
-  .highlight code .no {
-    color: #008080;
-  }
-
   .highlight code .nd {
-    color: #3c5d5d;
+    color: #a6e22e;
     font-weight: bold;
   }
-
-  .highlight code .ni {
-    color: #800080;
-  }
-
   .highlight code .ne {
-    color: #990000;
+    color: #a6e22e;
     font-weight: bold;
   }
-
   .highlight code .nf {
-    color: #990000;
+    color: #a6e22e;
     font-weight: bold;
   }
-
-  .highlight code .nl {
-    color: #990000;
-    font-weight: bold;
+  .highlight code .no {
+    color: #66d9ef;
   }
-
+  .highlight code .bp {
+    color: #f8f8f2;
+  }
+  .highlight code .nb {
+    color: #f8f8f2;
+  }
+  .highlight code .ni {
+    color: #f8f8f2;
+  }
   .highlight code .nn {
-    color: #555555;
+    color: #f8f8f2;
   }
-
-  .highlight code .nt {
-    color: #000080;
-  }
-
   .highlight code .vc {
-    color: #008080;
+    color: #f8f8f2;
   }
-
   .highlight code .vg {
-    color: #008080;
+    color: #f8f8f2;
   }
-
   .highlight code .vi {
-    color: #008080;
+    color: #f8f8f2;
   }
-
   .highlight code .nv {
-    color: #008080;
+    color: #f8f8f2;
   }
-
-  .highlight code .ow {
-    color: #000000;
-    font-weight: bold;
-  }
-
-  .highlight code .o {
-    color: #000000;
-    font-weight: bold;
-  }
-
   .highlight code .w {
-    color: #bbbbbb;
+    color: #f8f8f2;
   }
-
+  .highlight code .nl {
+    color: #f8f8f2;
+    font-weight: bold;
+  }
+  .highlight code .nt {
+    color: #f92672;
+  }
   .highlight code {
-    background-color: #f8f8f8;
+    color: #f8f8f2;
+    background-color: #3e4149;
   }
 
   h1,
