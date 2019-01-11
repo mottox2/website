@@ -62,8 +62,7 @@ const SocialLinkWrapper = styled.div`
 `
 
 const PostTemplate = (props: any) => {
-  const post = props.data.esaPost
-  const { latestPosts } = props.pageContext
+  const { esaPost: post, relatedPosts } = props.data
   const title = post.fields.title.replace(/&#35;/g, '#')
   const description = post.fields.excerpt.slice(0, 120)
   const category = post.relative_category || 'blog'
@@ -127,7 +126,7 @@ const PostTemplate = (props: any) => {
               <SocialLinks title={title} url={url} />
             </SocialLinkWrapper>
           </Padding>
-          {latestPosts.map((postEdge: any) => {
+          {relatedPosts.edges.map((postEdge: any) => {
             const postNode = postEdge.node
             return <PostCell key={postNode.number} post={postNode} />
           })}
@@ -169,6 +168,24 @@ export const pageQuery = graphql`
         name
         screen_name
         icon
+      }
+    }
+    relatedPosts: allEsaPost(filter: { number: { ne: $number } }, limit: 3) {
+      edges {
+        node {
+          number
+          relative_category
+          fields {
+            title
+            excerpt
+          }
+          name
+          tags
+          childPublishedDate {
+            published_on
+            published_on_unix
+          }
+        }
       }
     }
   }
