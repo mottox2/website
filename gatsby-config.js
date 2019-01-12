@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'mottox2 blog',
     author: 'mottox2',
-    description: 'mottox2のエンジニア・デザインブログ。RailsとかReactとかTypeScriptとか',
+    description: 'mottox2のエンジニア・デザインブログ。GatsbyとかReactとかTypeScriptとか',
     siteUrl: 'https://mottox2.com'
   },
   pathPrefix: '/',
@@ -52,8 +52,8 @@ module.exports = {
         name: 'mottox2\'s site',
         short_name: `mottox2`,
         start_url: `/`,
-        background_color: `#5F9CBB`,
-        theme_color: `#5F9CBB`,
+        background_color: `#4aa1c4`,
+        theme_color: `#4aa1c4`,
         display: `minimal-ui`,
         icon: `src/images/logo.png`,
       },
