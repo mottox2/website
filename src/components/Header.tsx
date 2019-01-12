@@ -26,7 +26,11 @@ export default (props: any) => {
         location={props.location}
         isMobileShow={!showLogo}
       />
-      <button css={searchToggle} onClick={() => updateShowLogo(!showLogo)}>
+      <button
+        name="Search"
+        css={searchToggle}
+        onClick={() => updateShowLogo(!showLogo)}
+      >
         {showLogo ? (
           <svg
             css={toggleIcon}
