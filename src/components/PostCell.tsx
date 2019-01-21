@@ -119,9 +119,13 @@ const PostCell: React.SFC<Props> = ({ post }) => {
     <PostLink node={postNode} key={postNode.number || postNode.link}>
       <div css={cell}>
         <CellContent>
-          <Category type={postNode.link ? 'note' : 'blog'}>
-            {postNode.relative_category || 'blog'}
-          </Category>
+          {postNode.link ? (
+            <Category type={'note'}>note</Category>
+          ) : (
+            <Category type={'blog'}>
+              {postNode.relative_category || 'blog'}
+            </Category>
+          )}
           <PostTitle
             className="title"
             dangerouslySetInnerHTML={{ __html: postNode.fields.title }}

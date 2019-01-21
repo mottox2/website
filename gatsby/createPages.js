@@ -32,30 +32,28 @@ module.exports = ({ graphql, actions }) => {
         }
       }
 
-      allNote {
+      allFeedNotePost {
         edges {
           node {
-            relative_category
             fields {
               title
               excerpt
             }
-            link
             childPublishedDate {
               published_on
               published_on_unix
             }
+            link
           }
         }
       }
-
     }
   `).then(result => {
     if (result.errors) {
       console.log(result.errors)
       reject(result.errors)
     }
-    const { allEsaPost, allNote } = result.data
+    const { allEsaPost, allFeedNotePost } = result.data
 
     const searchJSON = allEsaPost.edges.map(postEdge => {
       const postNode = postEdge.node
@@ -70,7 +68,7 @@ module.exports = ({ graphql, actions }) => {
     fs.writeFileSync('./static/search.json', JSON.stringify(searchJSON, null , 2))
 
     createPaginatedPages({
-      edges: [...allEsaPost.edges, ...allNote.edges].sort((a, b) => {
+      edges: [...allEsaPost.edges, ...allFeedNotePost.edges].sort((a, b) => {
         return b.node.childPublishedDate.published_on_unix - a.node.childPublishedDate.published_on_unix
       }),
       createPage,

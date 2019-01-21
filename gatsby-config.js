@@ -19,6 +19,13 @@ module.exports = {
         baseCategory: 'blog'
       }
     },
+    {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://note.mu/mottox2/rss`,
+        name: `NotePost`
+      }
+    },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-google-analytics`,
