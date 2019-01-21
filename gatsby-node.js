@@ -6,31 +6,6 @@ const dayjs = require('dayjs')
 const h2p = require('html2plaintext')
 const cheerio = require('cheerio')
 
-const Parser = require('rss-parser')
-const parser = new Parser()
-
-exports.sourceNodes = async ({ actions, createNodeId }) => {
-  await parser.parseURL('https://note.mu/mottox2/rss').then((feed) => {
-    feed.items.forEach(item => {
-      const digest = createNodeId(`${item.link}`)
-      actions.createNode({
-        ...item,
-        id: digest,
-        parent: null,
-        children: [],
-        internal: {
-          contentDigest: digest,
-          type: 'Note',
-        },
-        // EsaPostと形式を揃えている
-        name: item.title,
-        url: item.link,
-        relative_category: 'note',
-      })
-    })
-  })
-};
-
 const buildDateNode = ({ createNodeId, nodeId, day }) => {
   return {
     id: createNodeId(`${nodeId} >>> PublishedDate`),
@@ -64,7 +39,7 @@ exports.onCreateNode = ({ node, actions, createNodeId }) => {
     const dateNode = buildDateNode({ nodeId: node.id, day, createNodeId })
     createNode(dateNode)
     createParentChildLink({parent: node, child: dateNode})
-  } else if (node.internal.type === 'Note') {
+  } else if (node.internal.type === 'FeedNotePost') {
     createNodeField({ node, name: 'title', value: node.title })
     createNodeField({ node, name: 'excerpt', value: node.contentSnippet })
 

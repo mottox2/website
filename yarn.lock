@@ -4489,6 +4489,12 @@ gatsby-source-esa@^1.1.2:
   dependencies:
     axios "^0.18.0"
 
+gatsby-source-rss-feed@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-source-rss-feed/-/gatsby-source-rss-feed-1.0.0.tgz#8c92c21630fdfc38f7f279a3c1c5aa83e57da7f4"
+  dependencies:
+    rss-parser "^3.6.2"
+
 gatsby-transformer-remark@^2.1.17:
   version "2.1.17"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-2.1.17.tgz#9cba3a0f6ecde105e53e476b279a63064251b21c"
@@ -8515,9 +8521,9 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rss-parser@^3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/rss-parser/-/rss-parser-3.5.3.tgz#4b125c44371eafbd1150479188c0f33bf02e6e92"
+rss-parser@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/rss-parser/-/rss-parser-3.6.2.tgz#f4395e025881963a72964b8cedd6540daef62a4b"
   dependencies:
     entities "^1.1.1"
     xml2js "^0.4.19"
