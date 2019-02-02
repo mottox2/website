@@ -1,5 +1,7 @@
 # mottox2 site
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4cc90ac4-7212-4f5d-84c8-5ea1b4d29268/deploy-status)](https://app.netlify.com/sites/slack-hitomoji/deploys)
+
 The my site at [mottox2.com](https://mottox2.com)
 
 * gatsby
