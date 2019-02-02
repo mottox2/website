@@ -1,6 +1,6 @@
 # mottox2 site
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4cc90ac4-7212-4f5d-84c8-5ea1b4d29268/deploy-status)](https://app.netlify.com/sites/slack-hitomoji/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b9cd9033-5eca-4d34-bdd9-70723f780d0b/deploy-status)](https://app.netlify.com/sites/mottox2/deploys)
 
 The my site at [mottox2.com](https://mottox2.com)
 
