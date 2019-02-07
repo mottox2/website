@@ -18,7 +18,6 @@ interface Props {
   style: React.CSSProperties
   className: string
   isMobileShow: boolean
-  posts: any[]
 }
 
 interface State {
@@ -57,12 +56,17 @@ const Search: React.FC<Props> = React.memo(props => {
   const [cursor, updateCursor] = useState(-1)
   const [isActive, updateIsActive] = useState(false)
   const [query, updateQuery] = useState('')
+  const [posts, updatePosts] = useState([])
 
-  const filteredPosts = useMemo(() => filterPosts(props.posts, query, props.location.pathname), [
-    props.posts,
-    query,
-    props.location.pathname,
-  ])
+  useEffect(() => {
+    axios.get('/search.json').then(res => {
+      updatePosts(res.data)
+    })
+    return undefined
+  }, [])
+
+  const pathname = props.location.pathname
+  const filteredPosts = useMemo(() => filterPosts(posts, query, pathname), [posts, query, pathname])
 
   const handleInput = e => {
     updateQuery(e.target.value)
@@ -153,24 +157,7 @@ const Search: React.FC<Props> = React.memo(props => {
   )
 })
 
-const SearchWrapper = React.memo((props: any) => {
-  const [posts, updatePosts] = useState([])
-  const [mounted, updateMounted] = useState(false)
-
-  useEffect(() => {
-    if (!mounted) {
-      axios.get('/search.json').then(res => {
-        updatePosts(res.data)
-        updateMounted(true)
-      })
-    }
-    return () => {}
-  })
-
-  return <Search {...props} posts={posts} />
-})
-
-export default SearchWrapper
+export default Search
 
 class OldSearch extends React.Component<Props, State> {
   // export default class Search extends React.Component<Props, State> {
