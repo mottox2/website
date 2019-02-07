@@ -34,6 +34,14 @@ const keyCodes = {
   UP: 38,
 }
 
+const usePrevious = (value: any) => {
+  const ref = useRef(null)
+  useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
+}
+
 const filterPosts = (posts: any[], rawQuery: string, pathname: string) => {
   const queries = rawQuery
     .trim()
@@ -58,12 +66,32 @@ const Search: React.FC<Props> = React.memo(props => {
   const [query, updateQuery] = useState('')
   const [posts, updatePosts] = useState([])
 
+  const prevMobileShow = usePrevious(props.isMobileShow)
+  if (prevMobileShow !== props.isMobileShow && inputEl.current) {
+    window.setTimeout(() => {
+      inputEl.current.focus()
+    }, 10)
+  }
+
   useEffect(() => {
     axios.get('/search.json').then(res => {
       updatePosts(res.data)
     })
     return undefined
   }, [])
+
+  useEffect(() => {
+    const focusShortcut = (e: KeyboardEvent) => {
+      if (e.keyCode === keyCodes.SLASH && !isActive) {
+        inputEl.current.focus()
+        e.preventDefault()
+      }
+    }
+    window.addEventListener('keydown', focusShortcut)
+    return () => {
+      window.removeEventListener('keydown', focusShortcut)
+    }
+  })
 
   const pathname = props.location.pathname
   const filteredPosts = useMemo(() => filterPosts(posts, query, pathname), [posts, query, pathname])
