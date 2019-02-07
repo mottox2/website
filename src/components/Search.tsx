@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Link, navigate } from 'gatsby'
-import React from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import posed, { PoseGroup } from 'react-pose'
 
 import { css } from '@emotion/core'
@@ -34,157 +34,158 @@ const keyCodes = {
   UP: 38,
 }
 
-export default class Search extends React.Component<Props, State> {
-  data: Item[]
-  input: React.RefObject<HTMLInputElement>
+const usePrevious = (value: any) => {
+  const ref = useRef(null)
+  useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
+}
 
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      cursor: -1,
-      filteredData: [],
-      isActive: false,
-      query: '',
+const filterPosts = (posts: any[], rawQuery: string, pathname: string) => {
+  const queries = rawQuery
+    .trim()
+    .toLowerCase()
+    .split(' ')
+
+  return posts.filter(item => {
+    const itemString = `${item.title} ${item.tags.join('')}`.toLowerCase()
+    for (const query of queries) {
+      if (!(itemString.indexOf(query) > -1)) {
+        return false
+      }
     }
-    this.data = []
-    this.input = React.createRef()
+    return item.path !== pathname
+  })
+}
+
+const Search: React.FC<Props> = React.memo(props => {
+  const inputEl = useRef(null)
+  const [cursor, updateCursor] = useState(-1)
+  const [isActive, updateIsActive] = useState(false)
+  const [query, updateQuery] = useState('')
+  const [posts, updatePosts] = useState([])
+
+  const prevMobileShow = usePrevious(props.isMobileShow)
+  if (prevMobileShow !== props.isMobileShow && inputEl.current) {
+    window.setTimeout(() => {
+      inputEl.current.focus()
+    }, 10)
   }
 
-  async componentDidMount() {
-    const res = await axios.get('/search.json')
-    this.data = res.data
+  useEffect(() => {
+    axios.get('/search.json').then(res => {
+      updatePosts(res.data)
+    })
+    return undefined
+  }, [])
 
-    window.addEventListener('keydown', e => {
-      if (e.keyCode === keyCodes.SLASH && !this.state.isActive) {
-        this.focusInput()
+  useEffect(() => {
+    const focusShortcut = (e: KeyboardEvent) => {
+      if (e.keyCode === keyCodes.SLASH && !isActive) {
+        inputEl.current.focus()
         e.preventDefault()
       }
-    })
-  }
+    }
+    window.addEventListener('keydown', focusShortcut)
+    return () => {
+      window.removeEventListener('keydown', focusShortcut)
+    }
+  })
 
-  componentDidUpdate(prevProps: Props) {
-    const { isMobileShow } = this.props
-    if (isMobileShow !== prevProps.isMobileShow && this.input.current) {
-      this.input.current.focus()
+  const pathname = props.location.pathname
+  const filteredPosts = useMemo(() => filterPosts(posts, query, pathname), [posts, query, pathname])
+
+  const handleInput = e => {
+    updateQuery(e.target.value)
+    if (cursor !== -1) {
+      updateCursor(-1)
     }
   }
 
-  focusInput = () => {
-    if (this.input.current) {
-      this.input.current.focus()
-    }
-  }
-
-  handleInput = e => {
-    const rawQuery: string = e.target.value
-    const queries = rawQuery
-      .trim()
-      .toLowerCase()
-      .split(' ')
-
-    const filteredData = this.data.filter(item => {
-      const itemString = `${item.title} ${item.tags.join('')}`.toLowerCase()
-      for (const query of queries) {
-        if (!(itemString.indexOf(query) > -1)) {
-          return false
-        }
-      }
-      return item.path !== this.props.location.pathname
-    })
-
-    this.setState({ query: rawQuery, filteredData, cursor: -1 })
-  }
-
-  handleKeyDown = e => {
-    const { cursor, filteredData } = this.state
+  const handleKeyDown = e => {
     switch (e.keyCode) {
       case keyCodes.UP:
-        this.setState({
-          cursor: Math.max(cursor - 1, -1),
-        })
+        updateCursor(Math.max(cursor - 1, -1))
         e.preventDefault()
         break
       case keyCodes.DOWN:
-        this.setState({
-          cursor: Math.min(cursor + 1, filteredData.length - 1),
-        })
+        updateCursor(Math.min(cursor + 1, filteredPosts.length - 1))
         e.preventDefault()
         break
       case keyCodes.ENTER:
         if (cursor < 0) {
           return
         }
-        const item = filteredData[cursor]
+        const item = filteredPosts[cursor]
         navigate(item.path)
         break
     }
   }
 
-  render() {
-    const { query, isActive, filteredData, cursor } = this.state
-
-    return (
-      <Base className={this.props.className} style={this.props.style}>
-        <input
-          css={input}
-          type="text"
-          onChange={this.handleInput}
-          value={query}
-          placeholder="Search Posts"
-          onKeyDown={this.handleKeyDown}
-          onFocus={() => this.setState({ isActive: true })}
-          onBlur={() => this.setState({ isActive: false })}
-          ref={this.input}
-        />
-        <svg
-          onClick={this.focusInput}
-          css={icon}
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          style={{ fill: isActive ? '#555' : 'white' }}
-        >
-          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-          <path d="M0 0h24v24H0z" fill="none" />
-        </svg>
-        <PoseGroup>
-          {isActive && query.length > 0 && (
-            <Popover key="popover" css={listWrapper}>
-              {filteredData.length > 0 ? (
-                <ul css={list}>
-                  {filteredData.map((matchedItem, index) => {
-                    return (
-                      <li
-                        css={listItem}
-                        style={{
-                          backgroundColor: cursor === index ? '#eee' : 'white',
+  return (
+    <Base className={props.className} style={props.style}>
+      <input
+        css={input}
+        type="text"
+        onChange={handleInput}
+        value={query}
+        placeholder="Search Posts"
+        onKeyDown={handleKeyDown}
+        onFocus={() => updateIsActive(true)}
+        onBlur={() => updateIsActive(false)}
+        ref={inputEl}
+      />
+      <svg
+        onClick={() => inputEl.current.focus()}
+        css={icon}
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        style={{ fill: isActive ? '#555' : 'white' }}
+      >
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg>
+      <PoseGroup>
+        {isActive && query.length > 0 && (
+          <Popover key="popover" css={listWrapper}>
+            {filteredPosts.length > 0 ? (
+              <ul css={list}>
+                {filteredPosts.map((matchedItem, index) => {
+                  return (
+                    <li
+                      css={listItem}
+                      style={{
+                        backgroundColor: cursor === index ? '#eee' : 'white',
+                      }}
+                      key={matchedItem.number}
+                      onMouseDown={e => e.preventDefault()}
+                    >
+                      <Link
+                        to={matchedItem.path}
+                        dangerouslySetInnerHTML={{
+                          __html: matchedItem.title,
                         }}
-                        key={matchedItem.number}
-                        onMouseDown={e => e.preventDefault()}
-                      >
-                        <Link
-                          to={matchedItem.path}
-                          dangerouslySetInnerHTML={{
-                            __html: matchedItem.title,
-                          }}
-                        />
-                      </li>
-                    )
-                  })}
-                </ul>
-              ) : (
-                <ul css={list}>
-                  <p css={blankMessage}>結果が見つかりませんでした。</p>
-                </ul>
-              )}
-            </Popover>
-          )}
-        </PoseGroup>
-      </Base>
-    )
-  }
-}
+                      />
+                    </li>
+                  )
+                })}
+              </ul>
+            ) : (
+              <ul css={list}>
+                <p css={blankMessage}>結果が見つかりませんでした。</p>
+              </ul>
+            )}
+          </Popover>
+        )}
+      </PoseGroup>
+    </Base>
+  )
+})
+
+export default Search
 
 const Base = styled.div`
   margin-left: auto;
@@ -215,7 +216,7 @@ const listWrapper = css`
     border-style: solid;
     border-width: 8px;
     border-bottom: 8px solid white;
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
     top: -15px;
