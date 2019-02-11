@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const _ = require('lodash')
 const Promise = require('bluebird')
 const createPaginatedPages = require("gatsby-paginate");
 
@@ -82,7 +81,7 @@ module.exports = ({ graphql, actions }) => {
     const tagMap = new Map()
     const postEntities = {}
 
-    _.each(allEsaPost.edges, (postEdge) => {
+    allEsaPost.edges.forEach(postEdge => {
       const post = postEdge.node
       const number = post.number
 

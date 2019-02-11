@@ -27,7 +27,6 @@
     "gatsby-source-rss-feed": "^1.1.1",
     "gatsby-transformer-remark": "^2.2.2",
     "html2plaintext": "^2.1.0",
-    "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-helmet": "^5.2.0",
