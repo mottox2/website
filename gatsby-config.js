@@ -26,6 +26,13 @@ module.exports = {
         name: `NotePost`
       }
     },
+    {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://qiita.com/mottox2/feed`,
+        name: `QiitaPost`
+      }
+    },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -82,19 +89,38 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allEsaPost } }) => {
-              return allEsaPost.edges.sort((a, b) => {
-                return b.node.childPublishedDate.published_on_unix - a.node.childPublishedDate.published_on_unix
+            serialize: ({ query: { site, allEsaPost, allFeedQiitaPost, allFeedNotePost } }) => {
+              return [...allEsaPost.edges, ...allFeedNotePost.edges, ...allFeedQiitaPost.edges].sort((a, b) => {
+                const bDate = b.node.pubDate ? new Date(b.node.pubDate) : new Date(b.node.childPublishedDate.published_on)
+                const aDate = a.node.pubDate ? new Date(a.node.pubDate) : new Date(a.node.childPublishedDate.published_on)
+                return bDate - aDate
               }).map(edge => {
                 const node = edge.node
-                const day = dayjs(node.childPublishedDate.published_on)
-                return {
-                  date: day.toISOString(),
-                  pubDate: day.toISOString(),
-                  url: site.siteMetadata.siteUrl + `/posts/${node.number}`,
-                  guid: node.number,
-                  title: node.fields.title,
-                  description: node.fields.excerpt
+                switch (node.internal.type) {
+                  case 'EsaPost':
+                    const day = dayjs(node.childPublishedDate.published_on)
+                    return {
+                      date: day.toISOString(),
+                      pubDate: day.toISOString(),
+                      url: site.siteMetadata.siteUrl + `/posts/${node.number}`,
+                      guid: node.number,
+                      title: node.fields.title,
+                      description: node.fields.excerpt
+                    }
+                    break;
+                  case 'FeedQiitaPost':
+                  case 'FeedNotePost':
+                    return {
+                      date: dayjs(node.pubDate).toISOString(),
+                      pubDate: dayjs(node.pubDate).toISOString(),
+                      url: node.link,
+                      guid: node.link,
+                      title: node.title,
+                      description: node.contentSnippet.substring(0, 512)
+                    }
+                    break;
+                  default:
+                    throw `${node.internal.type} is unknown type`
                 }
               })
             },
@@ -111,6 +137,35 @@ module.exports = {
                       childPublishedDate {
                         published_on
                         published_on_unix
+                      }
+                      internal {
+                        type
+                      }
+                    }
+                  }
+                }
+                allFeedQiitaPost {
+                  edges {
+                    node {
+                      title
+                      pubDate
+                      contentSnippet
+                      link
+                      internal {
+                        type
+                      }
+                    }
+                  }
+                }
+                allFeedNotePost {
+                  edges {
+                    node {
+                      title
+                      pubDate
+                      contentSnippet
+                      link
+                      internal {
+                        type
                       }
                     }
                   }
