@@ -17,7 +17,7 @@ export default () => {
           </a>
         </Menu>
         <Copyright>
-          Copyright &copy; 2018 @mottox2 All Rights Reserved.
+          Copyright &copy; 2019 @mottox2 All Rights Reserved.
         </Copyright>
       </Container>
     </Footer>
