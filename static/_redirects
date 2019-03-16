@@ -4,5 +4,3 @@ https://mottox2.netlify.com/*  http://mottox2.com/:splat  301!
 /github https://github.com/mottox2
 /note https://note.mu/mottox2
 /twitter https://twitter.com/mottox2
-
-/sample-blog/* https://gatsby-book-sample-blog.netlify.com/:splat 200
