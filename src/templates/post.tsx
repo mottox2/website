@@ -64,6 +64,7 @@ const SocialLinkWrapper = styled.div`
 const PostTemplate = (props: any) => {
   const { esaPost: post, relatedPosts } = props.data
   const title = post.fields.title.replace(/&#35;/g, '#')
+  const shareTitle = `${title} - mottox2 blog`
   const description = post.fields.excerpt.slice(0, 120)
   const category = post.relative_category || 'blog'
   const image =
@@ -74,12 +75,12 @@ const PostTemplate = (props: any) => {
 
   return (
     <Layout location={props.location}>
-      <Helmet title={`${title} - mottox2 blog`}>
+      <Helmet title={shareTitle}>
         <meta name="description" content={description} />
 
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={title} />
+        <meta property="og:title" content={shareTitle} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
         {/* <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} /> */}
@@ -87,7 +88,7 @@ const PostTemplate = (props: any) => {
         {/* Twitter Card tags */}
         <meta name="twitter:card" content={card} />
         <meta name="twitter:creator" content={'@mottox2'} />
-        <meta name="twitter:title" content={title} />
+        <meta name="twitter:title" content={shareTitle} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
 
