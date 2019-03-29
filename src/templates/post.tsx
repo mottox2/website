@@ -124,7 +124,7 @@ const PostTemplate = (props: any) => {
             {/* <Author post={post} /> */}
             <Content dangerouslySetInnerHTML={{ __html: post.body_html }} />
             <SocialLinkWrapper>
-              <SocialLinks title={title} url={url} />
+              <SocialLinks title={shareTitle} url={url} />
             </SocialLinkWrapper>
           </Padding>
           {relatedPosts.edges.map((postEdge: any) => {
