@@ -49,8 +49,7 @@ module.exports = ({ graphql, actions }) => {
     }
   `).then(result => {
     if (result.errors) {
-      console.log(result.errors)
-      reject(result.errors)
+      console.error(result.errors)
     }
     const { allEsaPost, allFeedNotePost } = result.data
 
