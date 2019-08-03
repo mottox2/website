@@ -20,13 +20,6 @@ interface Props {
   isMobileShow: boolean
 }
 
-interface State {
-  cursor: number
-  filteredData: Item[]
-  isActive: boolean
-  query: string
-}
-
 const keyCodes = {
   DOWN: 40,
   ENTER: 13,
@@ -60,16 +53,16 @@ const filterPosts = (posts: any[], rawQuery: string, pathname: string) => {
 }
 
 const Search: React.FC<Props> = React.memo(props => {
-  const inputEl = useRef(null)
+  const inputEl = useRef<HTMLInputElement>(null)
   const [cursor, updateCursor] = useState(-1)
   const [isActive, updateIsActive] = useState(false)
   const [query, updateQuery] = useState('')
-  const [posts, updatePosts] = useState([])
+  const [posts, updatePosts] = useState<Item[]>([])
 
   const prevMobileShow = usePrevious(props.isMobileShow)
   if (prevMobileShow !== props.isMobileShow && inputEl.current) {
     window.setTimeout(() => {
-      inputEl.current.focus()
+      inputEl.current!.focus()
     }, 10)
   }
 
@@ -83,7 +76,7 @@ const Search: React.FC<Props> = React.memo(props => {
   useEffect(() => {
     const focusShortcut = (e: KeyboardEvent) => {
       if (e.keyCode === keyCodes.SLASH && !isActive) {
-        inputEl.current.focus()
+        inputEl.current!.focus()
         e.preventDefault()
       }
     }
@@ -96,14 +89,14 @@ const Search: React.FC<Props> = React.memo(props => {
   const pathname = props.location.pathname
   const filteredPosts = useMemo(() => filterPosts(posts, query, pathname), [posts, query, pathname])
 
-  const handleInput = e => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateQuery(e.target.value)
     if (cursor !== -1) {
       updateCursor(-1)
     }
   }
 
-  const handleKeyDown = e => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     switch (e.keyCode) {
       case keyCodes.UP:
         updateCursor(Math.max(cursor - 1, -1))
@@ -137,7 +130,7 @@ const Search: React.FC<Props> = React.memo(props => {
         ref={inputEl}
       />
       <svg
-        onClick={() => inputEl.current.focus()}
+        onClick={() => inputEl.current!.focus()}
         css={icon}
         xmlns="http://www.w3.org/2000/svg"
         width="24"

@@ -27,11 +27,7 @@ const Category = styled.div`
   font-weight: 600;
   display: inline-block;
   font-size: 12px;
-  background-image: linear-gradient(
-    45deg,
-    rgb(77, 154, 191) 0px,
-    rgb(0, 162, 199) 100%
-  );
+  background-image: linear-gradient(45deg, rgb(77, 154, 191) 0px, rgb(0, 162, 199) 100%);
   color: white;
   text-transform: capitalize;
   letter-spacing: 0.2px;
@@ -74,7 +70,7 @@ const Day = styled.time`
   font-weight: 700;
   color: #666;
   &:after {
-    content: " ";
+    content: ' ';
     width: 1px;
     height: 100%;
     background-color: #ddd;
@@ -86,7 +82,7 @@ const Tag = styled.span`
   font-size: 12px;
   margin-left: 4px;
   &:before {
-    content: "#";
+    content: '#';
   }
 `
 
@@ -120,26 +116,20 @@ const PostCell: React.SFC<Props> = ({ post }) => {
       <div css={cell}>
         <CellContent>
           {postNode.link ? (
-            <Category type={'note'}>note</Category>
+            <Category>note</Category>
           ) : (
-            <Category type={'blog'}>
-              {postNode.relative_category || 'blog'}
-            </Category>
+            <Category>{postNode.relative_category || 'blog'}</Category>
           )}
           <PostTitle
             className="title"
             dangerouslySetInnerHTML={{ __html: postNode.fields.title }}
           />
-          <PostDescription>
+          {/* <PostDescription>
             {postNode.fields.excerpt.slice(0, 100)}
-          </PostDescription>
+          </PostDescription> */}
         </CellContent>
         <CellFooter>
-          <Day>
-            {dayjs(postNode.childPublishedDate.published_on).format(
-              'YYYY/MM/DD',
-            )}
-          </Day>
+          <Day>{dayjs(postNode.childPublishedDate.published_on).format('YYYY/MM/DD')}</Day>
           {postNode.tags &&
             postNode.tags.map((tagName: string) => {
               return <Tag key={tagName}>{tagName}</Tag>
