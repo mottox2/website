@@ -124,9 +124,7 @@ const PostCell: React.SFC<Props> = ({ post }) => {
             className="title"
             dangerouslySetInnerHTML={{ __html: postNode.fields.title }}
           />
-          {/* <PostDescription>
-            {postNode.fields.excerpt.slice(0, 100)}
-          </PostDescription> */}
+          <PostDescription>{postNode.fields.excerpt.slice(0, 100)}</PostDescription>
         </CellContent>
         <CellFooter>
           <Day>{dayjs(postNode.childPublishedDate.published_on).format('YYYY/MM/DD')}</Day>
