@@ -49,16 +49,20 @@ const Category = styled(Tag)<{ type: string }>`
     color: white;
   }
   &:before {
-    content: "";
+    content: '';
   }
 `
 
 const SocialLinkWrapper = styled.div`
   position: fixed;
   bottom: 12px;
-  left: 0;
-  right: 0;
   z-index: 10;
+  right: 12px;
+  background-color: white;
+  padding: 8px;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.20);
+}
 `
 
 const PostTemplate = (props: any) => {
@@ -113,11 +117,7 @@ const PostTemplate = (props: any) => {
             <Title dangerouslySetInnerHTML={{ __html: title }} />
             <Category to={`/categories/${category}`}>{category}</Category>
             {post.tags.map((tag: any) => (
-              <Tag
-                to={`/tags/${tag}`}
-                key={tag}
-                style={{ marginTop: 4, marginBottom: 8 }}
-              >
+              <Tag to={`/tags/${tag}`} key={tag} style={{ marginTop: 4, marginBottom: 8 }}>
                 {tag}
               </Tag>
             ))}
