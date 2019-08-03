@@ -15,8 +15,8 @@ export default (props: any) => {
   return (
     <Base>
       <h1 css={title} style={showLogo ? {} : { display: 'none' }}>
-        <Link style={{ display: 'flex' }} to={'/'}>
-          <img src={Logo} alt="mottox2 blog" />
+        <Link to={'/'}>
+          <img src={Logo} css={logoStyle} alt="mottox2 blog" />
         </Link>
       </h1>
 
@@ -26,11 +26,7 @@ export default (props: any) => {
         location={props.location}
         isMobileShow={!showLogo}
       />
-      <button
-        name="Search"
-        css={searchToggle}
-        onClick={() => updateShowLogo(!showLogo)}
-      >
+      <button name="Search" css={searchToggle} onClick={() => updateShowLogo(!showLogo)}>
         {showLogo ? (
           <svg
             css={toggleIcon}
@@ -62,7 +58,7 @@ export default (props: any) => {
 const Base = styled.header`
   background-image: linear-gradient(45deg, #4d9abf 0, #00a2c7 100%);
   font-weight: 500;
-  padding: 16px 12px;
+  padding: 16px;
   position: relative;
   display: flex;
 
@@ -86,14 +82,31 @@ const Base = styled.header`
 const title = css`
   display: flex;
   margin-right: auto;
-  margin-left: 4px;
+
+  > a {
+    display: flex;
+    padding: 16px;
+    margin: -16px;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
 
   @media screen and (min-width: 980px) {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+    > a {
+      margin: 0;
+      padding: 25px 12px;
+    }
   }
+`
+
+const logoStyle = css`
+  display: block;
+  align-self: center;
 `
 
 const toggleIcon = css`
