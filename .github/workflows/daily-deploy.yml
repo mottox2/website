@@ -1,0 +1,13 @@
+name: Daily Deploy
+
+# https://help.github.com/en/github/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Post netlify build hook
+      run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_URL }}
