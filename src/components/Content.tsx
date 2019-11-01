@@ -55,11 +55,10 @@ export default styled.div`
 
   h2 {
     font-size: 160%;
-    margin: 30px 0;
-    margin-bottom: 10px;
+    margin: 30px 0 16px;
     font-weight: 900;
     border-bottom: 3px solid rgba(0, 0, 0, 0.1);
-    padding-bottom: 10px;
+    padding-bottom: 4px;
     position: relative;
     &:before {
       position: absolute;
@@ -85,7 +84,7 @@ export default styled.div`
   }
 
   h3 {
-    margin: 30px 0;
+    margin: 24px 0;
     margin-bottom: 10px;
     font-size: 130%;
     font-weight: 900;
@@ -103,7 +102,7 @@ export default styled.div`
 
   .markdown > ul,
   .markdown > ol {
-    margin: 20px 0;
+    margin: 16px 0;
   }
 
   ul,
@@ -112,7 +111,7 @@ export default styled.div`
   }
 
   li {
-    margin: 10px 0;
+    margin: 4px 0;
   }
 
   li > p {
@@ -130,7 +129,7 @@ export default styled.div`
   }
 
   p {
-    margin: 20px 0;
+    margin: 16px 0;
   }
 
   p img {
