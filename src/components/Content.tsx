@@ -296,6 +296,14 @@ export default styled.div`
     max-width: 100%;
   }
 
+  hr {
+    border-top-color: rgba(33, 37, 41, 0.12);
+    display: block;
+    border-top-width: 1px;
+    border-top-style: solid;
+    margin: 32px 0;
+  }
+
   .code-filename {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
