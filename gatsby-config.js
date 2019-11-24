@@ -22,7 +22,7 @@ module.exports = {
     {
       resolve: `gatsby-source-rss-feed`,
       options: {
-        url: `https://note.mu/mottox2/rss`,
+        url: `https://note.com/mottox2/rss`,
         name: `NotePost`
       }
     },
