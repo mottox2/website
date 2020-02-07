@@ -33,6 +33,14 @@ module.exports = {
         name: `QiitaPost`
       }
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/data/external-posts.yml`,
+      },
+    },
+    `gatsby-transformer-yaml`,
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -89,8 +97,8 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allEsaPost, allFeedQiitaPost, allFeedNotePost } }) => {
-              return [...allEsaPost.edges, ...allFeedNotePost.edges, ...allFeedQiitaPost.edges].sort((a, b) => {
+            serialize: ({ query: { site, allEsaPost, allFeedQiitaPost, allFeedNotePost, allExternalPostsYaml } }) => {
+              return [...allEsaPost.edges, ...allFeedNotePost.edges, ...allFeedQiitaPost.edges, ...allExternalPostsYaml.edges].sort((a, b) => {
                 const bDate = b.node.pubDate ? new Date(b.node.pubDate) : new Date(b.node.childPublishedDate.published_on)
                 const aDate = a.node.pubDate ? new Date(a.node.pubDate) : new Date(a.node.childPublishedDate.published_on)
                 return bDate - aDate
@@ -119,6 +127,15 @@ module.exports = {
                       description: node.contentSnippet.substring(0, 512)
                     }
                     break;
+                  case 'ExternalPostsYaml':
+                    return {
+                      date: dayjs(node.childPublishedDate.published_on).toISOString(),
+                      pubDate: dayjs(node.childPublishedDate.published_on).toISOString(),
+                      url: node.link,
+                      guid: node.link,
+                      title: node.fields.title,
+                      description: node.fields.excerpt.substring(0, 512)
+                    }
                   default:
                     throw `${node.internal.type} is unknown type`
                 }
@@ -164,6 +181,25 @@ module.exports = {
                       pubDate
                       contentSnippet
                       link
+                      internal {
+                        type
+                      }
+                    }
+                  }
+                }
+                allExternalPostsYaml {
+                  edges {
+                    node {
+                      link
+                      fields {
+                        title
+                        excerpt
+                        category
+                      }
+                      childPublishedDate {
+                        published_on
+                        published_on_unix
+                      }
                       internal {
                         type
                       }

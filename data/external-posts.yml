@@ -1,0 +1,15 @@
+- title: 技術同人誌即売会のウェブサイトも『ImageFlux』で高速化やってます
+  link: https://knowledge.sakura.ad.jp/23517/
+  excerpt: こんにちは、もっと（@mottox2）といいます。普段はフリーランスでウェブやスマホアプリのフロントエンド周りのあれこれをやっています。業務外でも技書博（技術書同人誌博覧会）という技術同人誌即売会の運営メンバーをやっています。 今回は2019年12月に開催された第二回技術書同人誌博覧会でさくらインターネットの運営するクラウド画像変換サービス「ImageFlux」を提供していただいたので、さくらのナレッジで記事を書かせてもらうことになりました。
+  pubDate: 2020.02.06 14:00
+  category: さくらのナレッジ
+- title: Single Page ApplicationでGoogleオプティマイズを使ったABテストを行う
+  link: https://kobit.in/archives/13360/
+  excerpt: SPA（Single Page Application）というと管理画面などの複雑なページに使われるイメージがありますが、最近はVue.jsベースのフレームワーク『Nuxt.js』やReactベースの静的サイトジェネレーター『Gatsby.js』の普及に伴い、コーポレートサイトやブログなどの実装にもSPAが使われるようになってきました。
+  pubDate: 2019/08/29 13:20
+  category: KOBITブログ
+- title: Lighthouse 3.0がリリースされます！使い方と新しい調査項目を確認しておきましょう
+  link: https://kobit.in/archives/11507/
+  excerpt: Webサイトのパフォーマンス計測ツールのLighthouseの3.0がリリースされます。より効果的に使っていくために変更点を確認しておきましょう。まずはv3の利用方法についての確認です。
+  pubDate: 2018/05/15 17:57
+  category: KOBITブログ

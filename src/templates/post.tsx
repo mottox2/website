@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import { graphql, Link } from 'gatsby'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Helmet from 'react-helmet'
 
 import { css } from '@emotion/core'
@@ -14,6 +14,12 @@ import SocialLinks from '../components/SocialLinks'
 import Tag from '../components/Tag'
 import { Container, MainColumn } from './posts'
 
+declare global {
+  interface Window {
+    iframely: any
+  }
+}
+
 export const Wrapper = styled.div`
   padding: 12px;
   max-width: 42rem;
@@ -26,9 +32,8 @@ const Title = styled.h1`
   font-weight: 700;
   margin-bottom: 4px;
   color: #222;
-  font-family: -apple-system, "BlinkMacSystemFont", "Helvetica Neue",
-    "Hiragino Sans", "游ゴシック Medium", "YuGothic",
-    "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo,sans-serif";
+  font-family: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue', 'Hiragino Sans',
+    '游ゴシック Medium', 'YuGothic', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo,sans-serif';
 
   @media (min-width: 600px) {
     font-size: 30px;
