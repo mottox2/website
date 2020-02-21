@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Link, navigate } from 'gatsby'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import posed, { PoseGroup } from 'react-pose'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
@@ -52,6 +52,17 @@ const filterPosts = (posts: any[], rawQuery: string, pathname: string) => {
   })
 }
 
+const variants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+  invisible: {
+    opacity: 0,
+    y: 8,
+  },
+}
+
 const Search: React.FC<Props> = React.memo(props => {
   const inputEl = useRef<HTMLInputElement>(null)
   const [cursor, updateCursor] = useState(-1)
@@ -87,7 +98,11 @@ const Search: React.FC<Props> = React.memo(props => {
   })
 
   const pathname = props.location.pathname
-  const filteredPosts = useMemo(() => filterPosts(posts, query, pathname), [posts, query, pathname])
+  const filteredPosts = useMemo(() => filterPosts(posts, query, pathname), [
+    posts,
+    query,
+    pathname,
+  ])
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateQuery(e.target.value)
@@ -141,9 +156,17 @@ const Search: React.FC<Props> = React.memo(props => {
         <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
         <path d="M0 0h24v24H0z" fill="none" />
       </svg>
-      <PoseGroup>
+      <AnimatePresence>
         {isActive && query.length > 0 && (
-          <Popover key="popover" css={listWrapper}>
+          <motion.div
+            key="popover"
+            css={listWrapper}
+            variants={variants}
+            initial="invisible"
+            animate="visible"
+            exit="invisible"
+            transition={{ duration: 0.15 }}
+          >
             {filteredPosts.length > 0 ? (
               <ul css={list}>
                 {filteredPosts.map((matchedItem, index) => {
@@ -171,9 +194,9 @@ const Search: React.FC<Props> = React.memo(props => {
                 <p css={blankMessage}>結果が見つかりませんでした。</p>
               </ul>
             )}
-          </Popover>
+          </motion.div>
         )}
-      </PoseGroup>
+      </AnimatePresence>
     </Base>
   )
 })
@@ -185,19 +208,6 @@ const Base = styled.div`
   align-items: center;
   position: relative;
 `
-
-const Popover = posed.div({
-  enter: {
-    opacity: 1,
-    transition: { duration: 150 },
-    y: 0,
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: 150 },
-    y: 8,
-  },
-})
 
 const listWrapper = css`
   position: absolute;
