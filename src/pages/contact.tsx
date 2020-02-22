@@ -38,7 +38,7 @@ const ContactPage = ({ location }: any) => (
       >
         <Hidden>
           <label>
-            Don’t fill this out if you're human: <input name="bot-field" />
+            Don’t fill this out if you are human: <input name="bot-field" />
           </label>
           <input type="hidden" name="form-name" value="contact" />
         </Hidden>
