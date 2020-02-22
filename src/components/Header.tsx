@@ -9,7 +9,52 @@ import styled from '@emotion/styled'
 const simpleHeaderBreakpoint = 600
 const searchClassName = 'search'
 
-export default (props: any) => {
+const title = css`
+  display: flex;
+  margin-right: auto;
+
+  > a {
+    display: flex;
+    padding: 16px;
+    margin: -16px;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  @media screen and (min-width: 980px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    > a {
+      margin: 0;
+      padding: 25px 12px;
+    }
+  }
+`
+
+const logoStyle = css`
+  display: block;
+  align-self: center;
+`
+
+const toggleIcon = css`
+  fill: white;
+  display: block;
+`
+
+const searchToggle = css`
+  min-height: 34px;
+  margin: 0 -12px;
+  padding: 0 12px;
+  margin-left: 0px;
+  @media screen and (min-width: ${simpleHeaderBreakpoint}px) {
+    display: none;
+  }
+`
+
+const Header: React.FC<any> = (props: any) => {
   const [showLogo, updateShowLogo] = useState(true)
 
   return (
@@ -83,47 +128,4 @@ const Base = styled.header`
   }
 `
 
-const title = css`
-  display: flex;
-  margin-right: auto;
-
-  > a {
-    display: flex;
-    padding: 16px;
-    margin: -16px;
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-  }
-
-  @media screen and (min-width: 980px) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    > a {
-      margin: 0;
-      padding: 25px 12px;
-    }
-  }
-`
-
-const logoStyle = css`
-  display: block;
-  align-self: center;
-`
-
-const toggleIcon = css`
-  fill: white;
-  display: block;
-`
-
-const searchToggle = css`
-  min-height: 34px;
-  margin: 0 -12px;
-  padding: 0 12px;
-  margin-left: 0px;
-  @media screen and (min-width: ${simpleHeaderBreakpoint}px) {
-    display: none;
-  }
-`
+export default Header

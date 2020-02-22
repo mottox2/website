@@ -1,6 +1,6 @@
+import React from 'react'
+import { graphql } from 'gatsby'
 import dayjs from 'dayjs'
-import { graphql, Link } from 'gatsby'
-import React, { useEffect } from 'react'
 import Helmet from 'react-helmet'
 
 import { css } from '@emotion/core'

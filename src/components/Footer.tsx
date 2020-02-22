@@ -1,18 +1,26 @@
-import { Link } from 'gatsby'
 import React from 'react'
+import { Link } from 'gatsby'
 
 import styled from '@emotion/styled'
 
-export default () => {
+const Footer: React.FC = () => {
   return (
-    <Footer>
+    <Base>
       <Container>
         <Menu>
           <Link to="/contact">CONTACT</Link>
-          <a target="_blank" rel="noopener" href="https://twitter.com/mottox2">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://twitter.com/mottox2"
+          >
             TWITTER
           </a>
-          <a target="_blank" rel="noopener" href="https://mottox2.booth.pm/">
+          <a
+            target="_blank noreferrer"
+            rel="noopener"
+            href="https://mottox2.booth.pm/"
+          >
             BOOTH
           </a>
         </Menu>
@@ -20,11 +28,13 @@ export default () => {
           Copyright &copy; 2019 @mottox2 All Rights Reserved.
         </Copyright>
       </Container>
-    </Footer>
+    </Base>
   )
 }
 
-const Footer = styled.footer`
+export default Footer
+
+const Base = styled.footer`
   background-color: #4aa1c4;
   color: white;
   padding: 32px 0;
