@@ -62,7 +62,7 @@ export default styled.div`
     position: relative;
     &:before {
       position: absolute;
-      content: " ";
+      content: ' ';
       width: 100px;
       bottom: -3px;
       height: 3px;
@@ -176,8 +176,8 @@ export default styled.div`
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 2px 7px;
     font-size: 10px;
-    font-family: "Lato", Emoji, Arial, "ヒラギノ角ゴPro W3",
-      "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック",
+    font-family: 'Lato', Emoji, Arial, 'ヒラギノ角ゴPro W3',
+      'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック',
       sans-serif;
   }
 
@@ -191,11 +191,11 @@ export default styled.div`
   }
 
   .code-block__copy-label::after {
-    content: "Copy";
+    content: 'Copy';
   }
 
   .code-block__copy-label.copied::after {
-    content: "Copied";
+    content: 'Copied';
   }
 
   .code-block .highlight {

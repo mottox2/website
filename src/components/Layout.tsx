@@ -25,9 +25,9 @@ const Template = (props: any) => {
 }
 
 const Container = styled.div`
-  font-family: -apple-system-body, BlinkMacSystemFont, "Helvetica Neue",
-    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans Japanese",
-    "游ゴシック  Medium", "Yu Gothic Medium", "メイリオ", meiryo, sans-serif;
+  font-family: -apple-system-body, BlinkMacSystemFont, 'Helvetica Neue',
+    'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans Japanese',
+    '游ゴシック  Medium', 'Yu Gothic Medium', 'メイリオ', meiryo, sans-serif;
   @media screen and (-webkit-min-device-pixel-ratio: 2),
     screen and (min-resolution: 2dppx) {
     -moz-osx-font-smoothing: grayscale;

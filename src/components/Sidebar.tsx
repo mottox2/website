@@ -25,7 +25,7 @@ const Sidebar = () => {
 const Base = styled.aside`
   min-width: 320px;
   padding: 32px 12px;
-  background-color: #F7F8FA;
+  background-color: #f7f8fa;
 
   @media (min-width: 980px) {
     width: 320px;

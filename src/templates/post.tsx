@@ -32,8 +32,9 @@ const Title = styled.h1`
   font-weight: 700;
   margin-bottom: 4px;
   color: #222;
-  font-family: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue', 'Hiragino Sans',
-    '游ゴシック Medium', 'YuGothic', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo,sans-serif';
+  font-family: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue',
+    'Hiragino Sans', '游ゴシック Medium', 'YuGothic',
+    'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo,sans-serif';
 
   @media (min-width: 600px) {
     font-size: 30px;
@@ -122,7 +123,11 @@ const PostTemplate = (props: any) => {
             <Title dangerouslySetInnerHTML={{ __html: title }} />
             <Category to={`/categories/${category}`}>{category}</Category>
             {post.tags.map((tag: any) => (
-              <Tag to={`/tags/${tag}`} key={tag} style={{ marginTop: 4, marginBottom: 8 }}>
+              <Tag
+                to={`/tags/${tag}`}
+                key={tag}
+                style={{ marginTop: 4, marginBottom: 8 }}
+              >
                 {tag}
               </Tag>
             ))}

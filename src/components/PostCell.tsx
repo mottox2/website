@@ -1,9 +1,9 @@
-import dayjs from "dayjs";
-import { Link } from "gatsby";
-import React from "react";
+import dayjs from 'dayjs'
+import { Link } from 'gatsby'
+import React from 'react'
 
-import { css } from "@emotion/core";
-import styled from "@emotion/styled";
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 
 const cell = css`
   height: 100%;
@@ -20,7 +20,7 @@ const cell = css`
   &:hover .title {
     color: #4d9abf;
   }
-`;
+`
 
 const Category = styled.div`
   line-height: 1.4;
@@ -43,18 +43,18 @@ const Category = styled.div`
   padding: 4px 6px;
   border-radius: 3px;
   border-width: 0px;
-`;
+`
 
 const CellContent = styled.div`
   margin-bottom: 8px;
-`;
+`
 
 const PostTitle = styled.h3`
   margin-bottom: 1px;
   font-size: 18px;
   line-height: 1.48;
   color: #222;
-`;
+`
 
 const PostDescription = styled.p`
   opacity: 0.58;
@@ -63,33 +63,33 @@ const PostDescription = styled.p`
   word-break: break-all;
   overflow-y: hidden;
   max-height: ${14 * 1.6 * 3}px;
-`;
+`
 
 const CellFooter = styled.div`
   /* border-top: 1px solid #eee; */
   margin-top: auto;
-`;
+`
 
 const Day = styled.time`
   font-size: 12px;
   font-weight: 700;
   color: #666;
   &:after {
-    content: " ";
+    content: ' ';
     width: 1px;
     height: 100%;
     background-color: #ddd;
     display: inline-block;
   }
-`;
+`
 
 const Tag = styled.span`
   font-size: 12px;
   margin-left: 4px;
   &:before {
-    content: "#";
+    content: '#';
   }
-`;
+`
 
 const PostLink = ({ node, children }: any) => {
   const link = css`
@@ -97,7 +97,7 @@ const PostLink = ({ node, children }: any) => {
     color: inherit;
     display: block;
     text-decoration: none;
-  `;
+  `
   return node.link ? (
     <a href={node.link} css={link} target="_blank" rel="noopener noreferrer">
       {children}
@@ -106,15 +106,15 @@ const PostLink = ({ node, children }: any) => {
     <Link css={link} to={`/posts/${node.number}`}>
       {children}
     </Link>
-  );
-};
+  )
+}
 
 interface Props {
-  post: any;
+  post: any
 }
 
 const PostCell: React.SFC<Props> = ({ post }) => {
-  const postNode: any = post;
+  const postNode: any = post
 
   return (
     <PostLink node={postNode} key={postNode.number || postNode.link}>
@@ -123,7 +123,7 @@ const PostCell: React.SFC<Props> = ({ post }) => {
           {postNode.link ? (
             <Category>{postNode.fields.category}</Category>
           ) : (
-            <Category>{postNode.relative_category || "blog"}</Category>
+            <Category>{postNode.relative_category || 'blog'}</Category>
           )}
           <PostTitle
             className="title"
@@ -136,17 +136,17 @@ const PostCell: React.SFC<Props> = ({ post }) => {
         <CellFooter>
           <Day>
             {dayjs(postNode.childPublishedDate.published_on).format(
-              "YYYY/MM/DD"
+              'YYYY/MM/DD'
             )}
           </Day>
           {postNode.tags &&
             postNode.tags.map((tagName: string) => {
-              return <Tag key={tagName}>{tagName}</Tag>;
+              return <Tag key={tagName}>{tagName}</Tag>
             })}
         </CellFooter>
       </div>
     </PostLink>
-  );
-};
+  )
+}
 
-export default PostCell;
+export default PostCell
