@@ -47,7 +47,7 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
-    "prettier": "1.15.1",
+    "prettier": "2.0.2",
     "typescript": "3.2.2"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
@@ -62,10 +62,16 @@
   },
   "scripts": {
     "lint": "eslint --ext .ts,.tsx --ignore-pattern public .",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
+    "format": "prettier '**/*.{ts,tsx}' --write",
     "develop": "GATSBY_GRAPHQL_IDE=playground gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
+  },
+  "prettier": {
+    "jsxBracketSameLine": true,
+    "trailingComma": "all",
+    "semi": false,
+    "singleQuote": true
   }
 }
