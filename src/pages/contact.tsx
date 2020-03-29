@@ -34,8 +34,7 @@ const ContactPage = ({ location }: any) => (
         method="post"
         data-netlify="true"
         data-netlify-honeybot="bot-field"
-        action="/thanks"
-      >
+        action="/thanks">
         <Hidden>
           <label>
             Don’t fill this out if you are human: <input name="bot-field" />

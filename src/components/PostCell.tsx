@@ -136,7 +136,7 @@ const PostCell: React.SFC<Props> = ({ post }) => {
         <CellFooter>
           <Day>
             {dayjs(postNode.childPublishedDate.published_on).format(
-              'YYYY/MM/DD'
+              'YYYY/MM/DD',
             )}
           </Day>
           {postNode.tags &&

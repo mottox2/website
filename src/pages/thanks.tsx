@@ -17,8 +17,7 @@ const ContactThanksPage = ({ location }: any) => (
       <h1
         style={{
           fontWeight: 700,
-        }}
-      >
+        }}>
         {' '}
         お問い合わせ{' '}
       </h1>

@@ -12,15 +12,13 @@ const Footer: React.FC = () => {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://twitter.com/mottox2"
-          >
+            href="https://twitter.com/mottox2">
             TWITTER
           </a>
           <a
             target="_blank noreferrer"
             rel="noopener"
-            href="https://mottox2.booth.pm/"
-          >
+            href="https://mottox2.booth.pm/">
             BOOTH
           </a>
         </Menu>

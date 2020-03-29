@@ -145,12 +145,9 @@ const usePrevious = (value: any) => {
 }
 
 const filterPosts = (posts: any[], rawQuery: string, pathname: string) => {
-  const queries = rawQuery
-    .trim()
-    .toLowerCase()
-    .split(' ')
+  const queries = rawQuery.trim().toLowerCase().split(' ')
 
-  return posts.filter(item => {
+  return posts.filter((item) => {
     const itemString = `${item.title} ${item.tags.join('')}`.toLowerCase()
     for (const query of queries) {
       if (!(itemString.indexOf(query) > -1)) {
@@ -187,7 +184,7 @@ const Search: React.FC<Props> = (props: any) => {
   }
 
   useEffect(() => {
-    axios.get('/search.json').then(res => {
+    axios.get('/search.json').then((res) => {
       updatePosts(res.data)
     })
     return undefined
@@ -259,8 +256,7 @@ const Search: React.FC<Props> = (props: any) => {
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        style={{ fill: isActive ? '#555' : 'white' }}
-      >
+        style={{ fill: isActive ? '#555' : 'white' }}>
         <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
         <path d="M0 0h24v24H0z" fill="none" />
       </svg>
@@ -273,8 +269,7 @@ const Search: React.FC<Props> = (props: any) => {
             initial="invisible"
             animate="visible"
             exit="invisible"
-            transition={{ duration: 0.15 }}
-          >
+            transition={{ duration: 0.15 }}>
             {filteredPosts.length > 0 ? (
               <ul css={list}>
                 {filteredPosts.map((matchedItem, index) => {
@@ -285,8 +280,7 @@ const Search: React.FC<Props> = (props: any) => {
                         backgroundColor: cursor === index ? '#eee' : 'white',
                       }}
                       key={matchedItem.number}
-                      onMouseDown={e => e.preventDefault()}
-                    >
+                      onMouseDown={(e) => e.preventDefault()}>
                       <Link
                         to={matchedItem.path}
                         dangerouslySetInnerHTML={{

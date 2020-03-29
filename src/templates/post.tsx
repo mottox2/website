@@ -42,7 +42,7 @@ const Title = styled.h1`
 `
 
 const Category = styled(Tag)<{ type: string }>`
-  background-image: ${props =>
+  background-image: ${(props) =>
     props.type === 'note'
       ? 'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)'
       : 'linear-gradient(45deg,#4d9abf 0,#00a2c7 100%)'};
@@ -116,8 +116,7 @@ const PostTemplate = (props: any) => {
                 letter-spacing: 0.5px;
                 opacity: 0.6;
                 font-size: 15px;
-              `}
-            >
+              `}>
               {dayjs(post.childPublishedDate.published_on).format('YYYY.MM.DD')}
             </time>
             <Title dangerouslySetInnerHTML={{ __html: title }} />
@@ -126,8 +125,7 @@ const PostTemplate = (props: any) => {
               <Tag
                 to={`/tags/${tag}`}
                 key={tag}
-                style={{ marginTop: 4, marginBottom: 8 }}
-              >
+                style={{ marginTop: 4, marginBottom: 8 }}>
                 {tag}
               </Tag>
             ))}

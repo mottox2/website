@@ -30,15 +30,13 @@ const SocialLinks = (props: any) => {
         className="SocialMediaShareButton"
         onClick={() => {
           window.open(`http://b.hatena.ne.jp/entry/${url}`)
-        }}
-      >
+        }}>
         <div style={{ width: 42, height: 42, position: 'relative' }}>
           <svg
             viewBox="0 0 64 64"
             width="42"
             height="42"
-            className="social-icon social-icon--facebook "
-          >
+            className="social-icon social-icon--facebook ">
             <g>
               <circle cx="32" cy="32" r="31" fill="#008fde" />
             </g>
