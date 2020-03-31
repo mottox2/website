@@ -1,3 +1,5 @@
+require('ts-node').register()
+
 const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
@@ -65,4 +67,4 @@ exports.onCreateNode = ({ node, actions, createNodeId }) => {
   }
 }
 
-exports.createPages = require('./gatsby/createPages')
+exports.createPages = require('./gatsby/createPages').createPages
