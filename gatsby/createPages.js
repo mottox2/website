@@ -1,9 +1,22 @@
 const fs = require('fs')
 const path = require('path')
-const Promise = require('bluebird')
 const createPaginatedPages = require("gatsby-paginate");
 
 const perPage = 12
+
+// { [id: number]: Series }
+const prepareSeries = allMicrocmsSeries => {
+  const seriesMap = new Map()
+  console.log(allMicrocmsSeries)
+  allMicrocmsSeries.nodes.map(node => {
+    node.postIds.split(',').forEach(postId => {
+      const id = Number(postId)
+      seriesMap.set(id, { ...node })
+    })
+  })
+
+  return seriesMap
+}
 
 module.exports = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -64,16 +77,31 @@ module.exports = ({ graphql, actions }) => {
           }
         }
       }
+
+      allMicrocmsSeries {
+        nodes {
+          id
+          name
+          thumbnail {
+            url
+          }
+          postIds
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
       console.error(result.errors)
     }
-    const { allEsaPost, allFeedNotePost, allExternalPostsYaml } = result.data
+    const { allEsaPost, allFeedNotePost, allExternalPostsYaml, allMicrocmsSeries } = result.data
+
+    const seriesMap = prepareSeries(allMicrocmsSeries)
+
+    console.log(seriesMap)
 
     const searchJSON = allEsaPost.edges.map(postEdge => {
       const postNode = postEdge.node
-      const { field, number, tags} = postNode
+      const { field, number, tags } = postNode
       const { title } = postNode.fields
       return {
         title, tags, number,
@@ -110,11 +138,13 @@ module.exports = ({ graphql, actions }) => {
       const numbersByCategory = categoryMap.get(category)
       categoryMap.set(category, numbersByCategory ? numbersByCategory.concat(number) : [number])
 
+      console.log(Array.from(seriesMap.keys()), post.number, seriesMap.get(post.number), typeof post.number)
       createPage({
         path: `posts/${post.number}`,
         component: blogPost,
         context: {
           number: post.number,
+          series: seriesMap.get(post.number),
         },
       })
 
