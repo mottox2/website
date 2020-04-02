@@ -1,6 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import { CreatePagesArgs } from 'gatsby'
+
+/* eslint-disable @typescript-eslint/no-var-requires */
 const createPaginatedPages = require('gatsby-paginate')
 
 const perPage = 12
@@ -96,6 +98,7 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
     if (result.errors) {
       console.error(result.errors)
     }
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
     const { allEsaPost, allFeedNotePost, allExternalPostsYaml } = result.data!
 
     const searchJSON = allEsaPost.edges.map(

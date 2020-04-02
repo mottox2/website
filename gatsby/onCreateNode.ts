@@ -1,6 +1,7 @@
 import { CreateNodeArgs } from 'gatsby'
 import dayjs from 'dayjs'
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const h2p = require('html2plaintext')
 const cheerio = require('cheerio')
 
