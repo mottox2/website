@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { GatsbyNode } from 'gatsby'
+import { CreatePagesArgs } from 'gatsby'
 const createPaginatedPages = require('gatsby-paginate')
 
 const perPage = 12
@@ -32,10 +32,7 @@ type GraphQLResult = {
   allExternalPostsYaml: NodeEdge<any>
 }
 
-export const createPages: GatsbyNode['createPages'] = async ({
-  graphql,
-  actions,
-}) => {
+export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
   const { createPage } = actions
 
   const blogList = path.resolve('./src/templates/posts.tsx')
