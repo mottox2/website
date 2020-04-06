@@ -28,27 +28,26 @@ type EsaPostNode = {
   }
 }
 
-type MicrocmsSeriesNodes = {
-  nodes: {
-    id: string
-    name: string
-    image: {
-      url: string
-    }
-    postIds: string
-  }[]
+type MicrocmsSeriesNode = {
+  id: string
+  name: string
+  image: {
+    url: string
+  }
+  postIds: string
 }
 
 type GraphQLResult = {
   allEsaPost: NodeEdge<EsaPostNode>
   allFeedNotePost: NodeEdge<any>
   allExternalPostsYaml: NodeEdge<any>
-  allMicrocmsSeries: MicrocmsSeriesNodes
+  allMicrocmsSeries: {
+    nodes: MicrocmsSeriesNode[]
+  }
 }
 
-const prepareSeries = (allMicrocmsSeries: MicrocmsSeriesNodes) => {
-  const seriesMap = new Map()
-  console.log(allMicrocmsSeries)
+const prepareSeries = (allMicrocmsSeries: { nodes: MicrocmsSeriesNode[] }) => {
+  const seriesMap = new Map<number, MicrocmsSeriesNode>()
   allMicrocmsSeries.nodes.map((node) => {
     node.postIds.split(',').forEach((postId) => {
       const id = Number(postId)
