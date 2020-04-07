@@ -5,9 +5,12 @@ import styled from '@emotion/styled'
 import Profile from './Profile'
 import Tag from './Tag'
 
-const Sidebar = () => {
+const Sidebar: React.FC = ({ children }) => {
   return (
     <Base>
+      {React.Children.map(children, (child) => (
+        <SideSection>{child}</SideSection>
+      ))}
       <SideSectionTitle>PROFILE</SideSectionTitle>
       <SideSection>
         <Profile />

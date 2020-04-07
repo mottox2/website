@@ -20,6 +20,25 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-microcms`,
+      options: {
+        apiKey: process.env.MICROCMS_API_KEY,
+        serviceId: process.env.MICROCMS_SERVICE_ID,
+        endpoint: 'series',
+        query: {
+          limit: 100,
+          fields: [
+            'id',
+            'name',
+            'thumbnail',
+            'postIds',
+            'createdAt',
+            'updatedAt',
+          ].join(','),
+        },
+      },
+    },
+    {
       resolve: `gatsby-source-rss-feed`,
       options: {
         url: `https://note.com/mottox2/rss`,

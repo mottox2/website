@@ -12,6 +12,7 @@ import PostCell from '../components/PostCell'
 import Sidebar from '../components/Sidebar'
 import SocialLinks from '../components/SocialLinks'
 import Tag from '../components/Tag'
+import Series from '../components/Series'
 import { Container, MainColumn } from './posts'
 
 declare global {
@@ -82,6 +83,7 @@ const PostTemplate = (props: any) => {
     'https://img.esa.io/uploads/production/attachments/6967/2018/05/19/4651/139850ac-6690-4bee-bdf3-6f9faf6ac10b.png'
   const card = post.fields.thumbnail ? 'summary_large_image' : 'summary'
   const url = `https://mottox2.com/posts/${post.number}`
+  const { series } = props.pageContext
 
   return (
     <Layout location={props.location}>
@@ -140,7 +142,7 @@ const PostTemplate = (props: any) => {
             return <PostCell key={postNode.number} post={postNode} />
           })}
         </MainColumn>
-        <Sidebar />
+        <Sidebar>{series && <Series series={series} />}</Sidebar>
       </Container>
     </Layout>
   )

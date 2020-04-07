@@ -28,10 +28,34 @@ type EsaPostNode = {
   }
 }
 
+type MicrocmsSeriesNode = {
+  id: string
+  name: string
+  image: {
+    url: string
+  }
+  postIds: string
+}
+
 type GraphQLResult = {
   allEsaPost: NodeEdge<EsaPostNode>
   allFeedNotePost: NodeEdge<any>
   allExternalPostsYaml: NodeEdge<any>
+  allMicrocmsSeries: {
+    nodes: MicrocmsSeriesNode[]
+  }
+}
+
+const prepareSeries = (allMicrocmsSeries: { nodes: MicrocmsSeriesNode[] }) => {
+  const seriesMap = new Map<number, MicrocmsSeriesNode>()
+  allMicrocmsSeries.nodes.map((node) => {
+    node.postIds.split(',').forEach((postId) => {
+      const id = Number(postId)
+      seriesMap.set(id, { ...node })
+    })
+  })
+
+  return seriesMap
 }
 
 export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
@@ -93,13 +117,31 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
           }
         }
       }
+
+      allMicrocmsSeries {
+        nodes {
+          id
+          name
+          thumbnail {
+            url
+          }
+          postIds
+        }
+      }
     }
   `).then((result) => {
     if (result.errors) {
       console.error(result.errors)
     }
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
-    const { allEsaPost, allFeedNotePost, allExternalPostsYaml } = result.data!
+    const {
+      allEsaPost,
+      allFeedNotePost,
+      allExternalPostsYaml,
+      allMicrocmsSeries,
+    } = result.data!
+
+    const seriesMap = prepareSeries(allMicrocmsSeries)
 
     const searchJSON = allEsaPost.edges.map(
       (postEdge: { node: EsaPostNode }) => {
@@ -166,15 +208,26 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
         numbersByCategory ? numbersByCategory.concat(number) : [number],
       )
 
+      postEntities[post.number] = postEdge
+    })
+
+    allEsaPost.edges.forEach((postEdge: { node: EsaPostNode }) => {
+      const post = postEdge.node
+      const series = seriesMap.get(post.number)
+
       createPage({
         path: `posts/${post.number}`,
         component: blogPost,
         context: {
           number: post.number,
+          series: series && {
+            ...series,
+            posts: series.postIds
+              .split(',')
+              .map((postId) => postEntities[Number(postId)].node),
+          },
         },
       })
-
-      postEntities[post.number] = postEdge
     })
 
     Array.from(categoryMap.keys()).map((category: string) => {
