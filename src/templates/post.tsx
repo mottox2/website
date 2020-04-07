@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import dayjs from 'dayjs'
 import Helmet from 'react-helmet'
 
@@ -12,8 +12,8 @@ import PostCell from '../components/PostCell'
 import Sidebar from '../components/Sidebar'
 import SocialLinks from '../components/SocialLinks'
 import Tag from '../components/Tag'
-import { Container, MainColumn } from './posts'
 import Series from '../components/Series'
+import { Container, MainColumn } from './posts'
 
 declare global {
   interface Window {
@@ -84,8 +84,6 @@ const PostTemplate = (props: any) => {
   const card = post.fields.thumbnail ? 'summary_large_image' : 'summary'
   const url = `https://mottox2.com/posts/${post.number}`
   const { series } = props.pageContext
-
-  console.log(series)
 
   return (
     <Layout location={props.location}>

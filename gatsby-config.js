@@ -35,7 +35,6 @@ module.exports = {
             'createdAt',
             'updatedAt',
           ].join(','),
-          // filters: and(exists('title'), exists('tag')),
         },
       },
     },
