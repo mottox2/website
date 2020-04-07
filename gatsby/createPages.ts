@@ -208,16 +208,26 @@ export const createPages = async ({ graphql, actions }: CreatePagesArgs) => {
         numbersByCategory ? numbersByCategory.concat(number) : [number],
       )
 
+      postEntities[post.number] = postEdge
+    })
+
+    allEsaPost.edges.forEach((postEdge: { node: EsaPostNode }) => {
+      const post = postEdge.node
+      const series = seriesMap.get(post.number)
+
       createPage({
         path: `posts/${post.number}`,
         component: blogPost,
         context: {
           number: post.number,
-          series: seriesMap.get(post.number),
+          series: series && {
+            ...series,
+            posts: series.postIds
+              .split(',')
+              .map((postId) => postEntities[Number(postId)].node),
+          },
         },
       })
-
-      postEntities[post.number] = postEdge
     })
 
     Array.from(categoryMap.keys()).map((category: string) => {
