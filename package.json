@@ -13,7 +13,7 @@
     "cheerio": "^1.0.0-rc.2",
     "dayjs": "^1.7.7",
     "framer-motion": "^1.8.4",
-    "gatsby": "^2.19.19",
+    "gatsby": "^2.20.23",
     "gatsby-paginate": "^1.1.1",
     "gatsby-plugin-emotion": "^4.1.22",
     "gatsby-plugin-feed": "^2.3.27",
