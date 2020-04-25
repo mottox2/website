@@ -66,7 +66,7 @@
     "lint": "eslint --ext .ts,.tsx --ignore-pattern public .",
     "format": "prettier '**/*.{ts,tsx}' --write",
     "develop": "gatsby develop",
-    "build": "gatsby build",
+    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
