@@ -4,20 +4,20 @@ module.exports = {
   siteMetadata: {
     title: 'mottox2 blog',
     author: 'mottox2',
-    description: 'mottox2のエンジニア・デザインブログ。GatsbyとかReactとかTypeScriptとか',
-    siteUrl: 'https://mottox2.com'
+    description:
+      'mottox2のエンジニア・デザインブログ。GatsbyとかReactとかTypeScriptとか',
+    siteUrl: 'https://mottox2.com',
   },
   pathPrefix: '/',
   plugins: [
-    'gatsby-plugin-typescript',
     {
       resolve: `gatsby-source-esa`,
       options: {
         accessToken: process.env.ESA_TOKEN,
         teamName: process.env.TEAM_NAME,
         q: `in:blog wip:false`,
-        baseCategory: 'blog'
-      }
+        baseCategory: 'blog',
+      },
     },
     {
       resolve: `gatsby-source-microcms`,
@@ -42,15 +42,15 @@ module.exports = {
       resolve: `gatsby-source-rss-feed`,
       options: {
         url: `https://note.com/mottox2/rss`,
-        name: `NotePost`
-      }
+        name: `NotePost`,
+      },
     },
     {
       resolve: `gatsby-source-rss-feed`,
       options: {
         url: `https://qiita.com/mottox2/feed`,
-        name: `QiitaPost`
-      }
+        name: `QiitaPost`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -64,12 +64,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: 'UA-34428182-9'
-   }
+        trackingId: 'UA-34428182-9',
+      },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-twitter`,
-    // {
+    `gatsby-plugin-twitter`, // {
     //   resolve: `gatsby-plugin-offline`,
     //   options: {
     //     runtimeCaching: [
@@ -90,7 +89,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'mottox2\'s site',
+        name: "mottox2's site",
         short_name: `mottox2`,
         start_url: `/`,
         background_color: `#4aa1c4`,
@@ -116,49 +115,77 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allEsaPost, allFeedQiitaPost, allFeedNotePost, allExternalPostsYaml } }) => {
-              return [...allEsaPost.edges, ...allFeedNotePost.edges, ...allFeedQiitaPost.edges, ...allExternalPostsYaml.edges].sort((a, b) => {
-                const bDate = b.node.pubDate ? new Date(b.node.pubDate) : new Date(b.node.childPublishedDate.published_on)
-                const aDate = a.node.pubDate ? new Date(a.node.pubDate) : new Date(a.node.childPublishedDate.published_on)
-                return bDate - aDate
-              }).map(edge => {
-                const node = edge.node
-                switch (node.internal.type) {
-                  case 'EsaPost':
-                    const day = dayjs(node.childPublishedDate.published_on)
-                    return {
-                      date: day.toISOString(),
-                      pubDate: day.toISOString(),
-                      url: site.siteMetadata.siteUrl + `/posts/${node.number}`,
-                      guid: node.number,
-                      title: node.fields.title,
-                      description: node.fields.excerpt
-                    }
-                    break;
-                  case 'FeedQiitaPost':
-                  case 'FeedNotePost':
-                    return {
-                      date: dayjs(node.pubDate).toISOString(),
-                      pubDate: dayjs(node.pubDate).toISOString(),
-                      url: node.link,
-                      guid: node.link,
-                      title: node.title,
-                      description: node.contentSnippet.substring(0, 512)
-                    }
-                    break;
-                  case 'ExternalPostsYaml':
-                    return {
-                      date: dayjs(node.childPublishedDate.published_on).toISOString(),
-                      pubDate: dayjs(node.childPublishedDate.published_on).toISOString(),
-                      url: node.link,
-                      guid: node.link,
-                      title: node.fields.title,
-                      description: node.fields.excerpt.substring(0, 512)
-                    }
-                  default:
-                    throw `${node.internal.type} is unknown type`
-                }
-              })
+            serialize: ({
+              query: {
+                site,
+                allEsaPost,
+                allFeedQiitaPost,
+                allFeedNotePost,
+                allExternalPostsYaml,
+              },
+            }) => {
+              return [
+                ...allEsaPost.edges,
+                ...allFeedNotePost.edges,
+                ...allFeedQiitaPost.edges,
+                ...allExternalPostsYaml.edges,
+              ]
+                .sort((a, b) => {
+                  const bDate = b.node.pubDate
+                    ? new Date(b.node.pubDate)
+                    : new Date(b.node.childPublishedDate.published_on)
+                  const aDate = a.node.pubDate
+                    ? new Date(a.node.pubDate)
+                    : new Date(a.node.childPublishedDate.published_on)
+                  return bDate - aDate
+                })
+                .map((edge) => {
+                  const node = edge.node
+
+                  switch (node.internal.type) {
+                    case 'EsaPost':
+                      const day = dayjs(node.childPublishedDate.published_on)
+                      return {
+                        date: day.toISOString(),
+                        pubDate: day.toISOString(),
+                        url:
+                          site.siteMetadata.siteUrl + `/posts/${node.number}`,
+                        guid: node.number,
+                        title: node.fields.title,
+                        description: node.fields.excerpt,
+                      }
+                      break
+
+                    case 'FeedQiitaPost':
+                    case 'FeedNotePost':
+                      return {
+                        date: dayjs(node.pubDate).toISOString(),
+                        pubDate: dayjs(node.pubDate).toISOString(),
+                        url: node.link,
+                        guid: node.link,
+                        title: node.title,
+                        description: node.contentSnippet.substring(0, 512),
+                      }
+                      break
+
+                    case 'ExternalPostsYaml':
+                      return {
+                        date: dayjs(
+                          node.childPublishedDate.published_on,
+                        ).toISOString(),
+                        pubDate: dayjs(
+                          node.childPublishedDate.published_on,
+                        ).toISOString(),
+                        url: node.link,
+                        guid: node.link,
+                        title: node.fields.title,
+                        description: node.fields.excerpt.substring(0, 512),
+                      }
+
+                    default:
+                      throw `${node.internal.type} is unknown type`
+                  }
+                })
             },
             query: `
               {
@@ -227,10 +254,10 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
+            output: '/rss.xml',
           },
         ],
       },
     },
-  ]
+  ],
 }
