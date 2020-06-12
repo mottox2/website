@@ -32,7 +32,7 @@ const Title = styled.h1`
   line-height: 1.4;
   font-weight: 700;
   margin-bottom: 4px;
-  color: #222;
+  color: #1a202c;
   font-family: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue',
     'Hiragino Sans', '游ゴシック Medium', 'YuGothic',
     'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo,sans-serif';

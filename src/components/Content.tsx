@@ -5,6 +5,8 @@ export default styled.div`
   line-height: 1.8;
   font-size: 15px;
   word-break: break-all;
+  color: rgba(26, 32, 44, 0.88);
+
   .hidden {
     display: none;
   }
@@ -17,7 +19,7 @@ export default styled.div`
     line-height: 1.6;
     word-break: break-all;
     word-wrap: break-word;
-    color: #333333;
+    color: #4a5568;
     background-color: #3e4149;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -50,7 +52,7 @@ export default styled.div`
   }
 
   h1 a:hover {
-    color: #08837d;
+    color: #1a202c;
   }
 
   h2 {
@@ -80,7 +82,7 @@ export default styled.div`
   }
 
   h2 a:hover {
-    color: #08837d;
+    color: #1a202c;
   }
 
   h3 {
