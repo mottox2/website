@@ -32,14 +32,14 @@
     "html2plaintext": "^2.1.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-helmet": "^5.2.0",
+    "react-helmet": "^6.1.0",
     "react-share": "^2.4.0",
     "ress": "^2.0.4"
   },
   "devDependencies": {
     "@types/react": "16.9.23",
     "@types/react-dom": "16.9.5",
-    "@types/react-helmet": "5.0.14",
+    "@types/react-helmet": "6.0.0",
     "@types/react-share": "2.1.1",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",

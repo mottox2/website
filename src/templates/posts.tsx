@@ -1,6 +1,6 @@
 import { Link } from 'gatsby'
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 import styled from '@emotion/styled'
 

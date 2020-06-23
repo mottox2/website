@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import 'ress'
 import Footer from './Footer'
 import Header from './Header'
