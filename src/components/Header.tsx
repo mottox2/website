@@ -72,7 +72,7 @@ const Header: React.FC<any> = (props: any) => {
         isMobileShow={!showLogo}
       />
       <button
-        name="Search"
+        name="Search posts"
         css={searchToggle}
         onClick={() => updateShowLogo(!showLogo)}>
         {showLogo ? (
