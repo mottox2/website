@@ -5,13 +5,12 @@ import dayjs from 'dayjs'
 const h2p = require('html2plaintext')
 const cheerio = require('cheerio')
 
-/* eslint-disable @typescript-eslint/camelcase */
 const buildDateNode = ({
   createNodeId,
   nodeId,
   day,
 }: {
-  createNodeId: Function
+  createNodeId(input: string): string
   nodeId: string
   day: dayjs.Dayjs
 }) => {
