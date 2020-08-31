@@ -7180,10 +7180,10 @@ gatsby-source-microcms@^0.2.0:
     camelcase "^5.3.1"
     node-fetch "^2.6.0"
 
-gatsby-source-rss-feed@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-source-rss-feed/-/gatsby-source-rss-feed-1.2.0.tgz#661ff37eb7040d907d7af98768dce38e3d474ec3"
-  integrity sha512-1XulMO1MKURZdqaISuPfhBpcfm0sr1DZeOZLd4XakqTJvZ0pqLWP/dk/8F21do/RPBtjfwfuhuq42f3i/qIw2g==
+gatsby-source-rss-feed@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/gatsby-source-rss-feed/-/gatsby-source-rss-feed-1.2.2.tgz#f557fd9018a4410e738efb8d345857090642fccf"
+  integrity sha512-Ris5Dtdj856aups8xzPtNOG6prKjaGzcXxRdFrgExQBVv2o1fUPHwj7OGrdV32tNUg2mHOZurr5qFWAdaRIMUg==
   dependencies:
     lodash "^4.17.15"
     rss-parser "^3.7.6"
