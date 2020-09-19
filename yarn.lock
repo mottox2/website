@@ -7171,10 +7171,10 @@ gatsby-source-graphql@^2.5.4:
     node-fetch "^1.7.3"
     uuid "^3.4.0"
 
-gatsby-source-microcms@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-source-microcms/-/gatsby-source-microcms-0.2.0.tgz#af4563176ed425e5ee34669414d4e6a2ec311432"
-  integrity sha512-CQhk/ovEYAjaiDILgJccRW9kuCu93TctpiCBrZJlNYEpLi+Xak0mzzHKoMsJbxwRpBG2lh607JAV44pBv+UpHA==
+gatsby-source-microcms@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-source-microcms/-/gatsby-source-microcms-1.0.0.tgz#77125face999ca5d25215e61a9f8d578685cd719"
+  integrity sha512-DUDfTQTHZLqujB3UimhEY+AOnTILwrMW7jE+m4oYtZEruhRaHR7rfap55lAjBQvhjMl4EmM64XsCG+PVtQ6rQg==
   dependencies:
     "@hapi/joi" "^16.1.7"
     camelcase "^5.3.1"

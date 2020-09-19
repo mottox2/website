@@ -24,18 +24,22 @@ module.exports = {
       options: {
         apiKey: process.env.MICROCMS_API_KEY,
         serviceId: process.env.MICROCMS_SERVICE_ID,
-        endpoint: 'series',
-        query: {
-          limit: 100,
-          fields: [
-            'id',
-            'name',
-            'thumbnail',
-            'postIds',
-            'createdAt',
-            'updatedAt',
-          ].join(','),
-        },
+        apis: [
+          {
+            endpoint: 'series',
+            query: {
+              limit: 100,
+              fields: [
+                'id',
+                'name',
+                'thumbnail',
+                'postIds',
+                'createdAt',
+                'updatedAt',
+              ].join(','),
+            },
+          },
+        ],
       },
     },
     {
