@@ -292,6 +292,8 @@ export default styled.div`
 
   .emoji {
     border: none;
+    height: 19px;
+    width: 19px;
   }
 
   iframe {
