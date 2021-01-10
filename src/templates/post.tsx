@@ -66,7 +66,7 @@ const SocialLinkWrapper = styled.div`
   z-index: 10;
   right: 12px;
   background-color: white;
-  padding: 8px;
+  padding: 4px;
   border-radius: 40px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.20);
 }
