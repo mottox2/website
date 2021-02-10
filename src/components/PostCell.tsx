@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import { Link } from 'gatsby'
 import React from 'react'
 
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 const cell = css`

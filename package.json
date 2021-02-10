@@ -7,15 +7,15 @@
     "url": "https://github.com/mottox2/blog/issues"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.27",
-    "@emotion/styled": "^10.0.27",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.2",
     "dayjs": "^1.7.7",
     "framer-motion": "^2.4.2",
     "gatsby": "^2.32.3",
     "gatsby-paginate": "^1.1.1",
-    "gatsby-plugin-emotion": "^4.3.4",
+    "gatsby-plugin-emotion": "^5.4.0",
     "gatsby-plugin-feed": "^2.13.0",
     "gatsby-plugin-google-analytics": "^2.11.0",
     "gatsby-plugin-manifest": "^2.12.0",

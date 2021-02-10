@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import dayjs from 'dayjs'
 import { Helmet } from 'react-helmet'
 
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import Content from '../components/Content'

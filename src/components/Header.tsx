@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Logo from './logo.svg'
 import Search from './Search'
 
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 const simpleHeaderBreakpoint = 600
