@@ -8,7 +8,6 @@ const Footer: React.FC = () => {
     <Base>
       <Container>
         <Menu>
-          <Link to="/contact">CONTACT</Link>
           <a
             target="_blank"
             rel="noopener noreferrer"
