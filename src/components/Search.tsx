@@ -179,6 +179,7 @@ const Search: React.FC<Props> = (props: any) => {
   const prevMobileShow = usePrevious(props.isMobileShow)
   if (prevMobileShow !== props.isMobileShow && inputEl.current) {
     window.setTimeout(() => {
+      if (!inputEl.current) return
       inputEl.current.focus()
     }, 10)
   }
@@ -193,6 +194,7 @@ const Search: React.FC<Props> = (props: any) => {
   useEffect(() => {
     const focusShortcut = (e: KeyboardEvent) => {
       if (e.keyCode === keyCodes.SLASH && !isActive) {
+        if (!inputEl.current) return
         inputEl.current.focus()
         e.preventDefault()
       }

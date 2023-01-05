@@ -5,7 +5,9 @@ import styled from '@emotion/styled'
 import Profile from './Profile'
 import Tag from './Tag'
 
-const Sidebar: React.FC = ({ children }) => {
+const Sidebar: React.FC<{
+  children: React.ReactNode
+}> = ({ children }) => {
   return (
     <Base>
       {React.Children.map(children, (child) => (
