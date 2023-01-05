@@ -48,7 +48,6 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
     "prettier": "2.0.5",
-    "ts-node": "^8.10.2",
     "typescript": "3.9.7"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
@@ -59,7 +58,6 @@
     "node": ">=18.0.0"
   },
   "license": "MIT",
-  "main": "n/a",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"

@@ -1,9 +1,13 @@
 {
-  "include": ["./src/**/*"],
+  "include": [
+    "./src/**/*",
+    "./gatsby-node.ts"
+  ],
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "esnext",
     "lib": ["dom", "es2017"],
+    "moduleResolution": "node",
     "allowJs": true,
     "checkJs": true,
     "jsx": "react",
