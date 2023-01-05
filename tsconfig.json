@@ -11,6 +11,7 @@
     "allowJs": true,
     "checkJs": true,
     "jsx": "react",
+    "jsxImportSource": "@emotion/react",
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,

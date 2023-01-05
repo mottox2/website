@@ -6,7 +6,7 @@ import Profile from './Profile'
 import Tag from './Tag'
 
 const Sidebar: React.FC<{
-  children: React.ReactNode
+  children?: React.ReactNode
 }> = ({ children }) => {
   return (
     <Base>

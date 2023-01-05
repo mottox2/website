@@ -107,18 +107,18 @@ interface Props {
   post: any
 }
 
-const PostCell: React.SFC<Props> = ({ post }) => {
+const PostCell: React.FC<Props> = ({ post }) => {
   const postNode: any = post
-  const category = postNode.link ? postNode.fields.category : (postNode.relative_category || 'blog')
+  const category = postNode.link
+    ? postNode.fields.category
+    : postNode.relative_category || 'blog'
 
   return (
     <PostLink node={postNode} key={postNode.number || postNode.link}>
       <div css={cell}>
         <CellContent>
           <Category>{category}</Category>
-          <PostTitle
-            className="title"
-          >{postNode.fields.title}</PostTitle>
+          <PostTitle className="title">{postNode.fields.title}</PostTitle>
           <PostDescription>
             {postNode.fields.excerpt.slice(0, 100)}
           </PostDescription>

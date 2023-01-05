@@ -1,2 +1,2 @@
-export { onCreateNode } from './gatsby/onCreateNode';
-export { createPages } from './gatsby/createPages';
+export { onCreateNode } from './gatsby/onCreateNode'
+export { createPages } from './gatsby/createPages'
