@@ -43,17 +43,14 @@ const Title = styled.h1`
 `
 
 const Category = styled(Tag)<{ type: string }>`
-  background-image: ${(props) =>
-    props.type === 'note'
-      ? 'linear-gradient(45deg,#41C9B4 0,#41C9B4 100%)'
-      : 'linear-gradient(45deg,#4d9abf 0,#00a2c7 100%)'};
-  color: white;
+  background-color: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border: none;
   margin-bottom: 4px;
   text-transform: capitalize;
   letter-spacing: 0.2px;
   &:hover {
-    border-color: inherit;
-    color: white;
+    background-color: rgba(2, 132, 199, 0.2);
   }
   &:before {
     content: '';

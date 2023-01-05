@@ -8,10 +8,8 @@ import styled from '@emotion/styled'
 const cell = css`
   height: 100%;
   background-color: white;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #eee;
   padding: 20px 12px;
   @media (min-width: 624px) {
     padding-left: 0;
@@ -28,16 +26,11 @@ const Category = styled.div`
   font-weight: 600;
   display: inline-block;
   font-size: 12px;
-  background-image: linear-gradient(
-    45deg,
-    rgb(77, 154, 191) 0px,
-    rgb(0, 162, 199) 100%
-  );
-  color: white;
+  background-color: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
   text-transform: capitalize;
   letter-spacing: 0.2px;
   border-style: solid;
-  border-color: rgb(221, 221, 221);
   border-image: initial;
   margin: 0px 8px 4px 0px;
   padding: 4px 6px;
@@ -116,20 +109,16 @@ interface Props {
 
 const PostCell: React.SFC<Props> = ({ post }) => {
   const postNode: any = post
+  const category = postNode.link ? postNode.fields.category : (postNode.relative_category || 'blog')
 
   return (
     <PostLink node={postNode} key={postNode.number || postNode.link}>
       <div css={cell}>
         <CellContent>
-          {postNode.link ? (
-            <Category>{postNode.fields.category}</Category>
-          ) : (
-            <Category>{postNode.relative_category || 'blog'}</Category>
-          )}
+          <Category>{category}</Category>
           <PostTitle
             className="title"
-            dangerouslySetInnerHTML={{ __html: postNode.fields.title }}
-          />
+          >{postNode.fields.title}</PostTitle>
           <PostDescription>
             {postNode.fields.excerpt.slice(0, 100)}
           </PostDescription>
