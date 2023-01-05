@@ -102,166 +102,166 @@ module.exports = {
         icon: `src/images/logo.png`,
       },
     },
-    {
-      resolve: `gatsby-plugin-feed`,
-      options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                title
-                description
-                siteUrl
-                site_url: siteUrl
-              }
-            }
-          }
-        `,
-        feeds: [
-          {
-            serialize: ({
-              query: {
-                site,
-                allEsaPost,
-                allFeedQiitaPost,
-                allFeedNotePost,
-                allExternalPostsYaml,
-              },
-            }) => {
-              return [
-                ...allEsaPost.edges,
-                ...allFeedNotePost.edges,
-                ...allFeedQiitaPost.edges,
-                ...allExternalPostsYaml.edges,
-              ]
-                .sort((a, b) => {
-                  const bDate = b.node.pubDate
-                    ? new Date(b.node.pubDate)
-                    : new Date(b.node.childPublishedDate.published_on)
-                  const aDate = a.node.pubDate
-                    ? new Date(a.node.pubDate)
-                    : new Date(a.node.childPublishedDate.published_on)
-                  return bDate - aDate
-                })
-                .map((edge) => {
-                  const node = edge.node
+    // {
+    //   resolve: `gatsby-plugin-feed`,
+    //   options: {
+    //     query: `
+    //       {
+    //         site {
+    //           siteMetadata {
+    //             title
+    //             description
+    //             siteUrl
+    //             site_url: siteUrl
+    //           }
+    //         }
+    //       }
+    //     `,
+    //     feeds: [
+    //       {
+    //         serialize: ({
+    //           query: {
+    //             site,
+    //             allEsaPost,
+    //             allFeedQiitaPost,
+    //             allFeedNotePost,
+    //             allExternalPostsYaml,
+    //           },
+    //         }) => {
+    //           return [
+    //             ...allEsaPost.edges,
+    //             ...allFeedNotePost.edges,
+    //             ...allFeedQiitaPost.edges,
+    //             ...allExternalPostsYaml.edges,
+    //           ]
+    //             .sort((a, b) => {
+    //               const bDate = b.node.pubDate
+    //                 ? new Date(b.node.pubDate)
+    //                 : new Date(b.node.childPublishedDate.published_on)
+    //               const aDate = a.node.pubDate
+    //                 ? new Date(a.node.pubDate)
+    //                 : new Date(a.node.childPublishedDate.published_on)
+    //               return bDate - aDate
+    //             })
+    //             .map((edge) => {
+    //               const node = edge.node
 
-                  switch (node.internal.type) {
-                    case 'EsaPost':
-                      const day = dayjs(node.childPublishedDate.published_on)
-                      return {
-                        date: day.toISOString(),
-                        pubDate: day.toISOString(),
-                        url:
-                          site.siteMetadata.siteUrl + `/posts/${node.number}`,
-                        guid: node.number,
-                        title: node.fields.title,
-                        description: node.fields.excerpt,
-                      }
-                      break
+    //               switch (node.internal.type) {
+    //                 case 'EsaPost':
+    //                   const day = dayjs(node.childPublishedDate.published_on)
+    //                   return {
+    //                     date: day.toISOString(),
+    //                     pubDate: day.toISOString(),
+    //                     url:
+    //                       site.siteMetadata.siteUrl + `/posts/${node.number}`,
+    //                     guid: node.number,
+    //                     title: node.fields.title,
+    //                     description: node.fields.excerpt,
+    //                   }
+    //                   break
 
-                    case 'FeedQiitaPost':
-                    case 'FeedNotePost':
-                      return {
-                        date: dayjs(node.pubDate).toISOString(),
-                        pubDate: dayjs(node.pubDate).toISOString(),
-                        url: node.link,
-                        guid: node.link,
-                        title: node.title,
-                        description: node.contentSnippet.substring(0, 512),
-                      }
-                      break
+    //                 case 'FeedQiitaPost':
+    //                 case 'FeedNotePost':
+    //                   return {
+    //                     date: dayjs(node.pubDate).toISOString(),
+    //                     pubDate: dayjs(node.pubDate).toISOString(),
+    //                     url: node.link,
+    //                     guid: node.link,
+    //                     title: node.title,
+    //                     description: node.contentSnippet.substring(0, 512),
+    //                   }
+    //                   break
 
-                    case 'ExternalPostsYaml':
-                      return {
-                        date: dayjs(
-                          node.childPublishedDate.published_on,
-                        ).toISOString(),
-                        pubDate: dayjs(
-                          node.childPublishedDate.published_on,
-                        ).toISOString(),
-                        url: node.link,
-                        guid: node.link,
-                        title: node.fields.title,
-                        description: node.fields.excerpt.substring(0, 512),
-                      }
+    //                 case 'ExternalPostsYaml':
+    //                   return {
+    //                     date: dayjs(
+    //                       node.childPublishedDate.published_on,
+    //                     ).toISOString(),
+    //                     pubDate: dayjs(
+    //                       node.childPublishedDate.published_on,
+    //                     ).toISOString(),
+    //                     url: node.link,
+    //                     guid: node.link,
+    //                     title: node.fields.title,
+    //                     description: node.fields.excerpt.substring(0, 512),
+    //                   }
 
-                    default:
-                      throw `${node.internal.type} is unknown type`
-                  }
-                })
-            },
-            query: `
-              {
-                allEsaPost {
-                  edges {
-                    node {
-                      number
-                      fields {
-                        title
-                        excerpt
-                      }
-                      childPublishedDate {
-                        published_on
-                        published_on_unix
-                      }
-                      internal {
-                        type
-                      }
-                    }
-                  }
-                }
-                allFeedQiitaPost {
-                  edges {
-                    node {
-                      title
-                      pubDate
-                      contentSnippet
-                      link
-                      internal {
-                        type
-                      }
-                    }
-                  }
-                }
-                allFeedNotePost {
-                  edges {
-                    node {
-                      title
-                      pubDate
-                      contentSnippet
-                      link
-                      internal {
-                        type
-                      }
-                    }
-                  }
-                }
-                allExternalPostsYaml {
-                  edges {
-                    node {
-                      link
-                      fields {
-                        title
-                        excerpt
-                        category
-                      }
-                      childPublishedDate {
-                        published_on
-                        published_on_unix
-                      }
-                      internal {
-                        type
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            output: '/rss.xml',
-          },
-        ],
-      },
-    },
+    //                 default:
+    //                   throw `${node.internal.type} is unknown type`
+    //               }
+    //             })
+    //         },
+    //         query: `
+    //           {
+    //             allEsaPost {
+    //               edges {
+    //                 node {
+    //                   number
+    //                   fields {
+    //                     title
+    //                     excerpt
+    //                   }
+    //                   childPublishedDate {
+    //                     published_on
+    //                     published_on_unix
+    //                   }
+    //                   internal {
+    //                     type
+    //                   }
+    //                 }
+    //               }
+    //             }
+    //             allFeedQiitaPost {
+    //               edges {
+    //                 node {
+    //                   title
+    //                   pubDate
+    //                   contentSnippet
+    //                   link
+    //                   internal {
+    //                     type
+    //                   }
+    //                 }
+    //               }
+    //             }
+    //             allFeedNotePost {
+    //               edges {
+    //                 node {
+    //                   title
+    //                   pubDate
+    //                   contentSnippet
+    //                   link
+    //                   internal {
+    //                     type
+    //                   }
+    //                 }
+    //               }
+    //             }
+    //             allExternalPostsYaml {
+    //               edges {
+    //                 node {
+    //                   link
+    //                   fields {
+    //                     title
+    //                     excerpt
+    //                     category
+    //                   }
+    //                   childPublishedDate {
+    //                     published_on
+    //                     published_on_unix
+    //                   }
+    //                   internal {
+    //                     type
+    //                   }
+    //                 }
+    //               }
+    //             }
+    //           }
+    //         `,
+    //         output: '/rss.xml',
+    //       },
+    //     ],
+    //   },
+    // },
   ],
 }
