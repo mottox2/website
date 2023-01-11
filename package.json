@@ -27,7 +27,7 @@
     "gatsby-source-filesystem": "^3.4.0",
     "gatsby-source-microcms": "^1.1.0",
     "gatsby-source-rss-feed": "^1.2.2",
-    "gatsby-transformer-remark": "^4.1.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-yaml": "^3.4.0",
     "html2plaintext": "^2.1.0",
     "react": "^17.0.1",
