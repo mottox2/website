@@ -258,6 +258,7 @@ module.exports = {
                 }
               }
             `,
+            title: "mottox2 blog",
             output: '/rss.xml',
           },
         ],

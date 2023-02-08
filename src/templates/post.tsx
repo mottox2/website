@@ -42,7 +42,7 @@ const Title = styled.h1`
   }
 `
 
-const Category = styled(Tag)<{ type: string }>`
+const Category = styled(Tag)`
   background-color: rgba(2, 132, 199, 0.1);
   color: #0284c7;
   border: none;
