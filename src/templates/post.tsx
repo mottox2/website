@@ -77,7 +77,7 @@ const PostTemplate = (props: any) => {
   const category = post.relative_category || 'blog'
   const image =
     post.fields.thumbnail ||
-    `https://dynamic-images-tau.vercel.app/images?title=${title}`
+    `https://dynamic-images-tau.vercel.app/images?title=${encodeURI(title)}`
   const card = 'summary_large_image'
   const url = `https://mottox2.com/posts/${post.number}`
   const { series } = props.pageContext
